@@ -43,7 +43,16 @@ public class Principal {
 					break;
 				case 3:
 					System.out.println("Introduce el DNI del socio a modificar");
-					
+					String dni = t.nextLine();
+					s = fs.obtenerSocio(dni);
+					if(s!=null) {
+						System.out.println("Introduce el importe a sumar/restar");
+						float importe  = t.nextFloat();
+						fs.modificarSaldo(s, importe);
+					}
+					else {
+						System.out.println("El socio no existe");
+					}
 					break;
 				case 4:
 					

@@ -210,4 +210,55 @@ public class FicheroSocios {
 			}
 		}
 	}
+
+	public Socio obtenerSocio(String dni) {
+		// TODO Auto-generated method stub
+		Socio resultado = null;
+		
+		//Fichero para lectura
+		BufferedReader fichero = null;
+		try {
+			fichero = new BufferedReader(new FileReader(nombre));
+			
+			//Leemos línea a línea hasta encontrar el socio buscado
+			String linea;
+			while((linea= fichero.readLine())!=null) {
+				//Dividimos la línea en campos
+				String[] campos = linea.split(";");
+				
+				//Comprobamos si el dni es el buscado
+				if(campos[0].equals(dni)) {
+					//Creamos objeto resultado y rellenamos sus datos
+					resultado = new Socio();
+					resultado.setNif(campos[0]);
+					resultado.setNombre(campos[1]);
+					resultado.setFechAlta(formato.parse(campos[2]));
+					resultado.setSaldo(Float.parseFloat(campos[3]));
+					resultado.setBaja(Boolean.parseBoolean(campos[4]));
+					return resultado;
+				}
+						
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if(fichero!=null) {
+				try {
+					fichero.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return resultado;
+	}
 }
