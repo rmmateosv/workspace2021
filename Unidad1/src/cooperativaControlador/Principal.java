@@ -20,6 +20,7 @@ public class Principal {
 			System.out.println("0-Salir");
 			System.out.println("1-Crear Socio");
 			System.out.println("2-Mostrar Socios");
+			System.out.println("3-Modificar saldo");
 			
 			opcion = t.nextInt();t.nextLine();
 			Socio s;
@@ -41,6 +42,7 @@ public class Principal {
 					
 					break;
 				case 3:
+					System.out.println("Introduce el DNI del socio a modificar");
 					
 					break;
 				case 4:

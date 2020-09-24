@@ -2,6 +2,7 @@ package cooperativaModelo;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -30,13 +31,16 @@ public class FicheroSocios {
 	}
 	
 	public void crearSocio(Socio s) {	
+		
+		BufferedWriter fichero=null;
+		
 		try {
 			//PASO 1: ABRIR FICHERO
 			//Declarmos el fichero para escribir en él
 			//Abrimos el fichero con el nombre y el atributo 
 			//append a true, para que se añada información y no 
 			//se borre el fichero cada vez que se abre
-			BufferedWriter fichero = new BufferedWriter(
+			fichero = new BufferedWriter(
 					new FileWriter(nombre, true));
 			
 			//PASO 2: ESCRIBIR LOS DATOS DEL SOCIO
@@ -49,8 +53,7 @@ public class FicheroSocios {
 			//Marcamos el fin de línea
 			fichero.newLine();
 			
-			//PASO 3:  CERRAMOS EL FICHERO
-			fichero.close();
+			
 			
 			
 		} catch (IOException e) {
@@ -59,17 +62,28 @@ public class FicheroSocios {
 					+ "para crear un socio");
 			e.printStackTrace();
 		}
+		finally {
+			//PASO 3:  CERRAMOS EL FICHERO
+			try {
+				if (fichero!=null)
+						fichero.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public ArrayList<Socio> obtenerSocios() {
 		
 		ArrayList<Socio> resultado = new ArrayList<>();
 		
+		BufferedReader fichero = null;
 		
 		try {
 			//PASO1: ABRIR EL FICHERO DE SOCIOS PARA LECTURA
 			//Declarmos un objeto de la clase BufferedReader
-			BufferedReader fichero = new BufferedReader(
+			fichero = new BufferedReader(
 					new FileReader(nombre));
 			
 			//PASO2: RECORRO EL FICHERO LEYENDO LÍNEA A LÍNEA HASTA
@@ -87,8 +101,7 @@ public class FicheroSocios {
 				resultado.add(s);
 			}
 			
-			//PASO 3: CERRAR FICHERO
-			fichero.close();
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -102,7 +115,99 @@ public class FicheroSocios {
 			// TODO Auto-generated catch block
 			System.out.println("Error: fecha incorrecta");
 		}
-		
+		finally {
+			//PASO 3: CERRAR FICHERO
+			try {
+				if(fichero!=null)
+					fichero.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return resultado;
+	}
+	
+	public void modificarSaldo(Socio s, float importe) {
+		//El socio que se pasa por parámetro tiene el 
+		//DNI del socio al que se va a sumar el importe
+		
+		
+		BufferedReader fOriginal=null;
+		BufferedWriter fTemporal=null;
+		
+		try {
+			//PASO 1: Abrir ficheros. El fichero socios.txt
+			// se abre para lectura. Se crea un fichero socios.tmp
+			// para realizar la modificación.
+			fOriginal = new BufferedReader(new FileReader(nombre));
+			//El fichero temporal, siempre se sobreescribe (append=false)
+			fTemporal = new BufferedWriter(new FileWriter("socios.tmp",false));
+			
+			//PASO 2: Leemos la información del fichero original
+			// y la pasamos al fichero temporal. Solamente modificamos
+			// el saldo del socio que se pasa por parámetro
+			String linea;
+			while((linea=fOriginal.readLine())!=null) {
+				//Divido la línea en campos para acceder a los datos del socio
+				String[] campos = linea.split(";");
+				//Comprobamos si el DNI es el del socio que hay que modificar
+				if(campos[0].equals(s.getNif())) {
+					//Modificamos el saldo
+					s.setSaldo(s.getSaldo()+importe);
+					
+					//Escribir los datos del socio con el saldo modificado
+					fTemporal.write(campos[0]+";");
+					fTemporal.write(campos[1]+";");
+					fTemporal.write(campos[2]+";");
+					fTemporal.write(s.getSaldo()+";");
+					fTemporal.write(campos[4]+"\n");
+				}
+				else {
+					//Escribimos en el fichero en el fichero temporal
+					//linea, tal cual se ha leído
+					fTemporal.write(linea);
+					fTemporal.newLine();
+				}
+			}
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			//PASO 3: CERRAR FICHEROS Y RENOMBRAR
+			try {
+				if(fOriginal!=null)
+					fOriginal.close();
+				if(fTemporal!=null)
+					fTemporal.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//Creamos objetos FILE a los ficheros para poder borrar y renombrar
+			File original = new File(nombre);
+			File temporal = new File("socios.tmp");
+			
+			//Comprobamos que existe y borramos socios.txt
+			if(original.exists()) {
+				if(!original.delete()) {
+					System.out.println("Error: No se puede borrar el ficheros socios.txt");
+				}
+			}
+			//Comprobamos que existe y renombramos socios.tmp
+			if(temporal.exists()) {
+				if(!temporal.renameTo(original)) {
+					System.out.println("Error: No se pude renombrar temporal a original");
+				}
+			}
+		}
 	}
 }
