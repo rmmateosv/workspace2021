@@ -6,7 +6,7 @@ import java.util.Scanner;
 import cooperativaModelo.FicheroSocios;
 import cooperativaModelo.Socio;
 
-public class Principal {
+public class PrincipalSocios {
 
 	private static Scanner t = new java.util.Scanner(System.in); 
 	private static FicheroSocios fs = new FicheroSocios("socios.txt");
@@ -21,9 +21,12 @@ public class Principal {
 			System.out.println("1-Crear Socio");
 			System.out.println("2-Mostrar Socios");
 			System.out.println("3-Modificar saldo");
+			System.out.println("4-¡¡¡Borrar un socio!!!");
+			System.out.println("5-Dar de baja socio");
 			
 			opcion = t.nextInt();t.nextLine();
 			Socio s;
+			String dni;
 			switch(opcion){
 				case 1:
 					s = new Socio();
@@ -43,7 +46,7 @@ public class Principal {
 					break;
 				case 3:
 					System.out.println("Introduce el DNI del socio a modificar");
-					String dni = t.nextLine();
+					dni = t.nextLine();
 					s = fs.obtenerSocio(dni);
 					if(s!=null) {
 						System.out.println("Introduce el importe a sumar/restar");
@@ -55,10 +58,27 @@ public class Principal {
 					}
 					break;
 				case 4:
-					
+					System.out.println("Introduce el DNI del socio a modificar");
+					dni = t.nextLine();
+					s = fs.obtenerSocio(dni);
+					if(s!=null) {
+						fs.borrarSocio(s);
+					}
+					else {
+						System.out.println("El socio no existe");
+					}
+				
 					break;
 				case 5:
-					
+					System.out.println("Introduce el DNI del socio a dar de baja");
+					dni = t.nextLine();
+					s = fs.obtenerSocio(dni);
+					if(s!=null) {
+						fs.bajaSocio(s);
+					}
+					else {
+						System.out.println("El socio no existe");
+					}
 					break;
 				case 6:
 					
