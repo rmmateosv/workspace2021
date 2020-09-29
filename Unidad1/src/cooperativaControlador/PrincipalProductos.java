@@ -1,6 +1,7 @@
 package cooperativaControlador;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 import cooperativaModelo.FicheroProductos;
@@ -36,8 +37,17 @@ public class PrincipalProductos {
 					System.out.println("Precio:");
 					p.setPrecio(t.nextFloat());t.nextLine();
 					p.setCodigo(fp.obtenerNuevoCodigo());
+					p.setStock(0);
+					p.setFechaAlta(new Date().getTime());
+					p.setDescatalogado(false);
+					if(!fp.crearProducto(p)) {
+						System.out.println("Error al crear el producto");
+					}
 				case 2:
-										
+					ArrayList<Producto> productos = fp.obtenerProductos();
+					for(Producto mP:productos) {
+						mP.mostrar();
+					}
 					break;
 				case 3:
 					
