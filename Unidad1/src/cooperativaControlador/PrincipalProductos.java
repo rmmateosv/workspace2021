@@ -50,7 +50,17 @@ public class PrincipalProductos {
 					}
 					break;
 				case 3:
+					System.out.println("Código de producto a modificar");
+					p = new Producto();
+					p.setCodigo(t.nextInt()); t.nextLine();
+					System.out.println("Introduce el stock a sumar");
+					int cantidad = t.nextInt();t.nextLine();
+					if(!fp.modificarStock(p, cantidad)) {
+						System.out.println("Error, el producto no existe "
+								+ "o no se ha modificado");
+					}
 					
+							
 					break;
 				case 4:
 				
