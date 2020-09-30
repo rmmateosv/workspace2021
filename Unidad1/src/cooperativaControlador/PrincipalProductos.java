@@ -43,6 +43,7 @@ public class PrincipalProductos {
 					if(!fp.crearProducto(p)) {
 						System.out.println("Error al crear el producto");
 					}
+					break;
 				case 2:
 					ArrayList<Producto> productos = fp.obtenerProductos();
 					for(Producto mP:productos) {
@@ -63,9 +64,17 @@ public class PrincipalProductos {
 							
 					break;
 				case 4:
-				
-				
+					System.out.println("Código de producto a descatalogar");
+					p = new Producto();
+					p.setCodigo(t.nextInt()); t.nextLine();
+					if(!fp.descatalogar(p)) {
+						System.out.println("Error, el producto no existe "
+								+ "o no se ha descatalogado");
+					}
+					
+							
 					break;
+				
 				case 5:
 				
 					break;

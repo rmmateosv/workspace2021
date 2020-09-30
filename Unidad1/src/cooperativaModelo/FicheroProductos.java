@@ -66,6 +66,16 @@ public class FicheroProductos {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally {
+				if(fichero!=null) {
+					try {
+						fichero.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+		}
 		}
 		
 		return resultado+1;
@@ -234,6 +244,91 @@ public class FicheroProductos {
 		}
 		
 		return resultado;
+	}
+
+	public boolean descatalogar(Producto p) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		boolean resultado=false;
+		
+		DataInputStream fOriginal = null;
+		DataOutputStream fTemporal = null;
+		
+		try {
+			fOriginal = new DataInputStream(new FileInputStream(nombre));
+			fTemporal = new DataOutputStream(
+					new FileOutputStream("productos.tmp",false));
+			
+			//Recorremos los productos
+			while(true) {
+				//Leemos producto
+				int codigo=fOriginal.readInt();
+				if(codigo==p.getCodigo()) {
+					fTemporal.writeInt(codigo);
+					fTemporal.writeUTF(fOriginal.readUTF());
+					fTemporal.writeInt(fOriginal.readInt());
+					fTemporal.writeFloat(fOriginal.readFloat());
+					fTemporal.writeLong(fOriginal.readLong());
+					fOriginal.readBoolean();
+					fTemporal.writeBoolean(Boolean.parseBoolean("true"));
+					resultado = true;
+				}
+				else {
+					fTemporal.writeInt(codigo);
+					fTemporal.writeUTF(fOriginal.readUTF());
+					fTemporal.writeInt(fOriginal.readInt());
+					fTemporal.writeFloat(fOriginal.readFloat());
+					fTemporal.writeLong(fOriginal.readLong());
+					fTemporal.writeBoolean(fOriginal.readBoolean());
+					
+				}
+			}
+		} 
+		catch (EOFException e) {
+			// TODO: handle exception
+			
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if(fOriginal!=null) {
+				try {
+					fOriginal.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(fTemporal!=null) {
+				try {
+					fTemporal.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		File original = new File(nombre);
+		if(original.exists()) {
+			if(!original.delete()) {
+				System.out.println("error, no se ha borrado el fichero original");
+			}
+		}
+		File temporal = new File("productos.tmp");
+		if(temporal.exists()) {
+			if(!temporal.renameTo(original)) {
+				System.out.println("erro, no se puede renombrar el fichero temporal");
+			}
+		}
+		
+		return resultado;
+
 	}
 	
 	
