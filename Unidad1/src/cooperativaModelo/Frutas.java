@@ -1,9 +1,10 @@
 package cooperativaModelo;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Frutas {
+public class Frutas implements Serializable{
 	private int codigo;
 	private String nombre;
 	private Date fechaIT;
