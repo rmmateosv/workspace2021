@@ -49,11 +49,29 @@ public class PrincipalFrutas {
 					}
 					break;
 				case 2:
-					
+					ArrayList<Frutas> listaF;
+					listaF= ft.obtenerFrutas();
+					for(Frutas fr:listaF) {
+						fr.mostrar();
+					}
 					
 					break;
 				case 3:
-					
+					try {
+						System.out.println("Introduce código");
+						int codigo = t.nextInt(); t.nextLine();
+						f = ft.obtenerFruta(codigo);
+						if(f!=null) {
+							System.out.println("Introduce nueva fecha");
+							f.setFechaIT(formato.parse(t.nextLine()));
+							if(!ft.modificarFruta(f)) {
+								System.out.println("Error al modificar la fecha");
+							}							
+						}
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					break;
 				case 4:
 					

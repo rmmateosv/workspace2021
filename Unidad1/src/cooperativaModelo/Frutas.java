@@ -44,6 +44,8 @@ public class Frutas implements Serializable{
 	public void setNumAlmacen(int numAlmacen) {
 		this.numAlmacen = numAlmacen;
 	}
+
+	
 	
 	
 }

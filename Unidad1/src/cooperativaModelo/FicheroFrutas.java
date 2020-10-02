@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class FicheroFrutas {
 	private String nombre;
@@ -75,11 +76,12 @@ public class FicheroFrutas {
 			//comprobamos si existe el fichero
 			File fich = new File(nombre);
 			if(fich.exists()) {
-				
+				fichero = new  MiObjectOutputStream(
+						new FileOutputStream(nombre,true));
 			}
 			else {
 				//Abrimos el fichero para añadir regsitros
-				fichero = new ObjectOutputStream(new FileOutputStream(nombre, true));
+				fichero = new ObjectOutputStream(new FileOutputStream(nombre,true));
 			}
 			
 			//Añadimos la fruta
@@ -102,6 +104,96 @@ public class FicheroFrutas {
 				}
 			}
 		}
+		return resultado;
+	}
+
+	public ArrayList<Frutas> obtenerFrutas() {
+		// TODO Auto-generated method stub
+		ArrayList<Frutas> resultado = new ArrayList<>();
+		ObjectInputStream fichero = null;
+		try {
+			fichero = new ObjectInputStream(new FileInputStream(nombre));
+			while(true) {
+				Frutas f = (Frutas)fichero.readObject();
+				resultado.add(f);
+			}
+			
+		} 
+		catch (EOFException e) {
+			// TODO: handle exception
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if(fichero!=null) {
+				try {
+					fichero.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return resultado;
+	}
+
+	public Frutas obtenerFruta(int codigo) {
+		// TODO Auto-generated method stub
+		Frutas resultado = null;
+		
+		ObjectInputStream fichero = null;
+		try {
+			fichero = new ObjectInputStream(new FileInputStream(nombre));
+			while(true) {
+				Frutas f = (Frutas)fichero.readObject();
+				if(codigo==f.getCodigo()) {
+					resultado = f;
+					return resultado;
+				}
+			}
+			
+		} 
+		catch (EOFException e) {
+			// TODO: handle exception
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if(fichero!=null) {
+				try {
+					fichero.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return resultado;
+	}
+
+	public boolean modificarFruta(Frutas f) {
+		// TODO Auto-generated method stub
+		boolean resultado=false;
+		
+		
+		
 		return resultado;
 	}
 	
