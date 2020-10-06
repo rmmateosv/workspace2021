@@ -1,9 +1,12 @@
 package cooperativaModelo;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.Date;
 
 //ESTRUCTURA DEL FICHERO DE ENTREGAS
 //Codigo int => 4B
@@ -84,6 +87,61 @@ public class FicheroEntregas {
 				}
 			}
 		}
+		return resultado;
+	}
+
+	public ArrayList<Entregas> obtenerEntregas() {
+		// TODO Auto-generated method stub
+		ArrayList<Entregas> resultado=new ArrayList<Entregas>();
+		
+		RandomAccessFile fichero = null;
+		
+		try {
+			fichero = new RandomAccessFile(nombre, "r");
+			while(true) {
+				Entregas e = new Entregas();
+				e.setCodigo(fichero.readInt());
+				//Nif Socio
+				e.setSocio(new Socio());				
+				String nif = "";
+				for(int i=0;i<9;i++) {
+					nif += fichero.readChar();
+				}
+				e.getSocio().setNif(nif.trim());
+				//Código Fruta
+				e.setFruta(new Frutas());
+				e.getFruta().setCodigo(fichero.readInt());
+				//Fecha
+				e.setFecha(new Date(fichero.readLong()));
+				//Kilos
+				e.setKilos(fichero.readFloat());
+				//Importe
+				e.setPrecio(fichero.readFloat());
+				resultado.add(e);			
+				
+			}
+		} 
+		catch (EOFException e) {
+			// TODO: handle exception
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		finally {
+			if(fichero!=null) {
+				try {
+					fichero.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		return resultado;
 	}
 	

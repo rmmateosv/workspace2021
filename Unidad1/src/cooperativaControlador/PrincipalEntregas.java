@@ -77,7 +77,12 @@ public class PrincipalEntregas {
 					
 					break;
 				case 2:
-					
+					ArrayList<Entregas> lE = fe.obtenerEntregas();
+					for(Entregas en:lE) {
+						en.setSocio(fs.obtenerSocio(en.getSocio().getNif()));
+						en.setFruta(ff.obtenerFruta(en.getFruta().getCodigo()));
+						en.mostrar();
+					}
 					
 					break;
 				case 3:
