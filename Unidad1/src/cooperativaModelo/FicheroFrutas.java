@@ -192,8 +192,65 @@ public class FicheroFrutas {
 		// TODO Auto-generated method stub
 		boolean resultado=false;
 		
+		ObjectInputStream fOriginal = null;
+		ObjectOutputStream fTemporal = null;
 		
-		
+		try {
+			fOriginal = new ObjectInputStream(new FileInputStream(nombre));
+			fTemporal = new ObjectOutputStream(new FileOutputStream("frutas.tmp",false));
+			while(true) {
+				Frutas fr = (Frutas)fOriginal.readObject();
+				if(fr.getCodigo()==f.getCodigo()) {
+					fTemporal.writeObject(f);
+					resultado = true;
+				}
+				else {
+					fTemporal.writeObject(fr);
+				}
+			}
+		} 
+		catch (EOFException e) {
+			// TODO: handle exception
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if(fOriginal!=null) {
+				try {
+					fOriginal.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}if(fTemporal!=null) {
+				try {
+					fTemporal.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		File original = new File(nombre);
+		if(original.exists()) {
+			if(!original.delete()) {
+				System.out.println("error, no se ha borrado el fichero original");
+			}
+		}
+		File temporal = new File("frutas.tmp");
+		if(temporal.exists()) {
+			if(!temporal.renameTo(original)) {
+				System.out.println("erro, no se puede renombrar el fichero temporal");
+			}
+		}
 		return resultado;
 	}
 	

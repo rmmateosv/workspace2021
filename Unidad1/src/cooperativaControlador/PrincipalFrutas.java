@@ -26,7 +26,7 @@ public class PrincipalFrutas {
 			System.out.println("1-Registrar Fruta");
 			System.out.println("2-Mostrar Frutas");
 			System.out.println("3-Modificar Fecha Inicio Temporada");
-			System.out.println("5-Borrar Fruta!!!!!!!!");
+			
 			
 			opcion = t.nextInt();t.nextLine();
 			Frutas f;
