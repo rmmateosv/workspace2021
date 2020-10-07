@@ -86,7 +86,19 @@ public class PrincipalEntregas {
 					
 					break;
 				case 3:
-					
+					System.out.println("Introduce código de entrega");
+					int codigo = t.nextInt(); t.nextLine();
+					e = fe.obtenerEntrega(codigo);
+					if(e!=null) {
+						System.out.println("Nuevo precio");
+						e.setPrecio(t.nextFloat()); t.nextLine();
+						if(!fe.modificarEntrega(e)) {
+							System.out.println("Error al modificar la entrega");
+						}
+					}
+					else {
+						System.out.println("Error, la entrega no existe");
+					}
 					break;
 				case 4:
 					

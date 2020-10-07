@@ -8,6 +8,8 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Date;
 
+
+
 //ESTRUCTURA DEL FICHERO DE ENTREGAS
 //Codigo int => 4B
 //NIF Socio String de 9 caracteres=> 18B
@@ -142,6 +144,120 @@ public class FicheroEntregas {
 			}
 		}
 		
+		return resultado;
+	}
+
+	public Entregas obtenerEntrega(int codigo) {
+		// TODO Auto-generated method stub
+		Entregas resultado = null;
+		
+		RandomAccessFile fichero = null;
+		
+		try {
+			fichero = new RandomAccessFile(nombre, "r");
+			while(true) {
+				int codigoF = fichero.readInt();
+				if(codigoF==codigo) {
+					resultado = new Entregas();
+					resultado.setCodigo(codigoF);
+					resultado.setSocio(new Socio());
+					
+					//Leemos los 18B del nif
+					byte[] texto= new byte[18];
+					fichero.read(texto,0,18);
+					resultado.getSocio().setNif(new String(texto));
+					
+					resultado.setFruta(new Frutas());
+					resultado.getFruta().setCodigo(fichero.readInt());
+					
+					resultado.setFecha(new Date(fichero.readLong()));
+					
+					resultado.setKilos(fichero.readFloat());
+					resultado.setPrecio(fichero.readFloat());
+					
+					return resultado;
+					
+					
+				}
+				else {
+					//saltamos al siguiente registro, para ello 
+					//avanzamos 38B => 42-4 que ya he leído del código
+					fichero.seek(fichero.getFilePointer()+38);
+				}
+			}
+		} 
+		catch (EOFException e) {
+			// TODO: handle exception
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if(fichero!=null) {
+				try {
+					fichero.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return resultado;
+	}
+
+	public boolean modificarEntrega(Entregas entrega) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		
+		RandomAccessFile fichero = null;
+		
+		try {
+			fichero = new RandomAccessFile(nombre, "rw");
+			while(true) {
+				int codigoF = fichero.readInt();
+				if(codigoF==entrega.getCodigo()) {
+					//Nos desplazamos hasta el precio
+					//tenemos que avanzar desde donde estamos
+					//34B => 18+4+8+4
+					fichero.seek(fichero.getFilePointer()+34);
+					//Escribimos el nuevo precio
+					fichero.writeFloat(entrega.getPrecio());
+					resultado = true;
+					return resultado;
+					
+					
+				}
+				else {
+					//saltamos al siguiente registro, para ello 
+					//avanzamos 38B => 42-4 que ya he leído del código
+					fichero.seek(fichero.getFilePointer()+38);
+				}
+			}
+		} 
+		catch (EOFException e) {
+			// TODO: handle exception
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if(fichero!=null) {
+				try {
+					fichero.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		return resultado;
 	}
 	
