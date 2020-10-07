@@ -40,6 +40,7 @@ public class PrincipalEntregas {
 			
 			opcion = t.nextInt();t.nextLine();
 			Entregas e;
+			int codigo;
 			switch(opcion){
 				case 1:
 					e = new Entregas();
@@ -87,7 +88,7 @@ public class PrincipalEntregas {
 					break;
 				case 3:
 					System.out.println("Introduce código de entrega");
-					int codigo = t.nextInt(); t.nextLine();
+					codigo = t.nextInt(); t.nextLine();
 					e = fe.obtenerEntrega(codigo);
 					if(e!=null) {
 						System.out.println("Nuevo precio");
@@ -102,7 +103,18 @@ public class PrincipalEntregas {
 					break;
 				case 4:
 					
-				
+					System.out.println("Introduce código de entrega");
+					codigo = t.nextInt(); t.nextLine();
+					e = fe.obtenerEntrega(codigo);
+					if(e!=null) {
+						
+						if(!fe.borrarEntrega(e)) {
+							System.out.println("Error al modificar la entrega");
+						}
+					}
+					else {
+						System.out.println("Error, la entrega no existe");
+					}
 					break;
 				
 			}
