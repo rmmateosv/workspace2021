@@ -7,7 +7,7 @@ import java.util.Date;
 public class Proveedor {
 	private int codigo;
 	private String nombre;
-	private ArrayList<String> telefonos;
+	private ArrayList<String> telefonos= new ArrayList<>();
 	private Date fecha_pedido;
 	private boolean baja=false;
 	

@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 
 import cooperativaModelo.FicheroProveedores;
+import cooperativaModelo.Proveedor;
 
 
 
@@ -43,7 +44,10 @@ public class PrincipalProveedores {
 					
 					break;
 				case 2:
-					fp.mostrarProveedores();					
+					ArrayList<Proveedor> listaP=fp.obtenerProveedores();
+					for(Proveedor p : listaP) {
+						p.mostrar();
+					}
 					break;
 				
 			}
