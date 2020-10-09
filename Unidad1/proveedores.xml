@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proveedores>
+	<proveedor id="1">
+		<nombre>Sumistros García</nombre>
+		<telefonos>
+			<telefono>111111111</telefono>
+			<telefono>222222222</telefono>
+		</telefonos>
+		<fecha_pedido>2020-10-01</fecha_pedido>
+	</proveedor>
+	<proveedor id="2">
+		<nombre>Viveros Costa Luz</nombre>
+		<telefonos>
+			<telefono>333333333</telefono>
+		</telefonos>
+		<fecha_pedido>2020-09-01</fecha_pedido>
+	</proveedor>
+	<proveedor id="3">
+		<nombre>QuímicaEX</nombre>
+		<telefonos>
+			<telefono>444444444</telefono>
+		</telefonos>
+		<fecha_pedido>2020-10-10</fecha_pedido>
+	</proveedor>
+</proveedores>
