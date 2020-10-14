@@ -67,9 +67,10 @@ public class PrincipalProveedores {
 					pr = fp.obtenerProveedor(codigo);
 					if (pr != null) {
 						System.out.println("Nueva fecha (dd/mm/yyyy)");
-						pr.setFecha_pedido(formato.parse(t.nextLine()));
-						pr.mostrar();
-						//fp.modificarFecha(pr);
+						pr.setFecha_pedido(formato.parse(t.nextLine()));						
+						if(!fp.modificarFecha(pr)) {
+							System.out.println("Error al modificar la fecha");
+						}
 					} else {
 						System.out.println("Error, el proveedor no existe");
 					}

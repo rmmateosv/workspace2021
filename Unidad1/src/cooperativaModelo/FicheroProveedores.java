@@ -262,7 +262,7 @@ public class FicheroProveedores {
 							resultado.getTelefonos().add(proveedores.item(i)
 									.getChildNodes().item(1)
 									.getChildNodes().item(j)
-									.getChildNodes().item(0) //!!!!
+									.getChildNodes().item(0) 
 									.getNodeValue());
 						}
 						//Fecha
@@ -297,6 +297,55 @@ public class FicheroProveedores {
 			}
 			
 			
+		
+		return resultado;
+	}
+
+	public boolean modificarFecha(Proveedor pr) {
+		// TODO Auto-generated method stub
+		boolean resultado =false;
+		
+		Document documento;
+		try {
+			documento = DocumentBuilderFactory.
+					newInstance().newDocumentBuilder().parse(nombre);
+			Element raiz = documento.getDocumentElement();
+			//Obtenemos los elementos proveedor
+			NodeList proveedores = raiz.getChildNodes();
+			for(int i=0;i<proveedores.getLength();i++) {
+				//comprobamos si el código es el buscado
+				int codigoXML = Integer.parseInt(
+						proveedores.item(i)
+						.getAttributes().item(0)
+						.getNodeValue());
+				if(codigoXML == pr.getCodigo()) {
+					
+					//Modificmos el nodo del texto de la Fecha
+					proveedores.item(i)
+							.getChildNodes().item(2)
+							.getChildNodes().item(0).
+							setNodeValue(formato.format(pr.getFecha_pedido()));
+					//Guardamos en disco
+					guardarDOM(documento);
+					resultado = true;
+					
+					return resultado;
+					
+				}
+			}
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DOMException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		
 		return resultado;
 	}
