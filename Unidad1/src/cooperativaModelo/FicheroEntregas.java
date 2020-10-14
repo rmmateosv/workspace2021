@@ -369,4 +369,9 @@ public class FicheroEntregas {
 		return resultado;
 	}
 
+	public void generarXML(Socio s, ArrayList<Entregas> lE) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
