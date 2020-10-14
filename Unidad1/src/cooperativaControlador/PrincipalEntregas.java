@@ -35,12 +35,14 @@ public class PrincipalEntregas {
 			System.out.println("1-Registrar Entrega");
 			System.out.println("2-Mostrar Entregas");
 			System.out.println("3-Modificar precio");
-			System.out.println("3-Borrar Entrega!!!!!");
+			System.out.println("4-Borrar Entrega!!!!!");
+			System.out.println("5-Generar Entregas Socio (xml)");
 			
 			
 			opcion = t.nextInt();t.nextLine();
 			Entregas e;
 			int codigo;
+			ArrayList<Entregas> lE;
 			switch(opcion){
 				case 1:
 					e = new Entregas();
@@ -78,7 +80,7 @@ public class PrincipalEntregas {
 					
 					break;
 				case 2:
-					ArrayList<Entregas> lE = fe.obtenerEntregas();
+					lE = fe.obtenerEntregas();
 					for(Entregas en:lE) {
 						en.setSocio(fs.obtenerSocio(en.getSocio().getNif()));
 						en.setFruta(ff.obtenerFruta(en.getFruta().getCodigo()));
@@ -115,6 +117,29 @@ public class PrincipalEntregas {
 					else {
 						System.out.println("Error, la entrega no existe");
 					}
+					break;
+				case 5:
+					ArrayList<Socio> lSocios = fs.obtenerSocios();
+					for(Socio s:lSocios) {
+						s.mostrar();
+					}
+					System.out.println("Introduce dni de socio");
+					String codigoS = t.nextLine();
+					Socio s = fs.obtenerSocio(codigoS);
+					if(s!=null) {
+						lE = fe.obtenerEntregas(s.getNif());
+						for(Entregas en:lE) {
+							en.setSocio(s);
+							en.setFruta(ff.obtenerFruta(en.getFruta().getCodigo()));
+						}
+						fe.generarXML(s,lE);
+						
+					}
+					else {
+						System.out.println("Error, el socio no existe");
+					}
+					
+					
 					break;
 				
 			}

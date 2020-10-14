@@ -3,6 +3,11 @@ package cooperativaModelo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(propOrder = {"fruta","kilos","precio"})
 public class Entregas {
 	private int codigo;
 	private Socio socio;
@@ -25,6 +30,7 @@ public class Entregas {
 				"\tKilos:"+kilos+
 				"\tPrecio:"+precio);
 	}
+	@XmlAttribute(name="codigo")
 	public int getCodigo() {
 		return codigo;
 	}
@@ -32,7 +38,7 @@ public class Entregas {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-
+	
 	public Socio getSocio() {
 		return socio;
 	}
@@ -40,7 +46,7 @@ public class Entregas {
 	public void setSocio(Socio socio) {
 		this.socio = socio;
 	}
-
+	@XmlElement(name="fruta")
 	public Frutas getFruta() {
 		return fruta;
 	}
@@ -48,7 +54,7 @@ public class Entregas {
 	public void setFruta(Frutas fruta) {
 		this.fruta = fruta;
 	}
-
+	@XmlAttribute(name="fecha")
 	public Date getFecha() {
 		return fecha;
 	}
@@ -56,7 +62,7 @@ public class Entregas {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-
+	@XmlElement(name="kilos")
 	public float getKilos() {
 		return kilos;
 	}
@@ -64,7 +70,7 @@ public class Entregas {
 	public void setKilos(float kilos) {
 		this.kilos = kilos;
 	}
-
+	@XmlElement(name="precio")
 	public float getPrecio() {
 		return precio;
 	}

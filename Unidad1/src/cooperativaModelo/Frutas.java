@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAttribute;
+
+
+
 public class Frutas implements Serializable{
 	private int codigo;
 	private String nombre;
@@ -20,12 +24,14 @@ public class Frutas implements Serializable{
 				"\tFechaIT:" + formato.format(fechaIT)+
 				"\tNumAlmacen:" + numAlmacen);
 	}
+	@XmlAttribute(name="codigo")
 	public int getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+	@XmlAttribute(name="nombre")
 	public String getNombre() {
 		return nombre;
 	}
