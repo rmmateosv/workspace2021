@@ -25,6 +25,8 @@ public class Alumno {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+	public void mostrar() {
+		System.out.println("Alumno: "+dni + "\t"+ nombre);
+	}
 	
 }
