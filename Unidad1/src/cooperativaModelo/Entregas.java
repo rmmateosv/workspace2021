@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(propOrder = {"fruta","kilos","precio"})
+@XmlType(propOrder = {"socio","fruta","kilos","precio"})
 public class Entregas {
 	private int codigo;
 	private Socio socio;
@@ -38,7 +38,7 @@ public class Entregas {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-	
+	@XmlElement(name="socio")
 	public Socio getSocio() {
 		return socio;
 	}

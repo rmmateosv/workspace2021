@@ -10,6 +10,10 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+
 //ESTRUCTURA DEL FICHERO DE ENTREGAS
 //Codigo int => 4B
 //NIF Socio String de 9 caracteres=> 18B
@@ -371,7 +375,25 @@ public class FicheroEntregas {
 
 	public void generarXML(Socio s, ArrayList<Entregas> lE) {
 		// TODO Auto-generated method stub
+		entregasSocio xml = new entregasSocio();
 		
+		xml.setSocio(s.getNif());
+		xml.setLista_entregas(lE);
+		float total = 0;
+		for(Entregas e:lE) {
+			total+=e.getKilos()*e.getPrecio();
+		}
+		xml.setTotal(total);
+				
+		try {
+			//Hacemos el marshall => Pasar objeto java a fichero XML
+			JAXBContext contexto = JAXBContext.newInstance(entregasSocio.class);
+			Marshaller m = contexto.createMarshaller();
+			m.marshal(xml, new File(s.getNif()+".xml"));
+		} catch (JAXBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 }
