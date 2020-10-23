@@ -18,17 +18,25 @@ public class Principal {
 				System.out.println("Introduce una opción");
 				System.out.println("0-Salir");
 				System.out.println("1-Mostrar Socios");			
+				System.out.println("2-Mostrar Socios por nombre/parte del nombre");
+				System.out.println("3-Mostrar Socios por nombre/parte del nombre");
 				
-				opcion = t.nextInt(); t.nextLine();			
+				opcion = t.nextInt(); t.nextLine();	
+				ArrayList<Socio> socios;
 				switch(opcion){
 					case 1:
-						ArrayList<Socio> socios = bd.obtenerSocios();
+						socios = bd.obtenerSocios();
 						for(Socio s:socios) {
 							s.mostrar();
 						}
 						break;
 					case 2:
-						
+						System.out.println("Introduce nombre/parte del nombre");
+						String patron = t.nextLine();
+						socios = bd.obtenerSocios(patron);
+						for(Socio s:socios) {
+							s.mostrar();
+						}
 						break;
 					case 3:
 						
