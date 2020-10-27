@@ -19,7 +19,7 @@ public class Principal {
 				System.out.println("0-Salir");
 				System.out.println("1-Mostrar Socios");			
 				System.out.println("2-Mostrar Socios por nombre/parte del nombre");
-				System.out.println("3-Mostrar Socios por nombre/parte del nombre");
+				System.out.println("Crear Socio");
 				
 				opcion = t.nextInt(); t.nextLine();	
 				ArrayList<Socio> socios;
