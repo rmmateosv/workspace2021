@@ -25,12 +25,14 @@ public class Principal {
 				System.out.println("2-Mostrar Socios por nombre/parte del nombre");
 				System.out.println("3-Crear Socio");
 				System.out.println("4-Aumentar Saldo");
-				System.out.println("5-Borrar Socio");
+				System.out.println("5-Borrar Socio (falla si tiene entregas)");
 				System.out.println("6-Mostrar socios por fecha alta");
 				System.out.println("7-Crear entrega (Mostrar socios y frutas y "
 						+ "comprobar que existen antes de crear la entrega)");
 				System.out.println("8-Mostrar entregas de un socio cuyo nombre (o parte) "
 						+ "se pasa parámetro");
+				System.out.println("9-Mostrar estadística socio");
+				System.out.println("10-Borrar socio");
 				
 				
 				opcion = t.nextInt(); t.nextLine();	
@@ -110,6 +112,25 @@ public class Principal {
 							System.out.println("Fecha incorrecta");
 						}
 						
+						break;
+					case 9:
+						socio = new Socio();
+						System.out.println("DNI");						
+						socio.setNif(t.nextLine());
+						socio = bd.obtenerSocio(socio.getNif());
+						if(socio!=null) {							
+							ArrayList<Object[]> estadistica=bd.obtenerEstadistica(socio.getNif());
+							for(Object[] fila:estadistica) {
+								System.out.println("CodigoF:"+fila[0] +
+										"\tNombre:"+fila[1] + 
+										"\tNumEntregas:"+fila[2]+
+										"\tTotalKg:"+fila[3] +
+										"\tPrecioMedio:"+fila[4]);
+							}
+						}
+						else {
+							System.out.println("Socio no existe");
+						}
 						break;
 					
 				}

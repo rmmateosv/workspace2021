@@ -1,5 +1,6 @@
 package Cooperativa;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -236,6 +237,34 @@ public class Modelo {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return resultado;
+	}
+
+	public ArrayList<Object[]> obtenerEstadistica(String nif) {
+		// TODO Auto-generated method stub
+		ArrayList<Object[]> resultado = new ArrayList();
+		
+		try {
+			CallableStatement sentencia = conexion.prepareCall("{call estadistica(?)}");
+			sentencia.setString(1, nif);
+			
+			ResultSet r = sentencia.executeQuery();
+			
+			while(r.next()) {
+				Object[] fila = new Object[5];
+				fila[0] = r.getInt(1);
+				fila[1] = r.getString(2);
+				fila[2] = r.getInt(3);
+				fila[3] = r.getFloat(4);
+				fila[4] = r.getFloat(5);
+				
+				resultado.add(fila);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		return resultado;
 	}
 			

@@ -45,4 +45,31 @@ create table entrega(
 )engine Innodb;
 
 
+call estadistica("1A");
+
+-- Creación de rutinas
+-- Cambiar el delimitador de mysql
+delimiter //
+
+-- Creamos procedimiento
+create procedure estadistica(p_nif varchar(9))
+begin
+	select e.fruta, f.nombre, count(*), sum(kilos), avg(precio)
+		from entrega e join fruta f on e.fruta = f.codigo
+        where e.socio = p_nif
+        group by e.fruta;
+			
+end//
+
+
+-- Creamos función 
+-- Devuelve 1, si borra el socio
+-- Devuelve -1 si hay entregas para un socio
+create function borrar_socio(p_nif varchar(9)) return int
+
+
+
+
+
+
 
