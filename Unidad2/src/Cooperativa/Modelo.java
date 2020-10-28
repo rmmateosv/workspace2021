@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.Date;
 
 public class Modelo {
 	
@@ -115,6 +116,126 @@ public class Modelo {
 			e.printStackTrace();
 		}
 		
+		return resultado;
+	}
+
+	public boolean insertarSocio(Socio socio) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		
+		try {
+			PreparedStatement sentencia  = 
+					conexion.prepareStatement("insert into socio values "
+							+ "(?,?,curdate(),default,default)");
+			//Registrar paámetros
+			sentencia.setString(1, socio.getNif());
+			sentencia.setString(2, socio.getNombre());
+			//Ejecutar sentencia
+			//fila contendrá el nº de registros que se han insertado
+			int fila =  sentencia.executeUpdate();
+			if(fila==1) {
+				resultado=true;
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	
+	public Socio obtenerSocio(String nif) {
+		Socio resultado = null;
+		
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("select * from socio "
+							+ "where nif = ?");
+			sentencia.setString(1, nif);
+			ResultSet r = sentencia.executeQuery();
+			if(r.next()) {
+				resultado = new Socio();				
+				resultado.setNif(r.getString(1));				
+				resultado.setNombre(r.getString(2));
+				resultado.setFechAlta(r.getDate(3));
+				resultado.setSaldo(r.getFloat(4));
+				resultado.setBaja(r.getBoolean(5));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public boolean modificarSaldo(Socio socio, float cantidad) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("update socio "
+							+ "set saldo = saldo + ? "
+							+ "where nif = ?");
+			sentencia.setFloat(1, cantidad);
+			sentencia.setString(2, socio.getNif());
+			
+			int filas = sentencia.executeUpdate();
+			if(filas==1) {
+				resultado = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public boolean borrarSocio(Socio socio) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("delete from socio "
+							+ "where nif = ?");
+			sentencia.setString(1, socio.getNif());
+			
+			int filas = sentencia.executeUpdate();
+			if(filas==1) {
+				resultado = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public ArrayList<Socio> obtenerSocios(java.util.Date fechaAlta) {
+		// TODO Auto-generated method stub
+		ArrayList<Socio> resultado = new ArrayList();
+		
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("select * from socio "
+							+ "where fechaAlta = ?");
+			//Creamos fecha de java.sql.Date a partir de fecha de java.util.Date
+			sentencia.setDate(1, new Date(fechaAlta.getTime()));
+			ResultSet r = sentencia.executeQuery();
+			while(r.next()) {
+				Socio s = new Socio();			
+				s.setNif(r.getString(1));				
+				s.setNombre(r.getString(2));
+				s.setFechAlta(r.getDate(3));
+				s.setSaldo(r.getFloat(4));
+				s.setBaja(r.getBoolean(5));
+				resultado.add(s);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return resultado;
 	}
 			
