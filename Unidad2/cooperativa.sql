@@ -47,6 +47,8 @@ create table entrega(
 
 call estadistica("1A");
 
+select borrar_socio('4Z');
+
 -- Creación de rutinas
 -- Cambiar el delimitador de mysql
 delimiter //
@@ -65,7 +67,24 @@ end//
 -- Creamos función 
 -- Devuelve 1, si borra el socio
 -- Devuelve -1 si hay entregas para un socio
-create function borrar_socio(p_nif varchar(9)) return int
+create function borrar_socio(p_nif varchar(9)) returns int deterministic
+begin
+	declare numE int default 0;
+	-- Chequear si hay entregas
+    select count(*) 
+		into numE
+		from entrega
+        where socio = p_nif;
+	if(numE>0) then 
+		-- Hay entregas, finaliza con -1
+		return -1;
+    else
+		delete from socio
+			where nif = p_nif;
+		return 1;
+    end if;
+    
+end//
 
 
 

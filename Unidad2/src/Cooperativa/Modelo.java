@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.sql.Date;
 
@@ -267,5 +268,137 @@ public class Modelo {
 		} 
 		return resultado;
 	}
+
+	public int funcionBorrarSocio(Socio socio) {
+		// TODO Auto-generated method stub
+		int resultado = 0;
+		
+		try {
+			CallableStatement sentencia = 
+					conexion.prepareCall("{? = call borrar_socio(?)}");
+			//Indicamos el tipo del parámetro que devuelve la función
+			sentencia.registerOutParameter(1, Types.INTEGER);
+			sentencia.setString(2, socio.getNif());
 			
+			sentencia.executeUpdate();
+			resultado = sentencia.getInt(1);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	public boolean crearEntrega(Entregas entrega) {
+		boolean resultado = false;
+		try {
+			//curdate() nos coge la fecha actual en lenguaje mysql
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("insert into entrega values(null, ?, ?, curdate(), ?, ?)");
+			
+			//Pasamos parametros
+			sentencia.setString(1, entrega.getSocio().getNif());
+			sentencia.setInt(2, entrega.getFruta().getCodigo());
+			sentencia.setFloat(3,  entrega.getKilos());
+			sentencia.setFloat(4, entrega.getPrecio());
+			
+			//Ejecutamos la sentencia
+			//Nos devuelve un int con 0 si no funciona u otro numero con las filas que se han insertado
+			int fila = sentencia.executeUpdate();
+			if(fila == 1) {
+				resultado = true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
+	public ArrayList<Entregas> obtenerEntregas(String nombre) {
+		ArrayList<Entregas> resultado = new ArrayList<>();
+		
+		try {
+			PreparedStatement sentencia = conexion.prepareStatement("select e.*, s.*, f.* "
+													+"from entrega e join socio s on e.socio = s.nif "
+													+"join fruta f on e.fruta = f.codigo "
+													+"where s.nombre like ?");
+			
+			sentencia.setString(1, "%"+nombre+"%");
+			
+			ResultSet r = sentencia.executeQuery();
+			
+			while(r.next()) {
+				Entregas e = new Entregas();
+				
+				e.setCodigo(r.getInt(1));
+				e.setSocio(obtenerSocio(r.getString(2)));
+				e.setFruta(new Frutas());
+				e.getFruta().setCodigo(3);
+				e.setFecha(r.getDate(4));
+				e.setKilos(r.getFloat(5));
+				e.setPrecio(r.getFloat(6));
+				
+				resultado.add(e);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+	public Frutas obtenerFruta(int codigoF) {
+		Frutas resultado = null;
+		
+		try {
+			PreparedStatement sentencia = conexion.prepareStatement("select * from fruta "
+															+ "where codigo = ?");
+			
+			sentencia.setInt(1, codigoF);
+			ResultSet r = sentencia.executeQuery();
+			if(r.next()) {
+				resultado = new Frutas();
+				
+				resultado.setCodigo(r.getInt(1));
+				resultado.setNombre(r.getString(2));
+				resultado.setFechaIT(r.getDate(3));
+				resultado.setNumAlmacen(r.getInt(4));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public ArrayList<Frutas> obtenerFrutas() {
+		ArrayList<Frutas> resultado = new ArrayList<>();
+		
+		try {
+			Statement sentencia = conexion.createStatement();
+			
+			ResultSet r = sentencia.executeQuery("select * from fruta");
+			
+			while(r.next()) {
+				Frutas f = new Frutas();
+				
+				f.setCodigo(r.getInt(1));
+				f.setNombre(r.getString(2));
+				f.setFechaIT(r.getDate(3));
+				f.setNumAlmacen(r.getInt(4));
+				
+				resultado.add(f);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
+
 }
