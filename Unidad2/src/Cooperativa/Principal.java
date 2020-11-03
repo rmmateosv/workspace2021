@@ -30,6 +30,7 @@ public class Principal {
 				System.out.println("8-(solucion Celia) Mostrar entregas de un socio cuyo nombre (o parte) " + "se pasa parámetro");
 				System.out.println("9-Mostrar estadística socio");
 				System.out.println("10-Borrar socio");
+				System.out.println("11-Crear entrega socio no existe");
 
 				opcion = t.nextInt();
 				t.nextLine();
@@ -210,6 +211,44 @@ public class Principal {
 						}
 					} else {
 						System.out.println("Socio no existe");
+					}
+					break;
+				case 11:
+					entrega = new Entregas();
+					System.out.println("Dni socio");
+					entrega.setSocio(new Socio());
+					entrega.getSocio().setNif(t.nextLine());
+					if(bd.obtenerSocio(entrega.getSocio().getNif())!=null) {
+						System.out.println("Error, el socio existe");
+					}
+					else {
+						System.out.println("Nombre");
+						entrega.getSocio().setNombre(t.nextLine());
+						for(Frutas f:bd.obtenerFrutas()) {
+							f.mostrar();
+						}
+						System.out.println("Codigo de fruta");
+						entrega.setFruta(new Frutas());
+						entrega.getFruta().setCodigo(t.nextInt()); t.nextLine();
+						entrega.setFruta(bd.obtenerFruta(entrega.getFruta().getCodigo()));
+						if(entrega.getFruta()!=null) {
+							System.out.println("Kilos");
+							entrega.setKilos(t.nextFloat());t.nextLine();
+							System.out.println("Precio");
+							entrega.setPrecio(t.nextFloat());t.nextLine();
+							int numEntrega=bd.crearEntregaConSocio(entrega);
+							if(numEntrega==-1) {
+								System.out.println("Error, no se han creado ni el socio ni"
+										+ "la entrega");
+							}
+							else {
+								System.out.println("Se ha creado el socio con la entreaga nº"+
+										numEntrega);
+							}
+						}
+						else {
+							System.out.println("Error, la fruta no existe");
+						}
 					}
 					break;
 

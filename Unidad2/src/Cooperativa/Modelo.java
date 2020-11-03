@@ -400,5 +400,54 @@ public class Modelo {
 		return resultado;
 	}
 
+	public int crearEntregaConSocio(Entregas entrega) {
+		// TODO Auto-generated method stub
+		int resultado = -1;
+		
+		
+		try {
+			//Iniciar transacción
+			conexion.setAutoCommit(false);
+			//Creamos socio
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("insert into socio values "
+							+ "(?,?,curdate(),default,default)");
+			sentencia.setString(1, entrega.getSocio().getNif());
+			sentencia.setString(2, entrega.getSocio().getNombre());
+			
+			int r = sentencia.executeUpdate();
+			if(r==1) {
+				//Crear entrega
+				sentencia = conexion.prepareStatement("insert into entrega values "
+						+ "(null,?,?,curdate(),?,?)", Statement.RETURN_GENERATED_KEYS);
+				sentencia.setString(1, entrega.getSocio().getNif());
+				sentencia.setInt(2, entrega.getFruta().getCodigo());
+				sentencia.setFloat(3, entrega.getKilos());
+				sentencia.setFloat(4, entrega.getPrecio());
+				
+				r = sentencia.executeUpdate();
+				if(r==1) {
+					conexion.commit();
+					//Recuperar el código de la entrega
+					ResultSet codigos = sentencia.getGeneratedKeys();
+					if(codigos.next()) {
+						resultado = codigos.getInt(1);
+					}
+					
+				}
+				else {
+					//Deshacemos la creación del socio
+					conexion.rollback();
+				}
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
 
 }
