@@ -45,9 +45,7 @@ create table entrega(
 )engine Innodb;
 
 
-call estadistica("1A");
 
-select borrar_socio('4Z');
 
 -- Creación de rutinas
 -- Cambiar el delimitador de mysql

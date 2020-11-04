@@ -1212,3 +1212,278 @@
 2020-11-03 13:25:32,146 [Worker-181: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2020-11-03 13:25:32,147 [Worker-181: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
 2020-11-03 13:25:32,148 [Worker-181: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 13:25:32,149 [Worker-181: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 13:59:07,237 [Worker-192: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 13:59:07,238 [Worker-192: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 13:59:07,239 [Worker-192: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 13:59:07,240 [Worker-192: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:00:53,717 [Worker-193: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:00:53,718 [Worker-193: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:00:53,725 [Worker-193: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:00:53,728 [Worker-193: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:05:19,786 [Worker-196: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:05:19,787 [Worker-196: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:05:19,789 [Worker-196: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:05:19,789 [Worker-196: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:07:36,537 [Worker-195: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:07:36,538 [Worker-195: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:07:36,539 [Worker-195: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:07:36,540 [Worker-195: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:08:34,169 [Worker-198: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:08:34,170 [Worker-198: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:08:34,172 [Worker-198: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:08:34,172 [Worker-198: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:09:19,890 [Worker-188: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:09:19,891 [Worker-188: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:09:19,892 [Worker-188: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:09:19,893 [Worker-188: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:11:46,030 [Worker-188: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:11:46,031 [Worker-188: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:11:46,033 [Worker-188: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:11:46,033 [Worker-188: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:12:06,794 [Worker-197: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:12:06,795 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:12:06,796 [Worker-197: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:12:06,797 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:12:25,166 [Worker-195: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:12:25,167 [Worker-195: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:12:25,168 [Worker-195: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:12:25,169 [Worker-195: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:14:27,669 [Worker-199: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:14:27,670 [Worker-199: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:14:27,671 [Worker-199: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:14:27,672 [Worker-199: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:16:31,386 [Worker-199: Launching Principal (1)] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:16:31,390 [Worker-199: Launching Principal (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:16:31,391 [Worker-199: Launching Principal (1)] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:16:31,392 [Worker-199: Launching Principal (1)] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:17:53,842 [Worker-197: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:17:53,842 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:17:53,844 [Worker-197: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:17:53,845 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:18:40,548 [Worker-199: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:18:40,549 [Worker-199: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:18:40,550 [Worker-199: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:18:40,551 [Worker-199: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-03 14:18:50,938 [Worker-199: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:18:50,939 [Worker-199: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-03 14:18:50,940 [Worker-199: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-03 14:18:50,940 [Worker-199: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 08:37:03,961 [Worker-188: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:37:03,962 [Worker-188: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 08:37:03,963 [Worker-188: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:37:03,964 [Worker-188: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 08:37:04,975 [Worker-206: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:37:04,976 [Worker-206: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 08:37:04,977 [Worker-206: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:37:04,978 [Worker-206: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 08:44:47,822 [Worker-208: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:44:47,823 [Worker-208: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 08:44:47,824 [Worker-208: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:44:47,825 [Worker-208: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 08:53:14,591 [Worker-207: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:53:14,592 [Worker-207: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 08:53:14,593 [Worker-207: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:53:14,594 [Worker-207: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 08:53:54,191 [Worker-205: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:53:54,192 [Worker-205: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 08:53:54,193 [Worker-205: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:53:54,193 [Worker-205: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 08:54:00,013 [Worker-205: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:54:00,014 [Worker-205: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 08:54:00,015 [Worker-205: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:54:00,016 [Worker-205: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 08:55:12,968 [Worker-197: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:55:12,969 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 08:55:12,970 [Worker-197: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:55:12,970 [Worker-197: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 08:56:40,327 [Worker-210: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:56:40,328 [Worker-210: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 08:56:40,330 [Worker-210: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:56:40,331 [Worker-210: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 08:57:23,258 [Worker-209: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:57:23,258 [Worker-209: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 08:57:23,259 [Worker-209: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 08:57:23,260 [Worker-209: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:02:43,716 [Worker-208: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:02:43,717 [Worker-208: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:02:43,718 [Worker-208: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:02:43,718 [Worker-208: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:08:42,882 [Worker-207: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:08:42,883 [Worker-207: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:08:42,883 [Worker-207: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:08:42,883 [Worker-207: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:10:01,542 [Worker-212: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:10:01,543 [Worker-212: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:10:01,544 [Worker-212: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:10:01,545 [Worker-212: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:10:08,830 [Worker-207: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:10:08,830 [Worker-207: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:10:08,831 [Worker-207: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:10:08,832 [Worker-207: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:12:59,188 [Worker-214: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: Unidad2:Unidad2:0.0.1-SNAPSHOT @ C:\Users\usuario\workspace2021\Unidad2\pom.xml.
+2020-11-04 09:12:59,257 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/net/sf/ucanaccess/ucanaccess/5.0.0/ucanaccess-5.0.0.pom
+2020-11-04 09:12:59,321 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/net/sf/ucanaccess/ucanaccess/5.0.0/ucanaccess-5.0.0.pom
+2020-11-04 09:12:59,333 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/hsqldb/hsqldb/2.5.0/hsqldb-2.5.0.pom
+2020-11-04 09:12:59,415 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/hsqldb/hsqldb/2.5.0/hsqldb-2.5.0.pom
+2020-11-04 09:12:59,430 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/healthmarketscience/jackcess/jackcess/3.0.1/jackcess-3.0.1.pom
+2020-11-04 09:12:59,443 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/healthmarketscience/jackcess/jackcess/3.0.1/jackcess-3.0.1.pom
+2020-11-04 09:12:59,456 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/healthmarketscience/openhms-parent/2.0.2/openhms-parent-2.0.2.pom
+2020-11-04 09:12:59,477 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/healthmarketscience/openhms-parent/2.0.2/openhms-parent-2.0.2.pom
+2020-11-04 09:12:59,489 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom
+2020-11-04 09:12:59,528 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/sonatype/oss/oss-parent/7/oss-parent-7.pom
+2020-11-04 09:12:59,542 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.pom
+2020-11-04 09:12:59,555 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.pom
+2020-11-04 09:12:59,569 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/47/commons-parent-47.pom
+2020-11-04 09:12:59,639 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/47/commons-parent-47.pom
+2020-11-04 09:12:59,656 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/apache/19/apache-19.pom
+2020-11-04 09:12:59,667 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/apache/19/apache-19.pom
+2020-11-04 09:12:59,686 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.pom
+2020-11-04 09:12:59,699 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.pom
+2020-11-04 09:12:59,715 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/34/commons-parent-34.pom
+2020-11-04 09:12:59,756 [Worker-214: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/commons/commons-parent/34/commons-parent-34.pom
+2020-11-04 09:12:59,791 [AetherRepositoryConnector-repo.maven.apache.org-2-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
+2020-11-04 09:12:59,805 [AetherRepositoryConnector-repo.maven.apache.org-2-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/healthmarketscience/jackcess/jackcess/3.0.1/jackcess-3.0.1.jar
+2020-11-04 09:12:59,819 [AetherRepositoryConnector-repo.maven.apache.org-2-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/net/sf/ucanaccess/ucanaccess/5.0.0/ucanaccess-5.0.0.jar
+2020-11-04 09:12:59,819 [AetherRepositoryConnector-repo.maven.apache.org-2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/hsqldb/hsqldb/2.5.0/hsqldb-2.5.0.jar
+2020-11-04 09:12:59,820 [AetherRepositoryConnector-repo.maven.apache.org-2-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar
+2020-11-04 09:12:59,841 [AetherRepositoryConnector-repo.maven.apache.org-2-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
+2020-11-04 09:13:00,077 [AetherRepositoryConnector-repo.maven.apache.org-2-0] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/net/sf/ucanaccess/ucanaccess/5.0.0/ucanaccess-5.0.0.jar
+2020-11-04 09:13:00,108 [AetherRepositoryConnector-repo.maven.apache.org-2-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar
+2020-11-04 09:13:00,241 [AetherRepositoryConnector-repo.maven.apache.org-2-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/healthmarketscience/jackcess/jackcess/3.0.1/jackcess-3.0.1.jar
+2020-11-04 09:13:00,258 [AetherRepositoryConnector-repo.maven.apache.org-2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/hsqldb/hsqldb/2.5.0/hsqldb-2.5.0.jar
+2020-11-04 09:13:02,116 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:13:02,117 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:13:02,118 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:13:02,119 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:13:03,210 [Worker-207: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/net/sf/ucanaccess/ucanaccess/5.0.0/ucanaccess-5.0.0-sources.jar
+2020-11-04 09:13:03,246 [Worker-207: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/net/sf/ucanaccess/ucanaccess/5.0.0/ucanaccess-5.0.0-sources.jar
+2020-11-04 09:13:03,576 [Worker-207: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for net.sf.ucanaccess:ucanaccess:5.0.0
+2020-11-04 09:13:03,614 [Worker-212: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:13:03,616 [Worker-212: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:13:03,618 [Worker-212: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:13:03,619 [Worker-212: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:13:03,631 [Worker-207: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/hsqldb/hsqldb/2.5.0/hsqldb-2.5.0-sources.jar
+2020-11-04 09:13:03,749 [Worker-207: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/hsqldb/hsqldb/2.5.0/hsqldb-2.5.0-sources.jar
+2020-11-04 09:13:03,860 [Worker-207: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.hsqldb:hsqldb:2.5.0
+2020-11-04 09:13:03,935 [Worker-207: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/healthmarketscience/jackcess/jackcess/3.0.1/jackcess-3.0.1-sources.jar
+2020-11-04 09:13:04,018 [Worker-207: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/healthmarketscience/jackcess/jackcess/3.0.1/jackcess-3.0.1-sources.jar
+2020-11-04 09:13:04,127 [Worker-207: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for com.healthmarketscience.jackcess:jackcess:3.0.1
+2020-11-04 09:13:04,178 [Worker-207: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1-sources.jar
+2020-11-04 09:13:04,279 [Worker-207: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1-sources.jar
+2020-11-04 09:13:04,412 [Worker-207: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for org.apache.commons:commons-lang3:3.8.1
+2020-11-04 09:13:04,447 [Worker-207: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2-sources.jar
+2020-11-04 09:13:04,470 [Worker-207: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2-sources.jar
+2020-11-04 09:13:04,603 [Worker-207: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for commons-logging:commons-logging:1.2
+2020-11-04 09:13:04,815 [Worker-216: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:13:04,816 [Worker-216: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:13:04,817 [Worker-216: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:13:04,817 [Worker-216: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:16:26,029 [Worker-215: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:16:26,030 [Worker-215: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:16:26,031 [Worker-215: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:16:26,032 [Worker-215: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:19:05,473 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:19:05,474 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:19:05,475 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:19:05,476 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:21:16,923 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:21:16,924 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:21:16,925 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:21:16,926 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:21:17,938 [Worker-219: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:21:17,939 [Worker-219: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:21:17,939 [Worker-219: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:21:17,940 [Worker-219: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:22:54,399 [Worker-219: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:22:54,399 [Worker-219: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:22:54,400 [Worker-219: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:22:54,401 [Worker-219: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:23:11,421 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:23:11,422 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:23:11,423 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:23:11,423 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:46:20,072 [Worker-224: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:46:20,073 [Worker-224: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\main\resources
+2020-11-04 09:46:20,074 [Worker-224: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:46:20,076 [Worker-224: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Unidad2\src\test\resources
+2020-11-04 09:46:44,579 [Worker-224: Enabling Maven Dependency Management] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: Gimnasio:Gimnasio:0.0.1-SNAPSHOT @ C:\Users\usuario\workspace2021\Gimnasio\pom.xml.
+2020-11-04 09:46:45,098 [Worker-224: Enabling Maven Dependency Management] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Gimnasio/src
+2020-11-04 09:46:45,098 [Worker-224: Enabling Maven Dependency Management] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /Gimnasio/src/test/java because it overlaps with /Gimnasio/src
+2020-11-04 09:46:45,198 [Worker-224: Enabling Maven Dependency Management] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2020-11-04 09:46:45,230 [Worker-224: Enabling Maven Dependency Management] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: Gimnasio:Gimnasio:0.0.1-SNAPSHOT @ C:\Users\usuario\workspace2021\Gimnasio\pom.xml.
+2020-11-04 09:46:45,380 [Worker-224: Enabling Maven Dependency Management] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /Gimnasio/src
+2020-11-04 09:46:45,381 [Worker-224: Enabling Maven Dependency Management] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Not adding source folder /Gimnasio/src/test/java because it overlaps with /Gimnasio/src
+2020-11-04 09:46:45,430 [Worker-224: Enabling Maven Dependency Management] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2020-11-04 09:46:45,656 [Worker-227: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:46:45,657 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 09:46:45,659 [Worker-227: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:46:45,661 [Worker-227: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 09:47:29,542 [Worker-214: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: Gimnasio:Gimnasio:0.0.1-SNAPSHOT @ C:\Users\usuario\workspace2021\Gimnasio\pom.xml.
+2020-11-04 09:47:29,633 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:47:29,634 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 09:47:29,637 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:47:29,637 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 09:51:04,962 [Worker-230: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:51:04,963 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 09:51:04,965 [Worker-230: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:51:04,965 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 09:51:11,337 [Worker-230: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:51:11,338 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 09:51:11,338 [Worker-230: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:51:11,338 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 09:51:17,885 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:51:17,886 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 09:51:17,888 [Worker-214: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:51:17,889 [Worker-214: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 09:52:28,056 [Worker-231: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:52:28,057 [Worker-231: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 09:52:28,058 [Worker-231: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:52:28,059 [Worker-231: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 09:54:28,602 [Worker-230: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:54:28,603 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 09:54:28,604 [Worker-230: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:54:28,605 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 09:54:34,030 [Worker-230: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:54:34,031 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 09:54:34,031 [Worker-230: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 09:54:34,032 [Worker-230: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 10:03:35,292 [Worker-234: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:03:35,293 [Worker-234: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 10:03:35,294 [Worker-234: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:03:35,295 [Worker-234: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 10:05:07,678 [Worker-233: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:05:07,681 [Worker-233: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 10:05:07,682 [Worker-233: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:05:07,685 [Worker-233: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 10:05:26,575 [Worker-235: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:05:26,576 [Worker-235: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 10:05:26,577 [Worker-235: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:05:26,577 [Worker-235: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 10:07:55,839 [Worker-236: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:07:55,840 [Worker-236: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 10:07:55,841 [Worker-236: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:07:55,842 [Worker-236: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 10:10:11,058 [Worker-233: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:10:11,059 [Worker-233: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 10:10:11,060 [Worker-233: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:10:11,061 [Worker-233: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 10:15:07,678 [Worker-233: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:15:07,678 [Worker-233: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 10:15:07,678 [Worker-233: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:15:07,679 [Worker-233: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 10:15:16,818 [Worker-238: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:15:16,819 [Worker-238: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 10:15:16,820 [Worker-238: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:15:16,820 [Worker-238: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 10:15:32,545 [Worker-238: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:15:32,546 [Worker-238: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 10:15:32,547 [Worker-238: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:15:32,548 [Worker-238: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 10:15:50,314 [Worker-233: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:15:50,315 [Worker-233: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 10:15:50,316 [Worker-233: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:15:50,316 [Worker-233: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\test\resources
+2020-11-04 10:16:17,538 [Worker-238: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2020-11-04 10:16:17,539 [Worker-238: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\usuario\workspace2021\Gimnasio\src\main\resources
+2020-11-04 10:16:17,540 [Worker-238: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!

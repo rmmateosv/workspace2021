@@ -1,5 +1,9 @@
 package Cooperativa;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,6 +35,9 @@ public class Principal {
 				System.out.println("9-Mostrar estadística socio");
 				System.out.println("10-Borrar socio");
 				System.out.println("11-Crear entrega socio no existe");
+				System.out.println("12-Reiniciar BD");
+				System.out.println("13-Metadatos Generales");
+				System.out.println("14-Metadatos Consulta");
 
 				opcion = t.nextInt();
 				t.nextLine();
@@ -251,6 +258,20 @@ public class Principal {
 						}
 					}
 					break;
+				case 12:
+					String script = leerFichero("cooperativa.sql");
+					if(!bd.ejecutarScript(script)) {
+						System.out.println("Error al ejuctar el script");
+					}
+					break;
+				case 13:
+					bd.MetadatosGenerales();
+					break;
+				case 14:
+					System.out.println("Escribe consulta (select)");
+					String consulta = t.nextLine();
+					bd.MetadatosConsulta(consulta);
+					break;
 
 				}
 
@@ -260,6 +281,40 @@ public class Principal {
 		} else {
 			System.out.println("No se ha podido conectar con la BD");
 		}
+	}
+
+	private static String leerFichero(String nombre) {
+		// TODO Auto-generated method stub
+		String resultado = "";
+		
+		BufferedReader fichero = null;
+		
+		try {
+			fichero = new BufferedReader(new FileReader(nombre));
+			
+			String linea;
+			while((linea=fichero.readLine())!=null) {
+				resultado+=linea+"\n";
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if(fichero!=null) {
+				try {
+					fichero.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return resultado;
 	}
 
 }

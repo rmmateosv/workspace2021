@@ -2,18 +2,22 @@ package Cooperativa;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
+
+
 import java.sql.Date;
 
 public class Modelo {
 	
-	private String url = "jdbc:mysql://localhost:3306/cooperativa?serverTimezone=Europe/Madrid",
+	private String url = "jdbc:mysql://localhost:3306/cooperativa?serverTimezone=Europe/Madrid&allowMultiQueries=true",
 			usuario ="usuario",
 			clave = "usuario";
 	
@@ -447,6 +451,69 @@ public class Modelo {
 		}
 		
 		return resultado;
+	}
+
+	public boolean ejecutarScript(String script) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		
+		try {
+			System.out.println(script);
+			Statement sentencia = conexion.createStatement();
+			sentencia.executeUpdate(script);
+			resultado=true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
+	public void MetadatosGenerales() {
+		// TODO Auto-generated method stub
+		try {
+			DatabaseMetaData datos = conexion.getMetaData();
+			System.out.println("Servidor:\t"+datos.getDatabaseProductName());
+			System.out.println("Versión::\t"+datos.getDatabaseProductVersion());
+			System.out.println("Usuario::\t"+datos.getUserName());
+			System.out.println("URL:\t"+datos.getURL());
+			System.out.println("Bases de datos:");
+			ResultSet basesD = datos.getCatalogs();			
+			while(basesD.next()) {
+				System.out.println(basesD.getString(1));
+			}
+			System.out.println("Tablas de la bd cooperativa:");
+			System.out.println("BD\t\tNombre\t\tTipo");
+			ResultSet tablas = datos.getTables("cooperativa", null, null, null);
+			while(tablas.next()) {
+				System.out.println(tablas.getString(1)+"\t"+
+						tablas.getString(3)+"\t\t"+
+						tablas.getString(4));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void MetadatosConsulta(String consulta) {
+		// TODO Auto-generated method stub
+		try {
+			Statement sentencia = conexion.createStatement();
+			ResultSet r = sentencia.executeQuery(consulta);
+			//Metadatos
+			ResultSetMetaData datos = r.getMetaData();
+			System.out.println("Nº de columnas:"+datos.getColumnCount());
+			System.out.println("Campo\t\tTipo");
+			for(int i=1;i<=datos.getColumnCount();i++) {
+				System.out.println(datos.getColumnName(i)+
+						"\t\t"+datos.getColumnTypeName(i));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
