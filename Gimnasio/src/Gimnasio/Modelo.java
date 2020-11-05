@@ -46,22 +46,73 @@ public class Modelo {
 		}
 	}
 
-	public String comprobarUsuario(String usuario, String clave) {
+	public String comprobarUsuario(String p_usuario, String p_clave) {
 		// TODO Auto-generated method stub
-		String resultado = null;
+		String resultado = "NE"; //NE = no existe
 		
 		try {
 			PreparedStatement sentencia = 
 					conexion.prepareStatement("select * from usuarios "
 							+ "where usuario = ? and "
 							+ "clave = sha2(?,512)");
-			sentencia.setString(1, usuario);
-			sentencia.setString(2, clave);
+			sentencia.setString(1, p_usuario);
+			sentencia.setString(2, p_clave);
 			
 			ResultSet r = sentencia.executeQuery();
 			if(r.next()) {
 				resultado = r.getString(3);
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
+	public Cliente obtenerCliente(String dni) {
+		// TODO Auto-generated method stub
+		Cliente resultado = null;
+		
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("select * from cliente "
+							+ "where dni = ?");
+			sentencia.setString(1, dni);
+			ResultSet r = sentencia.executeQuery();
+			if(r.next()) {
+				resultado = new Cliente();
+				resultado.setId(r.getInt(1));
+				resultado.setUsuario(r.getString(2));
+				resultado.setDni(r.getString(3));
+				resultado.setNombre(r.getString(4));
+				resultado.setApellidos(r.getString(5));
+				resultado.setTelefono(r.getString(6));
+				resultado.setBaja(r.getBoolean(7));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
+	public boolean altaCliente(Cliente c) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		
+		try {
+			//Vamos a insertar en tabla usuarios y clientes => HACER TRANSACCIÓN!!
+			conexion.setAutoCommit(false);
+			
+			//Insertamos usuarios
+			PreparedStatement sentencia = 
+				conexion.prepareStatement("insert into usuarios "
+						+ "values (?,sha2(?,512),?)");
+			sentencia.setString(1, c.getUsuario());
+			sentencia.setString(2, c.getUsuario());
+			sentencia.setString(3, "C");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

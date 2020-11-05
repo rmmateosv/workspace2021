@@ -1,7 +1,10 @@
 package Gimnasio;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+
 
 
 
@@ -27,12 +30,9 @@ public class Principal {
 				case "C":
 					menuCliente();
 					break;
-				default:
+				case "NE":
 					System.out.println("Error, datos incorrectos");
-					break;
-				
-			
-			
+					break;	
 			}
 		}
 		else {
@@ -46,6 +46,45 @@ public class Principal {
 	private static void menuAdmin() {
 		// TODO Auto-generated method stub
 		System.out.println("Usuario Administrador");
+		int opcion = 0;
+		do {
+			System.out.println("Introduce una opción");
+			System.out.println("0-Salir");
+			System.out.println("1-Alta Cliente");			
+
+			opcion = t.nextInt();
+			t.nextLine();
+
+			switch (opcion) {
+				case 1:
+					altaCliente();
+					break;
+				case 2:
+					
+				
+					break;
+			}
+		}while (opcion != 0);
+	}
+	private static void altaCliente() {
+		// TODO Auto-generated method stub
+		System.out.println("DNI");
+		Cliente c = new Cliente();
+		c.setDni(t.nextLine());
+		if(bd.obtenerCliente(c.getDni())==null) {
+			System.out.println("Nombre");
+			c.setNombre(t.nextLine());
+			c.setApellidos(t.nextLine());
+			c.setTelefono(t.nextLine());
+			c.setUsuario(c.getDni());
+			if(!bd.altaCliente(c)) {
+				System.out.println("Error al dar de alta el cliente");
+			}
+			else {
+				System.out.println("Cliente creado");
+				c.mostrar();
+			}
+		}
 	}
 
 }
