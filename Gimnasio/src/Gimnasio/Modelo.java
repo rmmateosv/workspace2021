@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class Modelo {
 	private String url = "jdbc:mysql://localhost:3306/gimnasio?serverTimezone=Europe/Madrid",
@@ -113,6 +115,127 @@ public class Modelo {
 			sentencia.setString(1, c.getUsuario());
 			sentencia.setString(2, c.getUsuario());
 			sentencia.setString(3, "C");
+			int r = sentencia.executeUpdate();
+			if(r==1) {
+				sentencia = 
+						conexion.prepareStatement("insert into cliente "
+								+ "values (null,?,?,?,?,?,?)",
+								Statement.RETURN_GENERATED_KEYS);
+				sentencia.setString(1, c.getUsuario());
+				sentencia.setString(2, c.getDni());
+				sentencia.setString(3, c.getApellidos());
+				sentencia.setString(4, c.getNombre());
+				sentencia.setString(5, c.getTelefono());
+				sentencia.setBoolean(6, c.isBaja());
+				
+				r = sentencia.executeUpdate();
+				if(r==1) {
+					ResultSet auto = sentencia.getGeneratedKeys();
+					if(auto.next()) {
+						c.setId(auto.getInt(1));
+					}
+					conexion.commit();
+					resultado=true;
+				}
+				else {
+					conexion.rollback();
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
+	public boolean cambiarClave(String usuario2, String clave2) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("update usuarios "
+							+ "set clave =  sha2(?,512) "
+							+ "where usuario = ?");
+			sentencia.setString(1, clave2);
+			sentencia.setString(2, usuario2);
+			
+			int r = sentencia.executeUpdate();
+			if(r==1) {
+				resultado = true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public ArrayList<Actividad> obtenerActividades() {
+		// TODO Auto-generated method stub
+		ArrayList<Actividad> resultado = new ArrayList<>();
+		
+		try {
+			Statement sentencia = conexion.createStatement();
+			ResultSet r = 
+					sentencia.executeQuery("select * from actividad "
+							+ "where activa = 'ACTIVA'");
+			while(r.next()) {
+				Actividad a = new Actividad();
+				a.setId(r.getInt(1));
+				a.setNombre(r.getString(2));
+				a.setCoste(r.getFloat(3));
+				a.setActiva(r.getString(4));
+				resultado.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
+	public Actividad obtenerActividad(int codigoA) {
+		// TODO Auto-generated method stub
+		Actividad resultado=null;
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("select * from actividad " + 
+							"where id = ? and activa = 'ACTIVA'");
+			sentencia.setInt(1, codigoA);
+			ResultSet r = 
+					sentencia.executeQuery();
+			if(r.next()) {
+				resultado = new Actividad();
+				resultado.setId(r.getInt(1));
+				resultado.setNombre(r.getString(2));
+				resultado.setCoste(r.getFloat(3));
+				resultado.setActiva(r.getString(4));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public boolean inscribir(int idCliente, int codigoA) {
+		// TODO Auto-generated method stub
+		boolean resultado=false;
+		
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("insert into participa values "
+							+ "(?,?)");
+			sentencia.setInt(2, idCliente);
+			sentencia.setInt(1, codigoA);
+			
+			int r = sentencia.executeUpdate();
+			if(r==1) {
+				resultado=true;
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
