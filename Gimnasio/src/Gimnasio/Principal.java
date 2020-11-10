@@ -57,7 +57,9 @@ public class Principal {
 		do {
 			System.out.println("Introduce una opción");
 			System.out.println("0-Salir");
-			System.out.println("1-Inscribirse en actividad");			
+			System.out.println("1-Inscribirse en actividad");
+			System.out.println("2-Mostrar mis actividades");
+			System.out.println("3-Borrar actividad");
 
 			opcion = t.nextInt();
 			t.nextLine();
@@ -68,10 +70,29 @@ public class Principal {
 					break;
 				case 2:
 					
-				
+					mostrarMisActividades();
+					break;
+				case 3:
+					borrarMiActivida();
 					break;
 			}
 		}while (opcion != 0);
+	}
+	private static void borrarMiActivida() {
+		// TODO Auto-generated method stub
+		mostrarMisActividades();
+		System.out.println("Código Actividad a borrar");
+		int codigo = t.nextInt();t.nextLine();
+		if(!bd.borrarMiActividad(cliente,codigo)) {
+			System.out.println("Error al borrarse de actividad");
+		}
+	}
+	private static void mostrarMisActividades() {
+		// TODO Auto-generated method stub
+		ArrayList<Actividad> lista = bd.obtenerMisActividades(cliente);
+		for(Actividad a:lista) {
+			a.mostrar();
+		}
 	}
 	private static void incribirseActividad() {
 		// TODO Auto-generated method stub

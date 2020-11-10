@@ -243,4 +243,54 @@ public class Modelo {
 		
 		return resultado;
 	}
+
+	public ArrayList<Actividad> obtenerMisActividades(Cliente cliente) {
+		// TODO Auto-generated method stub
+		ArrayList<Actividad> resultado = new ArrayList<Actividad>();
+		
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("select a.* "
+							+ "from actividad a join participa p "
+							+ "on p.actividad_id = a.id "
+							+ "where cliente_id = ?");
+			sentencia.setInt(1, cliente.getId());
+			ResultSet r = sentencia.executeQuery();
+			while(r.next()) {
+				Actividad a = new Actividad();
+				a.setId(r.getInt(1));
+				a.setNombre(r.getString(2));
+				a.setCoste(r.getFloat(3));
+				a.setActiva(r.getString(4));
+				resultado.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
+	public boolean borrarMiActividad(Cliente cliente, int codigo) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("delete from participa "
+							+ "where actividad_id = ? and "
+							+ "cliente_id = ?");
+			sentencia.setInt(1, codigo);
+			sentencia.setInt(2, cliente.getId());
+			int r = sentencia.executeUpdate();
+			if(r==1) {
+				resultado=true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 }
