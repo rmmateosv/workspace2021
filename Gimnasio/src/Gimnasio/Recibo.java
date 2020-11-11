@@ -4,14 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Recibo {
-	private int id;
+	private int id; //Id cliente
 	private Date fechaE, fechaP;
 	private float cuantia;
 	private boolean pagado;
 	
 	public void mostrar() {
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		System.out.println("Recibo:"+id +
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");		
+		System.out.println("Cliente:"+id +
 				"\tEmisión:"+formato.format(fechaE) + 
 				"\tFecha Pago:"+(pagado?formato.format(fechaP):"")+
 				"\tImporte:"+cuantia + 

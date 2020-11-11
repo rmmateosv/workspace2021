@@ -1,7 +1,9 @@
 package Gimnasio;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -15,6 +17,7 @@ public class Principal {
 	private static SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 	private static String usuario;
 	private static Cliente cliente;
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -134,6 +137,7 @@ public class Principal {
 			System.out.println("0-Salir");
 			System.out.println("1-Alta Cliente");			
 			System.out.println("2-Generar recibos");
+			System.out.println("3-Pagar Recibo");
 
 			opcion = t.nextInt();
 			t.nextLine();
@@ -146,8 +150,38 @@ public class Principal {
 					generarRecibos();
 					
 					break;
+				case 3:
+					pagarRecibo();
+					break;
 			}
 		}while (opcion != 0);
+	}
+	private static void pagarRecibo() {
+		// TODO Auto-generated method stub
+		for(Cliente c:bd.obtenerClientes()) {
+			c.mostrar();
+		}
+		System.out.println("Introduce dni");
+		Cliente c = bd.obtenerCliente(t.nextLine());
+		if(c!=null) {
+			for(Recibo r:bd.obtenerRecibos(c, "PP")) {
+				r.mostrar();
+			}
+			System.out.println("Introduce Fecha de Recibo");
+			Date fecha;
+			try {
+				fecha = formato.parse(t.nextLine());
+				if(!bd.pagarRecibo(c,fecha)) {
+					System.out.println("Error, no se ha pagado el recibo");
+				}
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Error, fecha incorrecta");
+			}	
+		}
+		else {
+			System.out.println("Error, el cliente no existe");
+		}
 	}
 	private static void generarRecibos() {
 		// TODO Auto-generated method stub

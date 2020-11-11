@@ -2,6 +2,7 @@ package Gimnasio;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
+
 
 
 
@@ -339,6 +341,57 @@ public class Modelo {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return resultado;
+	}
+
+	public ArrayList<Cliente> obtenerClientes() {
+		// TODO Auto-generated method stub
+		ArrayList<Cliente> resultado = new ArrayList<>();
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("select * from cliente");
+			ResultSet r = sentencia.executeQuery();
+			while (r.next()) {
+				Cliente c = new Cliente();
+				c .setId(r.getInt(1));
+				c .setUsuario(r.getString(2));
+				c .setDni(r.getString(3));
+				c .setNombre(r.getString(4));
+				c .setApellidos(r.getString(5));
+				c .setTelefono(r.getString(6));
+				c .setBaja(r.getBoolean(7));
+				resultado.add(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return resultado;
+	}
+
+	public boolean pagarRecibo(Cliente c, java.util.Date fecha) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("update recibo "
+							+ "set pagado = true, fecha_pago = curdate() "
+							+ "where cliente_id = ? and "
+							+ "fecha_emision = ? and "
+							+ "pagado = false");
+			sentencia.setInt(1, c.getId());
+			sentencia.setDate(2, new Date(fecha.getTime()));
+			int r = sentencia.executeUpdate();
+			if(r==1) {
+				resultado=true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return resultado;
 	}
 }
