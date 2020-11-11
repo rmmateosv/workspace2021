@@ -60,6 +60,7 @@ public class Principal {
 			System.out.println("1-Inscribirse en actividad");
 			System.out.println("2-Mostrar mis actividades");
 			System.out.println("3-Borrar actividad");
+			System.out.println("4-Ver Recibos");
 
 			opcion = t.nextInt();
 			t.nextLine();
@@ -75,8 +76,21 @@ public class Principal {
 				case 3:
 					borrarMiActivida();
 					break;
+				case 4:
+					verRecibos();
+					break;
 			}
 		}while (opcion != 0);
+	}
+	private static void verRecibos() {
+		// TODO Auto-generated method stub
+		System.out.println("¿Qué recibos deseas ver? (Pagado:P/"
+				+ "Pendientes Pago:PP/Todos:T)");
+		String tipo = t.nextLine();
+		ArrayList<Recibo> recibos = bd.obtenerRecibos(cliente, tipo);
+		for(Recibo r:recibos) {
+			r.mostrar();
+		}
 	}
 	private static void borrarMiActivida() {
 		// TODO Auto-generated method stub
@@ -119,6 +133,7 @@ public class Principal {
 			System.out.println("Introduce una opción");
 			System.out.println("0-Salir");
 			System.out.println("1-Alta Cliente");			
+			System.out.println("2-Generar recibos");
 
 			opcion = t.nextInt();
 			t.nextLine();
@@ -128,11 +143,21 @@ public class Principal {
 					altaCliente();
 					break;
 				case 2:
+					generarRecibos();
 					
-				
 					break;
 			}
 		}while (opcion != 0);
+	}
+	private static void generarRecibos() {
+		// TODO Auto-generated method stub
+		System.out.println("Mes");
+		int mes = t.nextInt(); t.nextLine();
+		System.out.println("Año");
+		int anio = t.nextInt(); t.nextLine();
+		if(bd.generarRecibos(mes,anio)<=0) {
+			System.out.println("Error, los recibos pueden estar ya están generados");
+		}
 	}
 	private static void altaCliente() {
 		// TODO Auto-generated method stub
