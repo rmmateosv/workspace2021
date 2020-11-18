@@ -36,6 +36,18 @@ public class Principal {
 						System.out.println("Introduce código de producto");
 						bd.mostrarProducto(t.nextInt());t.nextLine();
 						break;
+					case 2:
+						System.out.println("Categoría");
+						String cat = t.nextLine();
+						System.out.println("Precio");
+						float precio = t.nextFloat(); t.nextLine();
+						System.out.println("Nombre");
+						String nombre = t.nextLine();
+						System.out.println("Stock");
+						int stock = t.nextInt(); t.nextLine();
+						if(!bd.insertarProducto(cat,precio,nombre,stock)) {
+							System.out.println("Error al insertar el producto");
+						}
 				}
 			}while(opcion!=0);
 			bd.cerrar();

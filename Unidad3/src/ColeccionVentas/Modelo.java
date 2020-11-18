@@ -63,4 +63,69 @@ public class Modelo {
 		}
 		
 	}
+	public void mostrarProducto(int codigo) {
+		// TODO Auto-generated method stub
+		try {
+			XPathQueryService servicio = 
+					(XPathQueryService) 
+					coleccion.getService("XPathQueryService", "1.0");
+			ResourceSet r = servicio.query("/productos/product[codigo=" + 
+					codigo+"]");
+			ResourceIterator nodos = r.getIterator();
+			while(nodos.hasMoreResources()) {
+				Resource nodo = nodos.nextResource();
+				System.out.println(nodo.getContent());
+			}
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public boolean insertarProducto(String cat, float precio, String nombre, int stock) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		int codigo = obtenerNuevoCodigoP();
+		
+		try {
+			XPathQueryService servicio = (XPathQueryService) 
+					coleccion.getService("XPathQueryService", "1.0");
+			
+			ResourceSet r = servicio.query("update insert "
+					+ "<product categoria='"+cat+"' pvp='"+precio+"'>" +
+					"<codigo>"+codigo+"</codigo>"+
+					"<nombre>"+nombre+"</nombre>"+
+					"<stock>"+stock+"</stock>"+
+					"</product> "
+					+ "into /productos");
+			resultado = true;
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+	private int obtenerNuevoCodigoP() {
+		// TODO Auto-generated method stub
+		int resultado = 1;
+		
+		try {
+			XPathQueryService servicio = (XPathQueryService) 
+					coleccion.getService("XPathQueryService", "1.0");
+			ResourceSet r = 
+					servicio.query("/productos/product[last()]/codigo/text()");
+			ResourceIterator nodo = r.getIterator();
+			if(nodo.hasMoreResources()) {
+				resultado = Integer.parseInt(nodo.nextResource().getContent().toString())+1;
+			}
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
 }
