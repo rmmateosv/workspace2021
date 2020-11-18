@@ -394,4 +394,46 @@ public class Modelo {
 		
 		return resultado;
 	}
+
+	public ArrayList<Object[]> ObtenerIngresos(int anio) {
+		// TODO Auto-generated method stub
+		ArrayList<Object[]> resultado = new ArrayList<>();
+		try {
+			PreparedStatement sentencia = 
+					conexion.prepareStatement("select sum(cuantia) "
+							+ "from recibo "
+							+ "where year(fecha_pago)=?");
+			sentencia.setInt(1, anio);
+			ResultSet r = sentencia.executeQuery();
+			if(r.next()) {
+				Object[] total = new Object[1];
+				total[0] = r.getFloat(1);
+				resultado.add(total);
+				
+				sentencia = 
+						conexion.prepareStatement(
+					"select c.dni, c.nombre, sum(r.cuantia) "
+					+ "from recibo r join cliente c "
+					+ "on r.cliente_id = c.id "
+					+ "where year(fecha_pago)= ? "
+					+ "group by r.cliente_id");
+				sentencia.setInt(1, anio);
+				r = sentencia.executeQuery();
+				while(r.next()) {
+					Object[] totalCliente = new Object[3];
+					totalCliente[0] = r.getString(1);
+					totalCliente[1] = r.getString(2);
+					totalCliente[2] = r.getFloat(3);
+					resultado.add(totalCliente);
+				}
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 }

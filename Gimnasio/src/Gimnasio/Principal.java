@@ -64,6 +64,7 @@ public class Principal {
 			System.out.println("2-Mostrar mis actividades");
 			System.out.println("3-Borrar actividad");
 			System.out.println("4-Ver Recibos");
+			
 
 			opcion = t.nextInt();
 			t.nextLine();
@@ -138,6 +139,7 @@ public class Principal {
 			System.out.println("1-Alta Cliente");			
 			System.out.println("2-Generar recibos");
 			System.out.println("3-Pagar Recibo");
+			System.out.println("4-Mostrar ingresos año");
 
 			opcion = t.nextInt();
 			t.nextLine();
@@ -153,8 +155,23 @@ public class Principal {
 				case 3:
 					pagarRecibo();
 					break;
+				case 4:
+					mostrarIngresos();
+					break;
 			}
 		}while (opcion != 0);
+	}
+	private static void mostrarIngresos() {
+		// TODO Auto-generated method stub
+		System.out.println("Introduce año:");
+		int anio = t.nextInt();t.nextLine();
+		ArrayList<Object[]> ingresos = bd.ObtenerIngresos(anio);
+		for(int i=1;i<ingresos.size();i++) {
+			System.out.println("DNI:" + ingresos.get(i)[0] +
+					"\tNombre:"+ingresos.get(i)[1] +
+					"\tImporte:"+ingresos.get(i)[2]);
+		}
+		System.out.println("Total Año:"+ingresos.get(0)[0]);
 	}
 	private static void pagarRecibo() {
 		// TODO Auto-generated method stub
