@@ -128,4 +128,79 @@ public class Modelo {
 		
 		return resultado;
 	}
+	public int obtenerStock(int codigo) {
+		// TODO Auto-generated method stub
+		int resultado = -1;
+		try {
+			XPathQueryService servicio = 
+					(XPathQueryService) 
+					coleccion.getService("XPathQueryService", "1.0");
+			ResourceSet r = servicio.query("/productos/product[codigo=" + 
+					codigo+"]/stock/text()");
+			ResourceIterator nodos = r.getIterator();
+			if(nodos.hasMoreResources()) {
+				resultado = Integer.parseInt(nodos.nextResource().getContent().toString());
+			}
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	public boolean modificarStock(int codigo, int cantidad) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			XPathQueryService servicio = 
+					(XPathQueryService) 
+					coleccion.getService("XPathQueryService", "1.0");
+			servicio.query("update replace /productos/product[codigo="+codigo+"]/stock " +
+					"with <stock>"+cantidad+"</stock>");
+			resultado=true;
+			
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	public boolean existe(int codigo) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			XPathQueryService servicio = 
+					(XPathQueryService) 
+					coleccion.getService("XPathQueryService", "1.0");
+			ResourceSet r = servicio.query("/productos/product[codigo=" + 
+					codigo+"]");
+			ResourceIterator nodos = r.getIterator();
+			if(nodos.hasMoreResources()) {
+				resultado = true;
+			}
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	public boolean borrarProducto(int codigo) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			XPathQueryService servicio = 
+					(XPathQueryService) 
+					coleccion.getService("XPathQueryService", "1.0");
+			servicio.query("update delete /productos/product[codigo="+codigo+"]");
+			resultado=true;
+			
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 }

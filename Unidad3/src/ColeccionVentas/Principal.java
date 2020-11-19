@@ -27,7 +27,7 @@ public class Principal {
 				System.out.println("6-Mostrar Producto");
 				
 				opcion = t.nextInt();t.nextLine();
-				
+				int codigo;
 				switch(opcion){
 					case 1:
 						bd.mostrarProductos();
@@ -48,6 +48,36 @@ public class Principal {
 						if(!bd.insertarProducto(cat,precio,nombre,stock)) {
 							System.out.println("Error al insertar el producto");
 						}
+						break;
+					case 3:
+						bd.mostrarProductos();
+						System.out.println("Introduce código producto a modificar");
+						codigo = t.nextInt();t.nextLine();
+						int stockActual = bd.obtenerStock(codigo);
+						if(stockActual!=-1) {
+							System.out.println("Introduce cantidad a incrementar");
+							int cantidad = t.nextInt();t.nextLine();
+							if(!bd.modificarStock(codigo,stockActual+cantidad)) {
+								System.out.println("Error al modificar el producto");
+							}
+						}
+						else {
+							System.out.println("Error, el producto no existe");
+						}
+						break;
+					case 4:
+						bd.mostrarProductos();
+						System.out.println("Introduce código producto a modificar");
+						codigo = t.nextInt();t.nextLine();						
+						if(bd.existe(codigo)) {							
+							if(!bd.borrarProducto(codigo)) {
+								System.out.println("Error al borrar el producto");
+							}
+						}
+						else {
+							System.out.println("Error, el producto no existe");
+						}
+						break;
 				}
 			}while(opcion!=0);
 			bd.cerrar();
