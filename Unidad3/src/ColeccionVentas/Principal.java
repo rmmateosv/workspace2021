@@ -78,6 +78,10 @@ public class Principal {
 							System.out.println("Error, el producto no existe");
 						}
 						break;
+					case 5:
+						System.out.println("Introduce código cliente");
+						codigo = t.nextInt(); t.nextLine();
+						bd.mostrarFacturas(codigo);
 				}
 			}while(opcion!=0);
 			bd.cerrar();

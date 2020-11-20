@@ -203,4 +203,28 @@ public class Modelo {
 		}
 		return resultado;
 	}
+	public void mostrarFacturas(int codigo) {
+		// TODO Auto-generated method stub
+		try {
+			XPathQueryService servicio = 
+					(XPathQueryService) 
+					coleccion.getService("XPathQueryService", "1.0");
+			ResourceSet r = servicio.query("for $f in /facturas/factura[numcliente="+codigo+"],\r\n" + 
+					"    $c in /clientes/clien[@numero=$f/numcliente]\r\n" + 
+					"return <factura numCliente=\"{$c/@numero}\" codigoF=\"{$f/@numero}\">\r\n" + 
+					"    {$c/nombre}\r\n" + 
+					"    {$f/fecha}\r\n" + 
+					"</factura>");
+			ResourceIterator facturas = r.getIterator();
+			while(facturas.hasMoreResources()) {
+				System.out.println(facturas.nextResource().getContent());
+			}
+			
+			
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
