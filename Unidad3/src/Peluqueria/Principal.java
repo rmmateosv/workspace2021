@@ -43,6 +43,32 @@ import java.util.Scanner;
 	private static void altaCita() {
 		// TODO Auto-generated method stub
 		ArrayList<Cliente> clientes  = bd.obtenerClientes();
+		for(Cliente c:clientes) {
+			c.mostrar();
+		}
+		
+		System.out.println("Introduce dni o ** para nuevo cliente");
+		String dni = t.nextLine();
+		if(dni.equals("**")) {
+			Cliente c = new Cliente();
+			System.out.println("DNI");
+			c.setDni(t.nextLine());
+			if(bd.obtenerCliente(c.getDni())==null) {
+				System.out.println("Nombre");
+				c.setNombre(t.nextLine());
+				System.out.println("Teléfono");
+				c.setTelefono(t.nextLine());			
+				if(!bd.altaCliente(c)) {
+					System.out.println("Error al dar de alta el cliente");
+				}
+			}
+			else {
+				System.out.println("Error ya existe un cliente con ese dni");
+			}
+		}
+		else {
+			
+		}
 	}
 
 }

@@ -146,4 +146,58 @@ public class Modelo {
 		
 		return resultado;
 	}
+	public Cliente obtenerCliente(String dni) {
+		// TODO Auto-generated method stub
+		Cliente resultado = null;
+		try {
+			XPathQueryService servicio = (XPathQueryService)
+					coleccion.getService("XPathQueryService", "1.0");
+			ResourceSet r =  servicio.query("for $c in //cliente[@dni='"+dni+"'] " + 
+					"	return data($c/@dni)");
+			ResourceIterator dnis  = r.getIterator();
+			if(dnis.hasMoreResources()) {
+				resultado = new Cliente();
+				resultado.setDni(dnis.nextResource().getContent().toString());
+				
+				//Obtenemos el nombre del cliente
+				ResourceSet r2 = 
+						servicio.query("//cliente[@dni='"+resultado.getDni()+"']/nombre/text()");
+				ResourceIterator nombre = r2.getIterator();
+				if(nombre.hasMoreResources()) {
+					resultado.setNombre(nombre.nextResource().getContent().toString());
+				}
+				//Obtenemos el teléfono del cliente
+				r2 = 
+						servicio.query("//cliente[@dni='"+resultado.getDni()+"']/telefono/text()");
+				ResourceIterator telefono = r2.getIterator();
+				if(telefono.hasMoreResources()) {
+					resultado.setTelefono(telefono.nextResource().getContent().toString());
+				}
+			}
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	public boolean altaCliente(Cliente c) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			XPathQueryService servicio = (XPathQueryService)
+					coleccion.getService("XPathQueryService", "1.0");
+			servicio.query("update insert "
+					+ "<cliente dni='"+c.getDni()+"'>"
+					+"<nombre>"+c.getNombre()+"</nombre>"
+					+"<telefono>"+c.getTelefono()+"</telefono>"
+					+ "</cliente> "
+					+ "into /clientes");
+			resultado = true;
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 }
