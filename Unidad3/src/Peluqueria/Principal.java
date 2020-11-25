@@ -1,5 +1,6 @@
 package Peluqueria;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -27,16 +28,21 @@ import java.util.Scanner;
 				int codigo;
 				switch(opcion){
 					case 1:
-						
+						altaCita();
 						break;
 					
 				}
 			}while(opcion!=0);
-			//bd.cerrar();
+			bd.cerrar();
 		}
 		else {
 			System.out.println("Error: No se ha conectado con la bd");
 		}
+	}
+
+	private static void altaCita() {
+		// TODO Auto-generated method stub
+		ArrayList<Cliente> clientes  = bd.obtenerClientes();
 	}
 
 }

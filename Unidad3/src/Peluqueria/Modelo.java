@@ -4,13 +4,17 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.Database;
 import org.xmldb.api.base.Resource;
+import org.xmldb.api.base.ResourceIterator;
+import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.CollectionManagementService;
+import org.xmldb.api.modules.XPathQueryService;
 
 
 
@@ -104,5 +108,42 @@ public class Modelo {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public ArrayList<Cliente> obtenerClientes() {
+		// TODO Auto-generated method stub
+		ArrayList<Cliente> resultado = new ArrayList();
+		try {
+			XPathQueryService servicio = (XPathQueryService)
+					coleccion.getService("XPathQueryService", "1.0");
+			ResourceSet r =  servicio.query("for $c in //cliente " + 
+					"	return data($c/@dni)");
+			ResourceIterator dnis  = r.getIterator();
+			while(dnis.hasMoreResources()) {
+				Cliente c = new Cliente();
+				c.setDni(dnis.nextResource().getContent().toString());
+				
+				//Obtenemos el nombre del cliente
+				ResourceSet r2 = 
+						servicio.query("//cliente[@dni='"+c.getDni()+"']/nombre/text()");
+				ResourceIterator nombre = r2.getIterator();
+				if(nombre.hasMoreResources()) {
+					c.setNombre(nombre.nextResource().getContent().toString());
+				}
+				//Obtenemos el teléfono del cliente
+				r2 = 
+						servicio.query("//cliente[@dni='"+c.getDni()+"']/telefono/text()");
+				ResourceIterator telefono = r2.getIterator();
+				if(telefono.hasMoreResources()) {
+					c.setTelefono(telefono.nextResource().getContent().toString());
+				}
+				resultado.add(c);
+			}
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
 	}
 }
