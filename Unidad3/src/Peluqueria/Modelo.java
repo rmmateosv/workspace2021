@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.xmldb.api.DatabaseManager;
@@ -23,6 +24,8 @@ public class Modelo {
 	private String url = "xmldb:exist://localhost:8080/exist/xmlrpc/db",
 		usuario="admin",
 		clave="admin";
+	SimpleDateFormat formatoDia = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat formatoHora = new SimpleDateFormat("hh:mm");
 	public Modelo() {
 		
 		Class driver;
@@ -204,6 +207,23 @@ public class Modelo {
 		// TODO Auto-generated method stub
 		boolean resultado = false;
 		cita.setId(obtenerNuevoIdCita());
+		XPathQueryService servicio;
+		try {
+			servicio = (XPathQueryService)
+					coleccion.getService("XPathQueryService", "1.0");
+			servicio.query("update insert "
+					+ "<cita id='"+cita.getId()+"'>"
+					+"<fecha>"+formatoDia.format(cita.getFecha())+"</fecha>"
+					+"<hora>"+formatoHora.format(cita.getFecha())+"</hora>"
+					+"<cliente>"+cita.getDni()+"</cliente>"
+					+"<servicio>"+cita.getServicio()+"</servicio>"
+					+"<tiempo>"+cita.getTiempo()+"</tiempo>"
+					+ "</cita> "
+					+ "into /citas");
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return resultado;
 	}
@@ -213,12 +233,11 @@ public class Modelo {
 		try {
 			XPathQueryService servicio = (XPathQueryService)
 					coleccion.getService("XPathQueryService", "1.0");
-			ResourceSet r = servicio.query("");
+			ResourceSet r = servicio.query("for $c in //cita[last()]" + 
+					"	return data($c/@id)");
 			ResourceIterator fila = r.getIterator();
 			if(fila.hasMoreResources()) {
-				resultado=Integer.parseInt(fila.nextResource().getContent().toString())+1;
-				
-						
+				resultado=Integer.parseInt(fila.nextResource().getContent().toString())+1;										
 			}
 		} catch (XMLDBException e) {
 			// TODO Auto-generated catch block
