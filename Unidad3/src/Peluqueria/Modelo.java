@@ -200,4 +200,30 @@ public class Modelo {
 		}
 		return resultado;
 	}
+	public boolean crearCita(Cita cita) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		cita.setId(obtenerNuevoIdCita());
+		
+		return resultado;
+	}
+	private int obtenerNuevoIdCita() {
+		// TODO Auto-generated method stub
+		int resultado = 1;
+		try {
+			XPathQueryService servicio = (XPathQueryService)
+					coleccion.getService("XPathQueryService", "1.0");
+			ResourceSet r = servicio.query("");
+			ResourceIterator fila = r.getIterator();
+			if(fila.hasMoreResources()) {
+				resultado=Integer.parseInt(fila.nextResource().getContent().toString())+1;
+				
+						
+			}
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 }
