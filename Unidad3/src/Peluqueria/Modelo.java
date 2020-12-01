@@ -4,8 +4,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.xmldb.api.DatabaseManager;
 import org.xmldb.api.base.Collection;
@@ -26,6 +28,7 @@ public class Modelo {
 		clave="admin";
 	SimpleDateFormat formatoDia = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat formatoHora = new SimpleDateFormat("hh:mm");
+	SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 	public Modelo() {
 		
 		Class driver;
@@ -243,6 +246,61 @@ public class Modelo {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return resultado;
+	}
+	public ArrayList<Cita> obtenerCitas(Date fecha) {
+		// TODO Auto-generated method stub
+		ArrayList<Cita> resultado = new ArrayList();
+		
+		try {
+			XPathQueryService servicio = (XPathQueryService)
+					coleccion.getService("XPathQueryService", "1.0");
+			ResourceSet r = servicio.query("data(//cita[fecha='"+
+					formatoDia.format(fecha)+"']/@id)");
+			ResourceIterator citas = r.getIterator();
+			while(citas.hasMoreResources()) {
+				Cita c = new Cita();
+				c.setId(Integer.parseInt(citas.nextResource().getContent().toString()));
+				//Obtenemos hora
+				ResourceSet r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/hora)");
+				ResourceIterator contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {
+					String fechaConHora = formatoDia.format(fecha) + " " + 
+							contenido.nextResource().getContent().toString();
+					c.setFecha(formatofecha.parse(fechaConHora));
+				}
+				//Dni cliente
+				r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/cliente)");
+				contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {
+					c.setDni(contenido.nextResource().getContent().toString());
+				}
+				//Servicio
+				r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/servicio)");
+				contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {
+					c.setServicio(contenido.nextResource().getContent().toString());
+				}
+				//tiempo
+				r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/tiempo)");
+				contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {
+					c.setTiempo(Float.parseFloat(contenido.nextResource().getContent().toString()));
+				}
+				resultado.add(c);
+				
+				
+			}
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return resultado;
 	}
 }

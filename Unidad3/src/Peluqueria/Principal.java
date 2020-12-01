@@ -3,6 +3,7 @@ package Peluqueria;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Principal {
@@ -31,12 +32,32 @@ public class Principal {
 				case 1:
 					altaCita();
 					break;
+				case 2:
+					mostrarCitas();
+					break;
 
 				}
 			} while (opcion != 0);
 			bd.cerrar();
 		} else {
 			System.out.println("Error: No se ha conectado con la bd");
+		}
+	}
+
+	private static void mostrarCitas() {
+		// TODO Auto-generated method stub
+		
+		try {
+			System.out.println("Introduce fecha dd/mm/yyyy");
+			Date fecha = formato.parse(t.nextLine());
+			ArrayList<Cita> citas = bd.obtenerCitas(fecha);
+			for(Cita c:citas) {
+				c.mostrar();
+			}
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
