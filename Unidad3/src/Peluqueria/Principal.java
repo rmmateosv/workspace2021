@@ -10,6 +10,8 @@ public class Principal {
 	private static Scanner t = new java.util.Scanner(System.in);
 	private static Modelo bd = new Modelo();
 	private static SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+	
+	private static ArrayList<Cita> citas;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -35,6 +37,9 @@ public class Principal {
 				case 2:
 					mostrarCitas();
 					break;
+				case 3:
+					modificarFecha();
+					break;
 
 				}
 			} while (opcion != 0);
@@ -44,16 +49,44 @@ public class Principal {
 		}
 	}
 
+	private static void modificarFecha() {
+		// TODO Auto-generated method stub
+		citas = bd.obtenerCitas();
+		for(Cita c:citas) {
+			c.mostrar();
+		}
+		System.out.println("Introduce la cita a modificar");
+		int id = t.nextInt();t.nextLine();
+		Cita c = bd.obtenerCitas(id);
+		if(c!=null) {
+			System.out.println("Introduce nueva fecha dd/mm/yyyy hh:mm");
+			try {
+				c.setFecha(formato.parse(t.nextLine()));
+				if(!bd.modificarCita(c)) {
+					System.out.println("Error al modificar la cita");
+				}
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			System.out.println("Error: la cita no existe");
+		}
+	}
+
 	private static void mostrarCitas() {
 		// TODO Auto-generated method stub
 		
 		try {
 			System.out.println("Introduce fecha dd/mm/yyyy");
 			Date fecha = formato.parse(t.nextLine());
-			ArrayList<Cita> citas = bd.obtenerCitas(fecha);
+			citas = bd.obtenerCitas(fecha);
 			for(Cita c:citas) {
 				c.mostrar();
 			}
+			
+			
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

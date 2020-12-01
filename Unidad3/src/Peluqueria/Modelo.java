@@ -223,6 +223,7 @@ public class Modelo {
 					+"<tiempo>"+cita.getTiempo()+"</tiempo>"
 					+ "</cita> "
 					+ "into /citas");
+			resultado = true;
 		} catch (XMLDBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -301,6 +302,148 @@ public class Modelo {
 		}
 		
 		
+		return resultado;
+	}
+	public ArrayList<Cita> obtenerCitas() {
+		// TODO Auto-generated method stub
+		ArrayList<Cita> resultado = new ArrayList();
+		
+		try {
+			XPathQueryService servicio = (XPathQueryService)
+					coleccion.getService("XPathQueryService", "1.0");
+			ResourceSet r = servicio.query("data(//cita/@id)");
+			ResourceIterator citas = r.getIterator();
+			while(citas.hasMoreResources()) {
+				Cita c = new Cita();
+				c.setId(Integer.parseInt(citas.nextResource().getContent().toString()));
+				//Obtenemos fecha
+				ResourceSet r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/fecha)");
+				ResourceIterator contenido = r2.getIterator();
+				String fechaConHora="";
+				if(contenido.hasMoreResources()) {					
+					fechaConHora = contenido.nextResource().getContent().toString();
+				}
+				//Obtenemos hora
+				r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/hora)");
+				contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {					
+					fechaConHora +=  " "+
+							contenido.nextResource().getContent().toString();
+					c.setFecha(formatofecha.parse(fechaConHora));
+				}
+				//Dni cliente
+				r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/cliente)");
+				contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {
+					c.setDni(contenido.nextResource().getContent().toString());
+				}
+				//Servicio
+				r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/servicio)");
+				contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {
+					c.setServicio(contenido.nextResource().getContent().toString());
+				}
+				//tiempo
+				r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/tiempo)");
+				contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {
+					c.setTiempo(Float.parseFloat(contenido.nextResource().getContent().toString()));
+				}
+				resultado.add(c);
+				
+				
+			}
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return resultado;
+	}
+	public Cita obtenerCitas(int id) {
+		// TODO Auto-generated method stub
+		Cita resultado = null;
+		
+		try {
+			XPathQueryService servicio = (XPathQueryService)
+					coleccion.getService("XPathQueryService", "1.0");
+			ResourceSet r = servicio.query("data(//cita[@id='"+id+"'])");
+			ResourceIterator citas = r.getIterator();
+			if(citas.hasMoreResources()) {
+				Cita c = new Cita();
+				c.setId(id);
+				//Obtenemos fecha
+				ResourceSet r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/fecha)");
+				ResourceIterator contenido = r2.getIterator();
+				String fechaConHora="";
+				if(contenido.hasMoreResources()) {					
+					fechaConHora = contenido.nextResource().getContent().toString();
+				}
+				//Obtenemos hora
+				r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/hora)");
+				contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {					
+					fechaConHora +=  " "+
+							contenido.nextResource().getContent().toString();
+					c.setFecha(formatofecha.parse(fechaConHora));
+				}
+				//Dni cliente
+				r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/cliente)");
+				contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {
+					c.setDni(contenido.nextResource().getContent().toString());
+				}
+				//Servicio
+				r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/servicio)");
+				contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {
+					c.setServicio(contenido.nextResource().getContent().toString());
+				}
+				//tiempo
+				r2 = servicio.query("data(//cita[@id='"+c.getId()+"']/tiempo)");
+				contenido = r2.getIterator();
+				if(contenido.hasMoreResources()) {
+					c.setTiempo(Float.parseFloat(contenido.nextResource().getContent().toString()));
+				}
+				resultado=c;
+				
+				
+			}
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return resultado;
+	}
+	public boolean modificarCita(Cita c) {
+		// TODO Auto-generated method stub
+		boolean resultado=false;
+		try {
+			XPathQueryService servicio = (XPathQueryService)
+					coleccion.getService("XPathQueryService", "1.0");
+			//Modicamos nodo fecha
+			servicio.query("update replace //cita[@id='"+c.getId()+"']/fecha "
+					+ "with <fecha>"+formatoDia.format(c.getFecha())+"</fecha>");
+			//Modicamos nodo hora
+			servicio.query("update replace //cita[@id='"+c.getId()+"']/hora "
+					+ "with <hora>"+formatoHora.format(c.getFecha())+"</hora>");
+			resultado=true;
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return resultado;
 	}
 }
