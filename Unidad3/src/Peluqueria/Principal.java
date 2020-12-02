@@ -10,8 +10,9 @@ public class Principal {
 	private static Scanner t = new java.util.Scanner(System.in);
 	private static Modelo bd = new Modelo();
 	private static SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-	
+
 	private static ArrayList<Cita> citas;
+	private static ArrayList<Cliente> clientes;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -40,6 +41,12 @@ public class Principal {
 				case 3:
 					modificarFecha();
 					break;
+				case 4:
+					borrarCita();
+					break;
+				case 5:
+					mostrarCitasCliente();
+					break;
 
 				}
 			} while (opcion != 0);
@@ -49,45 +56,82 @@ public class Principal {
 		}
 	}
 
+	private static void mostrarCitasCliente() {
+		// TODO Auto-generated method stub
+		clientes = bd.obtenerClientes();
+		if (clientes.isEmpty()) {
+			System.out.println("Error, no existen clientes");
+		} else {
+			for (Cliente c : clientes) {
+				c.mostrar();
+			}
+			System.out.println("Introduce dni");
+			String dni = t.nextLine();
+			if (bd.obtenerCliente(dni) != null) {
+				bd.mostrarCitasCliente(dni);
+			} else {
+				System.out.println("Error,  no existe el cliente");
+			}
+		}
+
+	}
+
+	private static void borrarCita() {
+		// TODO Auto-generated method stub
+		citas = bd.obtenerCitas();
+		for (Cita c : citas) {
+			c.mostrar();
+		}
+		System.out.println("Introduce la cita a borrar");
+		int id = t.nextInt();
+		t.nextLine();
+		Cita c = bd.obtenerCitas(id);
+		if (c != null) {
+			if (!bd.borrarCita(c)) {
+				System.out.println("Error al borrar la cita");
+			}
+		} else {
+			System.out.println("Error: la cita no existe");
+		}
+	}
+
 	private static void modificarFecha() {
 		// TODO Auto-generated method stub
 		citas = bd.obtenerCitas();
-		for(Cita c:citas) {
+		for (Cita c : citas) {
 			c.mostrar();
 		}
 		System.out.println("Introduce la cita a modificar");
-		int id = t.nextInt();t.nextLine();
+		int id = t.nextInt();
+		t.nextLine();
 		Cita c = bd.obtenerCitas(id);
-		if(c!=null) {
+		if (c != null) {
 			System.out.println("Introduce nueva fecha dd/mm/yyyy hh:mm");
 			try {
 				c.setFecha(formato.parse(t.nextLine()));
-				if(!bd.modificarCita(c)) {
+				if (!bd.modificarCita(c)) {
 					System.out.println("Error al modificar la cita");
 				}
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		else {
+		} else {
 			System.out.println("Error: la cita no existe");
 		}
 	}
 
 	private static void mostrarCitas() {
 		// TODO Auto-generated method stub
-		
+
 		try {
 			System.out.println("Introduce fecha dd/mm/yyyy");
 			Date fecha = formato.parse(t.nextLine());
 			citas = bd.obtenerCitas(fecha);
-			for(Cita c:citas) {
+			for (Cita c : citas) {
 				c.mostrar();
 			}
-			
-			
-			
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,7 +141,7 @@ public class Principal {
 	private static void altaCita() {
 		// TODO Auto-generated method stub
 		try {
-			ArrayList<Cliente> clientes = bd.obtenerClientes();
+			clientes = bd.obtenerClientes();
 			for (Cliente c : clientes) {
 				c.mostrar();
 			}
@@ -132,8 +176,9 @@ public class Principal {
 				System.out.println("Servicio");
 				cita.setServicio(t.nextLine());
 				System.out.println("Tiempo");
-				cita.setTiempo(t.nextFloat());t.nextLine();
-				if(!bd.crearCita(cita)) {
+				cita.setTiempo(t.nextFloat());
+				t.nextLine();
+				if (!bd.crearCita(cita)) {
 					System.out.println("Error al crear la cita");
 				}
 

@@ -446,4 +446,48 @@ public class Modelo {
 		}
 		return resultado;
 	}
+	public boolean borrarCita(Cita c) {
+		// TODO Auto-generated method stub
+		boolean resultado=false;
+		try {
+			XPathQueryService servicio = (XPathQueryService)
+					coleccion.getService("XPathQueryService", "1.0");
+			//Borramos nodo cita
+			servicio.query("update delete //cita[@id='"+c.getId()+"']");
+			
+			resultado=true;
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	public void mostrarCitasCliente(String dni) {
+		// TODO Auto-generated method stub
+		try {
+			XPathQueryService servicio = (XPathQueryService)
+					coleccion.getService("XPathQueryService", "1.0");
+			
+			ResourceSet r = servicio.query("for $c in //cita,\r\n" + 
+					"    $cli in //cliente[@dni=$c/cliente]\r\n" + 
+					"where $c/cliente = \""+dni+"\"\r\n" + 
+					"return <cita fecha=\"{$c/fecha}\" hora=\"{$c/hora}\">\r\n" + 
+					"	<nombreCliente>{data($cli/nombre)}</nombreCliente>\r\n" + 
+					"	{$c/servicio}\r\n" + 
+					"	{$c/tiempo}\r\n" + 
+					"</cita>");
+			
+			ResourceIterator citas = r.getIterator();
+			while(citas.hasMoreResources()) {
+				System.out.println(citas.nextResource().getContent().toString());
+			}
+			
+			
+			
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
