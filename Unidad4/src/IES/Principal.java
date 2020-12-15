@@ -37,12 +37,46 @@ public class Principal {
 					case 2:
 						mostrarAlumnos();
 						break;
+					case 3:
+						crearAsig();
+						break;
+					case 4:
+						mostrarAsig();
+						break;
 				}
 			}while(opcion!=0);
 			bd.cerrar();
 		}
 		else {
 			System.out.println("No hay conexión con la BD");
+		}
+	}
+
+	private static void mostrarAsig() {
+		// TODO Auto-generated method stub
+		ArrayList<Asignaturas> asig= bd.obtenerAsig();
+		for(Asignaturas a:asig) {
+			a.mostrar();
+		}
+	}
+
+	private static void crearAsig() {
+		// TODO Auto-generated method stub
+		Asignaturas a;
+		System.out.println("Introduce nombre corto");
+		String nombrec = t.nextLine();
+		a=bd.obtenerAsig(nombrec);
+		if(a==null) {
+			a = new Asignaturas();
+			a.setNombreC(nombrec);
+			System.out.println("Introduce nombre asignatura");
+			a.setNombreL(t.nextLine());
+			if(!bd.altaAsig(a)) {
+				System.out.println("Error al crear la asignatura");
+			}
+		}
+		else {
+			System.out.println("Error, ya existe una asignatura con ese código");
 		}
 	}
 

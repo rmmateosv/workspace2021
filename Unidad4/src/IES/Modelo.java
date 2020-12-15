@@ -95,4 +95,51 @@ public class Modelo {
 		
 		return resultado;
 	}
+
+	public Asignaturas obtenerAsig(String nombrec) {
+		// TODO Auto-generated method stub
+		Asignaturas resultado=null;
+		try {
+			resultado = conexion.find(Asignaturas.class, nombrec);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public boolean altaAsig(Asignaturas a) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			conexion.getTransaction().begin();
+			conexion.persist(a);
+			conexion.getTransaction().commit();
+			resultado = true;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			conexion.getTransaction().rollback();
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public ArrayList<Asignaturas> obtenerAsig() {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		ArrayList<Asignaturas> resultado = new ArrayList();
+		try {
+			
+			Query consulta = conexion.createQuery("from Asignaturas");
+			resultado = (ArrayList<Asignaturas>) consulta.getResultList();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
 }
