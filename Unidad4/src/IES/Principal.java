@@ -43,12 +43,59 @@ public class Principal {
 					case 4:
 						mostrarAsig();
 						break;
+					case 5:
+						crearNota();
+						break;
 				}
 			}while(opcion!=0);
 			bd.cerrar();
 		}
 		else {
 			System.out.println("No hay conexión con la BD");
+		}
+	}
+
+	private static void crearNota() {
+		// TODO Auto-generated method stub
+		mostrarAlumnos();
+		Alumnos a;
+		Asignaturas as;
+		System.out.println("Introduce código alumno");
+		int id = t.nextInt();t.nextLine();
+		
+		a=bd.obtenerAlumno(id);
+		if(a!=null) {
+			mostrarAsig();
+			System.out.println("Introduce nombre corto asignatura");
+			String nombrec = t.nextLine();
+			as = bd.obtenerAsig(nombrec);
+			if(as!=null) {
+				Notas n = bd.obtenerNota(a, as);
+				if(n==null) {
+					System.out.println("Introduce nota");
+					n = new Notas();
+					n.setId(new ClaveNotas(a, as));
+					n.setNota(t.nextInt()); t.nextLine();
+					if(!bd.altaNota(n)) {
+						System.out.println("Error al crear la nota");
+					}
+				}
+				else {
+					System.out.println("Introduce nota");
+					int numero = t.nextInt(); t.nextLine();
+					if(!bd.modificarNota(n, numero)) {
+						System.out.println("Error al modificar la nota");
+					}
+					
+				}
+				
+			}
+			else {
+				System.out.println("Error, no existe la asignatura");
+			}
+		}
+		else {
+			System.out.println("Error, no existe el alumno");
 		}
 	}
 

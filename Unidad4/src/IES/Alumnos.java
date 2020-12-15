@@ -46,6 +46,11 @@ public class Alumnos implements Serializable{
 				"\tCurso:"+curso + 
 				"\tNif:"+nif+
 				"\tnombre:"+nombre);
+		System.out.println("Notas del alumno");
+		for(Notas n: notas) {
+			System.out.println("Asignatura:"+n.getId().getAsig().getNombreL()+
+					"\tNota:"+n.getNota());
+		}
 	}
 	
 	public Alumnos() {
