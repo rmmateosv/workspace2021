@@ -25,7 +25,7 @@ public class Principal {
 				System.out.println("3-Insertar Asignatura");
 				System.out.println("4-Mostrar Asignaturas");
 				System.out.println("5-Crear Nota");
-				System.out.println("6-Mostrar Notas");
+				System.out.println("6-Mostrar Aprobados de asignatura");
 				
 				opcion = t.nextInt();t.nextLine();
 				int codigo;
@@ -46,12 +46,32 @@ public class Principal {
 					case 5:
 						crearNota();
 						break;
+					case 6:
+						mostrarAprobados();
+						break;
 				}
 			}while(opcion!=0);
 			bd.cerrar();
 		}
 		else {
 			System.out.println("No hay conexión con la BD");
+		}
+	}
+
+	private static void mostrarAprobados() {
+		// TODO Auto-generated method stub
+		mostrarAsig();
+		System.out.println("Inotroduce nombre corto de asignatura");
+		String nombre = t.nextLine();
+		Asignaturas a = bd.obtenerAsig(nombre);
+		if(a!=null) {
+			ArrayList<Notas> notas = bd.obtenerAprobados(a);
+			for(Notas n : notas) {
+				n.mostrar();
+			}
+		}
+		else {
+			System.out.println("Error, la asignatura no existe");
 		}
 	}
 

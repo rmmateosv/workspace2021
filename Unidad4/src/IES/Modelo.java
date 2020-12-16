@@ -184,6 +184,7 @@ public class Modelo {
 			n.getId().getAsig().getNotas().add(n);
 			
 			conexion.getTransaction().commit();
+			conexion.clear();
 			resultado = true;
 			
 		} catch (Exception e) {
@@ -206,6 +207,26 @@ public class Modelo {
 		} catch (Exception e) {
 			// TODO: handle exception
 			conexion.getTransaction().rollback();
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public ArrayList<Notas> obtenerAprobados(Asignaturas a) {
+		// TODO Auto-generated method stub
+		ArrayList<Notas> resultado = new ArrayList();
+		try {
+			Query consulta = conexion.createQuery("from Notas "
+					+ "where id.asig = ?1 and "
+					+ "nota >= 5");
+			
+			consulta.setParameter(1, a);
+			
+			resultado = (ArrayList<Notas>) consulta.getResultList();
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return resultado;
