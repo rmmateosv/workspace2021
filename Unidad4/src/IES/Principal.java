@@ -27,6 +27,7 @@ public class Principal {
 				System.out.println("5-Crear Nota");
 				System.out.println("6-Mostrar Aprobados de asignatura");
 				System.out.println("7-Mostrar estadística de notas de una asignatura");
+				System.out.println("8-Modificar dirección");
 				
 				opcion = t.nextInt();t.nextLine();
 				int codigo;
@@ -53,12 +54,36 @@ public class Principal {
 					case 7:
 						mostrarEstadisticaAsig();
 						break;
+					case 8:
+						modificarDireccion();
+						break;
 				}
 			}while(opcion!=0);
 			bd.cerrar();
 		}
 		else {
 			System.out.println("No hay conexión con la BD");
+		}
+	}
+
+	private static void modificarDireccion() {
+		// TODO Auto-generated method stub
+		mostrarAlumnos();
+		System.out.println("Introduce id de alumno");
+		int id = t.nextInt();t.nextLine();
+		Alumnos a = bd.obtenerAlumno(id);
+		if(a!=null) {
+			System.out.println("Introduce calle");
+			a.getDireccion().setCalle(t.nextLine());
+			System.out.println("Introduce CP");
+			a.getDireccion().setCp(t.nextLine());
+			if(!bd.modificarDireccion(a)) {
+				System.out.println("Erro al modicar la dirección");
+			}
+			
+		}
+		else {
+			System.out.println("Error, alumno no existe");
 		}
 	}
 
@@ -72,8 +97,8 @@ public class Principal {
 			
 			ArrayList<Object[]> estadistica = bd.obtenerEstadistica(a);
 			for(Object[] o: estadistica) {
-				System.out.println("Asignatura:"+ o[0]+
-						"\tNºAlumnos:"+o[1]+
+				System.out.println("Asignatura:"+  o[0]+
+						"\tNºAlumnos:"+ o[1]+
 						"\tNotaMáx:"+o[2]+
 						"\tNotaMin:"+o[3]+
 						"\tNotaMedia:"+o[4]);

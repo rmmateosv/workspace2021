@@ -234,6 +234,30 @@ public class Modelo {
 
 	public ArrayList<Object[]> obtenerEstadistica(Asignaturas a) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Object[]> resultado = new ArrayList();
+		try {
+			Query consulta = conexion.createQuery("select n.id.asig.nombreL, "
+					+ "count(n.id.asig.nombreC), max(n.nota), min(n.nota), avg(n.nota) "
+					+ "from Notas n " +
+					"where n.id.asig = ?1 ");
+			
+			consulta.setParameter(1, a);
+			
+			resultado = (ArrayList<Object[]>) consulta.getResultList();
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+
+	public boolean modificarDireccion(Alumnos a) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		
+		return resultado;
 	}
 }
