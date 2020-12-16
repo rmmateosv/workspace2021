@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GeneratorType;
@@ -28,6 +29,9 @@ public class Alumnos implements Serializable{
 	@Column(nullable = false)
 	private String nombre;
 	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "alumno")	
+	private Direccion direccion;
+	
 	//Relación 1 a muchos entre alumno y nota
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id.alumno")
 	private List<Notas> notas = new ArrayList();
@@ -40,12 +44,29 @@ public class Alumnos implements Serializable{
 	public void setNotas(List<Notas> notas) {
 		this.notas = notas;
 	}
+	
+	
+
+	public Direccion getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
 
 	public void mostrar() {
-		System.out.println("Alumno:" + id + 
+		System.out.print("Alumno:" + id + 
 				"\tCurso:"+curso + 
 				"\tNif:"+nif+
 				"\tnombre:"+nombre);
+		if(direccion!=null) {
+			System.out.println("\tCalle:" + direccion.getCalle() + 
+					"\tCP:"+direccion.getCp());
+		}
+		else {
+			System.out.println("");
+		}
 		System.out.println("Notas del alumno");
 		for(Notas n: notas) {
 			System.out.println("Asignatura:"+n.getId().getAsig().getNombreL()+

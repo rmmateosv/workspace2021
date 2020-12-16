@@ -231,4 +231,9 @@ public class Modelo {
 		}
 		return resultado;
 	}
+
+	public ArrayList<Object[]> obtenerEstadistica(Asignaturas a) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -26,6 +26,7 @@ public class Principal {
 				System.out.println("4-Mostrar Asignaturas");
 				System.out.println("5-Crear Nota");
 				System.out.println("6-Mostrar Aprobados de asignatura");
+				System.out.println("7-Mostrar estadística de notas de una asignatura");
 				
 				opcion = t.nextInt();t.nextLine();
 				int codigo;
@@ -49,12 +50,37 @@ public class Principal {
 					case 6:
 						mostrarAprobados();
 						break;
+					case 7:
+						mostrarEstadisticaAsig();
+						break;
 				}
 			}while(opcion!=0);
 			bd.cerrar();
 		}
 		else {
 			System.out.println("No hay conexión con la BD");
+		}
+	}
+
+	private static void mostrarEstadisticaAsig() {
+		// TODO Auto-generated method stub
+		mostrarAsig();
+		System.out.println("Inotroduce nombre corto de asignatura");
+		String nombre = t.nextLine();
+		Asignaturas a = bd.obtenerAsig(nombre);
+		if(a!=null) {
+			
+			ArrayList<Object[]> estadistica = bd.obtenerEstadistica(a);
+			for(Object[] o: estadistica) {
+				System.out.println("Asignatura:"+ o[0]+
+						"\tNºAlumnos:"+o[1]+
+						"\tNotaMáx:"+o[2]+
+						"\tNotaMin:"+o[3]+
+						"\tNotaMedia:"+o[4]);
+			}
+		}
+		else {
+			System.out.println("Error, la asignatura no existe");
 		}
 	}
 
@@ -168,6 +194,15 @@ public class Principal {
 			a.setNombre(t.nextLine());
 			System.out.println("Curso");
 			a.setCurso(t.nextLine());
+			
+			Direccion d = new Direccion();
+			System.out.println("Calle");
+			d.setCalle(t.nextLine());
+			System.out.println("Código Postal");
+			d.setCp(t.nextLine());
+			d.setAlumno(a);
+			a.setDireccion(d);
+			
 			if(!bd.altaAlumno(a)) {
 				System.out.println("Error al crear el alumno");
 			}
