@@ -27,7 +27,8 @@ public class Principal {
 				System.out.println("5-Crear Nota");
 				System.out.println("6-Mostrar Aprobados de asignatura");
 				System.out.println("7-Mostrar estadística de notas de una asignatura");
-				System.out.println("8-Modificar dirección");
+				System.out.println("8-Aprobado general");
+				System.out.println("9-Borrar alumno");
 				
 				opcion = t.nextInt();t.nextLine();
 				int codigo;
@@ -55,8 +56,12 @@ public class Principal {
 						mostrarEstadisticaAsig();
 						break;
 					case 8:
-						modificarDireccion();
+						aprobadoGeneral();
 						break;
+					case 9:
+						borrarAlumno();
+						break;
+					
 				}
 			}while(opcion!=0);
 			bd.cerrar();
@@ -66,26 +71,34 @@ public class Principal {
 		}
 	}
 
-	private static void modificarDireccion() {
+	
+
+	private static void borrarAlumno() {
 		// TODO Auto-generated method stub
 		mostrarAlumnos();
-		System.out.println("Introduce id de alumno");
+		System.out.println("Introduce código de alumno");
 		int id = t.nextInt();t.nextLine();
 		Alumnos a = bd.obtenerAlumno(id);
 		if(a!=null) {
-			System.out.println("Introduce calle");
-			a.getDireccion().setCalle(t.nextLine());
-			System.out.println("Introduce CP");
-			a.getDireccion().setCp(t.nextLine());
-			if(!bd.modificarDireccion(a)) {
-				System.out.println("Erro al modicar la dirección");
+			if(!bd.borrarAlumno(a)) {
+				System.out.println("Error, no se puede borrar el alumno");
 			}
-			
 		}
 		else {
 			System.out.println("Error, alumno no existe");
 		}
 	}
+
+
+
+	private static void aprobadoGeneral() {
+		// TODO Auto-generated method stub
+		if(!bd.aprobadoGeneral()) {
+			System.out.println("Error, no se puede dar aprobado general");
+		}
+	}
+
+
 
 	private static void mostrarEstadisticaAsig() {
 		// TODO Auto-generated method stub

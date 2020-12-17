@@ -254,10 +254,46 @@ public class Modelo {
 		return resultado;
 	}
 
-	public boolean modificarDireccion(Alumnos a) {
+	public boolean aprobadoGeneral() {
 		// TODO Auto-generated method stub
 		boolean resultado = false;
-		
+		try {
+			conexion.getTransaction().begin();
+			
+			Query consulta = conexion.createQuery("update Notas "
+					+ "set nota = 5 "
+					+ "where nota <5");
+			consulta.executeUpdate();
+			conexion.getTransaction().commit();
+			conexion.clear();
+			resultado= true;
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			conexion.getTransaction().rollback();
+			e.printStackTrace();
+		}
 		return resultado;
 	}
+
+	public boolean borrarAlumno(Alumnos a) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			conexion.getTransaction().begin();
+			
+			conexion.remove(a);
+			conexion.getTransaction().commit();
+			conexion.clear();
+			resultado= true;
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			conexion.getTransaction().rollback();
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	
 }
