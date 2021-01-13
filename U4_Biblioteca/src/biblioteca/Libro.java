@@ -1,11 +1,17 @@
 package biblioteca;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table
@@ -20,6 +26,8 @@ public class Libro implements Serializable{
 	private String titulo;
 	
 	//Lista de préstamos
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clave.libro")
+	private  List<Prestamo> prestamos = new ArrayList<>();
 	
 	
 	public void mostrar() {
@@ -36,6 +44,32 @@ public class Libro implements Serializable{
 	public Libro() {
 		super();
 	}
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	public int getNumEjemplares() {
+		return numEjemplares;
+	}
+	public void setNumEjemplares(int numEjemplares) {
+		this.numEjemplares = numEjemplares;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	public List<Prestamo> getPrestamos() {
+		return prestamos;
+	}
+	public void setPrestamos(List<Prestamo> prestamos) {
+		this.prestamos = prestamos;
+	}
+	
+	
 	
 	
 }

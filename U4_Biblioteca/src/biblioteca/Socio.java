@@ -1,12 +1,16 @@
 package biblioteca;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -24,6 +28,9 @@ public class Socio implements Serializable{
 	@Column(nullable = false)
 	private boolean sancionado= false;
 	
+	//Préstamos de un Socio
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clave.socio")
+	private List<Prestamo> prestamos = new ArrayList<Prestamo>();
 	
 	
 	public void mostrar() {
@@ -42,8 +49,38 @@ public class Socio implements Serializable{
 	public Socio() {
 		super();
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getNif() {
+		return nif;
+	}
+	public void setNif(String nif) {
+		this.nif = nif;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public boolean isSancionado() {
+		return sancionado;
+	}
+	public void setSancionado(boolean sancionado) {
+		this.sancionado = sancionado;
+	}
+	public List<Prestamo> getPrestamos() {
+		return prestamos;
+	}
+	public void setPrestamos(List<Prestamo> prestamos) {
+		this.prestamos = prestamos;
+	}
 	
-	//Lista préstamos 
+	
 	
 	
 }
