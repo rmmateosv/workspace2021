@@ -1,6 +1,7 @@
 package biblioteca;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.persistence.EntityManager;
@@ -37,9 +38,15 @@ public class Principal {
 				
 				switch(opcion){
 					case 1:
-						
+						crearSocio();
 						break;
-					
+					case 2:
+						crearLibro();
+						break;
+					case 3:
+						modificarEjem();
+						break;
+
 					
 				}
 			}while(opcion!=0);
@@ -47,6 +54,109 @@ public class Principal {
 		}
 		else {
 			System.out.println("No hay conexión con la BD");
+		}
+	}
+
+	private static void modificarEjem() {
+		// TODO Auto-generated method stub
+	
+		mostrarLibros();
+		System.out.println("Introduce ISBN");
+		String isbn = t.nextLine();
+		Libro l = bd.obtenerLibro(isbn);
+		if(l!=null) {
+			System.out.println("Introduce número de ejemplares");
+			int num = t.nextInt();t.nextLine();
+			if(!bd.modificarEjemplares(l,num)) {
+				System.out.println("Error al modificar los ejemplares "
+						+ "del libro " + l.getIsbn());
+			}
+		}
+		else {
+			System.out.println("Error: No existe el libro");
+		}
+
+	
+	}
+
+	private static void crearLibro() {
+		// TODO Auto-generated method stub
+		
+		System.out.println("Introduce el ISBN");
+		String isbn=t.nextLine();
+		Libro l = bd.obtenerLibro(isbn);
+		if(l==null) {
+			l = new Libro();
+			l.setIsbn(isbn);
+			System.out.println("Introduce el título");
+			l.setTitulo(t.nextLine());
+			System.out.println("Introduce el número de ejemplares");
+			l.setNumEjemplares(t.nextInt());t.nextLine();
+			if(!bd.crearLibro(l)) {
+				System.out.println("Error al crear el libro");
+			}
+			else mostrarLibros();
+			
+		}
+		else {
+			System.out.println("Error: Ya existe un libro con ese ISBN");
+		}
+		
+	}
+
+	private static void crearSocio() {
+		// TODO Auto-generated method stub
+		Socio s = new Socio();
+		
+		System.out.println("Introduce el nif del sociio");
+		String nif = t.nextLine();
+		s= bd.obtenerSocio(nif);
+		if(s==null) {
+			s = new Socio();
+			s.setNif(nif);
+			System.out.println("Introduce el nombre");
+			s.setNombre(t.nextLine());
+			s.setSancionado(false);
+			if(!bd.crearSocio(s)){
+				System.out.println("Error al crear el socio");
+			}
+			else mostrarSocios();
+		}
+		else {
+			System.out.println("Ya existe socio con ese nif");
+		}
+		
+		
+		
+	}
+	private static void mostrarLibros() {
+		// TODO Auto-generated method stub
+		try {
+			List<Libro> libros = bd.obtenerLibros();
+			for(Libro l:libros) {
+				l.mostrar();
+			}
+			
+			
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	private static void mostrarSocios() {
+		// TODO Auto-generated method stub
+		try {
+			List<Socio> socios = bd.obtenerSocios();
+			for(Socio s:socios) {
+				s.mostrar();
+			}
+			
+			
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 
