@@ -46,6 +46,9 @@ public class Principal {
 					case 3:
 						modificarEjem();
 						break;
+					case 4:
+						crearPrestamo();
+						break;
 
 					
 				}
@@ -56,6 +59,59 @@ public class Principal {
 			System.out.println("No hay conexión con la BD");
 		}
 	}
+
+	private static void crearPrestamo() {
+		// TODO Auto-generated method stub
+		mostrarSocios();
+		System.out.println("Introduce dni:");
+		Socio s = bd.obtenerSocio(t.nextLine());
+		if(s!=null) {
+			if(s.isSancionado()) {
+				System.out.println("Error: Socio sancionado");
+			}
+			else {
+				//Comprobamos préstamos sin devolver
+				int contador=0;
+				for(Prestamo p:s.getPrestamos()) {
+					if(p.getFechaDevolReal()==null) {
+						contador++;
+					}
+				}
+				if(contador>=2) {
+					System.out.println("Error: Tiene más de dos préstamos sin devolver");
+				}
+				else {
+					mostrarLibros();
+					System.out.println("Introduce ISBN");
+					Libro l = bd.obtenerLibro(t.nextLine());
+					if(l!=null) {
+						//Comprobamos que haya ejemplares
+						if(l.getNumEjemplares()>0) {
+							//Comprobar si dos veces el mismo libro
+							if(!bd.yaPrestado(s,l)) {
+								if(!bd.prestar(s,l)) {
+									System.out.println("Error: Error al registrar el préstamo");
+								}
+							}
+							else {
+								System.out.println("Error: No puedes tener prestado dos veces el mismo libro");
+							}
+						}
+						else {
+							System.out.println("Error: No hay ejemplares suficientes");
+						}
+					}
+					else {
+						System.out.println("Error: libro no existe");
+					}
+				}
+				
+			}
+		}
+		else {
+			System.out.println("Error: No existe el socio");
+		}
+				}
 
 	private static void modificarEjem() {
 		// TODO Auto-generated method stub

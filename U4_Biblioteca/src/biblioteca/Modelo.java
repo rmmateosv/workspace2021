@@ -1,6 +1,8 @@
 package biblioteca;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -169,6 +171,59 @@ public class Modelo {
 		catch (Exception e) {
 			// TODO: handle exception
 			t.rollback();
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public boolean yaPrestado(Socio s, Libro l) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			Query consulta = conexion.createQuery("from Prestamo where clave.libro = ?1 and clave.socio = ?2 and fechaDevolReal is null");
+			consulta.setParameter(1, l);
+			consulta.setParameter(2, s);
+			List<Prestamo> p = consulta.getResultList();
+			if(p.size()>0) {
+				resultado = true;
+			}
+						
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public boolean prestar(Socio s, Libro l) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			conexion.getTransaction().begin();
+			
+			l.setNumEjemplares(l.getNumEjemplares()-1);
+			
+			Prestamo p = new Prestamo();
+			Date fecha = new Date();
+			ClavePrestamo cp = new ClavePrestamo(l, s, fecha);
+			p.setClave(cp);
+			
+			Calendar c = Calendar.getInstance();
+			c.setTime(fecha);
+			c.add(Calendar.DATE, 7);
+			p.setFechaDevolPrevista(c.getTime());
+			
+			conexion.persist(p);
+						
+			conexion.getTransaction().commit();
+			resultado = true;
+			conexion.clear();
+						
+		}
+		catch (Exception e) {
+			conexion.getTransaction().rollback();
+			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return resultado;
