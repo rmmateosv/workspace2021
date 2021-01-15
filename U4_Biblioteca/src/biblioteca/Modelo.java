@@ -233,30 +233,63 @@ public class Modelo {
 		// TODO Auto-generated method stub
 		boolean resultado = false;
 		try {
-			conexion.getTransaction().begin();
-			Query consulta = conexion.createQuery("update Prestamo "
-					+ "set fechaDevolReal = ?1 where clave.libro = ?2 and clave.socio = ?3 and fechaDevolReal is null");
-			consulta.setParameter(1, new Date());
-			consulta.setParameter(2, l);
-			consulta.setParameter(3, s);
-			int r = consulta.executeUpdate();
-			if(r==1) {
-				consulta = conexion.createQuery("update Libro "
-						+ "set numEjemplares = numEjemplares + 1 where isbn = ?1");
-				consulta.setParameter(1, l.getIsbn());
+			//Obtener el préstamos que se devuelve
+			Query consulta = conexion.createQuery("from Prestamo "
+					+ "where clave.libro = ?1 and clave.socio = ?2 and fechaDevolReal is null");
+			
+			
+			consulta.setParameter(1, l);
+			consulta.setParameter(2, s);
+			List<Prestamo> lp = consulta.getResultList();
+			if(lp.size()>0) {
+					
+				Prestamo p = lp.get(0);
 				
-				r = consulta.executeUpdate();
+				conexion.getTransaction().begin();
+				consulta = conexion.createQuery("update Prestamo "
+						+ "set fechaDevolReal = ?1 where clave.libro = ?2 and clave.socio = ?3 and fechaDevolReal is null");
+				Date fechaDevol =  new Date();
+				consulta.setParameter(1, fechaDevol);
+				consulta.setParameter(2, l);
+				consulta.setParameter(3, s);
+				int r = consulta.executeUpdate();
 				if(r==1) {
-					resultado = true;
+					consulta = conexion.createQuery("update Libro "
+							+ "set numEjemplares = numEjemplares + 1 where isbn = ?1");
+					consulta.setParameter(1, l.getIsbn());
+					
+					r = consulta.executeUpdate();
+					if(r==1) {
+						resultado = true;
+					}
 				}
+				//Sancionar al socio si es necesario
+				if(fechaDevol.getTime()>p.getFechaDevolPrevista().getTime()) {
+					s.setSancionado(true);
+				}
+				conexion.getTransaction().commit();
+				conexion.clear();
 			}
-			conexion.getTransaction().commit();
-			conexion.clear();
 						
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 			conexion.getTransaction().rollback();
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public List<Object[]> obtenerPendienteSocios() {
+		// TODO Auto-generated method stub
+		List<Object[]> resultado = new ArrayList<Object[]>();
+		try {
+			Query consulta = conexion.createQuery("select clave.socio, count(*) from Prestamo p where fechaDevolReal is null "
+					+ "group by p.clave.socio");
+			resultado = consulta.getResultList();
+		}
+		catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return resultado;

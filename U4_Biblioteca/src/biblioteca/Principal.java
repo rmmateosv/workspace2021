@@ -46,11 +46,29 @@ public class Principal {
 					case 3:
 						modificarEjem();
 						break;
+					case 4:
+						crearPrestamo();
+						break;
 					case 5:
 						devolverPrestamo();
 						break;
 					case 6:
 						mostrarSocio();
+						break;
+					case 7:
+						mostrarPendientesSocios();
+						break;
+					case 8:
+						
+						break;
+					case 9:
+						
+						break;
+					case 10:
+						
+						break;
+					case 11:
+						
 						break;
 
 					
@@ -60,6 +78,17 @@ public class Principal {
 		}
 		else {
 			System.out.println("No hay conexión con la BD");
+		}
+	}
+
+	private static void mostrarPendientesSocios() {
+		// TODO Auto-generated method stub
+		List<Object[]> info = bd.obtenerPendienteSocios();
+		for(Object[] o : info) {
+			Socio s = (Socio) o[0];
+			System.out.println("Nif:" + s.getNif() + 
+					"\tNombre:" + s.getNombre()+
+					"\tPendientes:" + o[1]);
 		}
 	}
 

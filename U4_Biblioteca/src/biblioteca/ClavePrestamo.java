@@ -17,7 +17,7 @@ public class ClavePrestamo implements Serializable{
 	@JoinColumn(nullable = false, referencedColumnName = "id")
 	private Socio socio;
 	@Column(nullable=false)
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date fechaP;
 	public ClavePrestamo(Libro libro, Socio socio, Date fechaP) {
 		super();
