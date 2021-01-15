@@ -33,11 +33,17 @@ public class Socio implements Serializable{
 	private List<Prestamo> prestamos = new ArrayList<Prestamo>();
 	
 	
-	public void mostrar() {
+	public void mostrar(boolean mostarPrestamos) {
 		System.out.println("Id:"+id+
 				"\tNIF:" + nif +
 				"\tNombre:" + nombre +
 				"\tSancionado:"+ sancionado);
+		if(mostarPrestamos) {
+			System.out.println("Préstamos realizados:");
+			for(Prestamo p: prestamos) {
+				p.mostrar();
+			}
+		}
 	}
 	public Socio(int id, String nif, String nombre, boolean sancionado) {
 		super();

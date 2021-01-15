@@ -229,4 +229,39 @@ public class Modelo {
 		return resultado;
 	}
 
+	public boolean devolverPrestamo(Socio s, Libro l) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			conexion.getTransaction().begin();
+			Query consulta = conexion.createQuery("update Prestamo "
+					+ "set fechaDevolReal = ?1 where clave.libro = ?2 and clave.socio = ?3 and fechaDevolReal is null");
+			consulta.setParameter(1, new Date());
+			consulta.setParameter(2, l);
+			consulta.setParameter(3, s);
+			int r = consulta.executeUpdate();
+			if(r==1) {
+				consulta = conexion.createQuery("update Libro "
+						+ "set numEjemplares = numEjemplares + 1 where isbn = ?1");
+				consulta.setParameter(1, l.getIsbn());
+				
+				r = consulta.executeUpdate();
+				if(r==1) {
+					resultado = true;
+				}
+			}
+			conexion.getTransaction().commit();
+			conexion.clear();
+						
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			conexion.getTransaction().rollback();
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	
+
 }

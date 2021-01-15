@@ -46,8 +46,11 @@ public class Principal {
 					case 3:
 						modificarEjem();
 						break;
-					case 4:
-						crearPrestamo();
+					case 5:
+						devolverPrestamo();
+						break;
+					case 6:
+						mostrarSocio();
 						break;
 
 					
@@ -57,6 +60,51 @@ public class Principal {
 		}
 		else {
 			System.out.println("No hay conexión con la BD");
+		}
+	}
+
+	private static void devolverPrestamo() {
+		// TODO Auto-generated method stub
+		mostrarSocios();
+		System.out.println("Introduce dni:");
+		Socio s = bd.obtenerSocio(t.nextLine());
+		if(s!=null) {
+			//Mostrar préstamos sin devolver
+			for(Prestamo p:s.getPrestamos()) {
+				if(p.getFechaDevolReal()==null) {
+					p.mostrar();
+				}
+			}
+			System.out.println("Introduce ISBN");
+			//Comprobar si hay un préstamo pendiente de ese libro
+			Libro l = bd.obtenerLibro(t.nextLine());
+			if(l!=null) {
+				if(bd.yaPrestado(s, l)) {
+					if(!bd.devolverPrestamo(s,l)) {
+						System.out.println("Error al devolver el prétamo");
+					}
+				}
+				else {
+					System.out.println("Error, no existe el préstamo pendiente de devolución");
+				}
+			}
+			else {
+				System.out.println("Error: Libro no existe");
+			}
+		}
+		else {
+			System.out.println("Error: No existe el socio");
+		}
+
+	}
+
+	private static void mostrarSocio() {
+		// TODO Auto-generated method stub
+		mostrarSocios();
+		System.out.println("Introduce dni:");
+		Socio s = bd.obtenerSocio(t.nextLine());
+		if(s!=null) {
+			s.mostrar(true);
 		}
 	}
 
@@ -111,7 +159,7 @@ public class Principal {
 		else {
 			System.out.println("Error: No existe el socio");
 		}
-				}
+	}
 
 	private static void modificarEjem() {
 		// TODO Auto-generated method stub
@@ -205,7 +253,7 @@ public class Principal {
 		try {
 			List<Socio> socios = bd.obtenerSocios();
 			for(Socio s:socios) {
-				s.mostrar();
+				s.mostrar(false);
 			}
 			
 			
