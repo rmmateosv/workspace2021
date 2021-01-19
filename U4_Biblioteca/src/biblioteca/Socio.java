@@ -29,7 +29,7 @@ public class Socio implements Serializable{
 	private boolean sancionado= false;
 	
 	//Préstamos de un Socio
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clave.socio")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "clave.socio")
 	private List<Prestamo> prestamos = new ArrayList<Prestamo>();
 	
 	

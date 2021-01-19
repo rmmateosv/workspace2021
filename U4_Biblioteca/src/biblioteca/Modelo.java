@@ -295,6 +295,74 @@ public class Modelo {
 		return resultado;
 	}
 
+	public List<Long> obtenerPendientes() {
+		// TODO Auto-generated method stub
+		List<Long> resultado = new ArrayList<Long>();
+		try {
+			Query consulta = conexion.createQuery("select count(*) from Prestamo p where fechaDevolReal is null");
+			resultado = consulta.getResultList();
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public List<Object[]> obtenerInfoBiblio() {
+		// TODO Auto-generated method stub
+		List<Object[]> resultado = new ArrayList<Object[]>();
+		try {
+			Query consulta = conexion.createQuery("select count(*), sum (numEjemplares) from Libro");
+			resultado = consulta.getResultList();
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public boolean borrarLibro(Libro l) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+				conexion.getTransaction().begin();
+				conexion.remove(l);
+				conexion.getTransaction().commit();
+				conexion.clear();
+				resultado = true;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			conexion.getTransaction().rollback();
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public boolean borrarSocio(Socio s) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			conexion.getTransaction().begin();
+			//Borramos préstamos
+			for(Prestamo p: s.getPrestamos()) {
+				conexion.remove(p);
+			}
+			conexion.remove(s);
+			conexion.getTransaction().commit();
+			conexion.clear();
+			resultado = true;
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			conexion.getTransaction().rollback();
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
 	
 
 }

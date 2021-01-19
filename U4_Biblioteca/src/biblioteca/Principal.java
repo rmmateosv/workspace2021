@@ -59,16 +59,16 @@ public class Principal {
 						mostrarPendientesSocios();
 						break;
 					case 8:
-						
+						mostrarTodosPendientes();
 						break;
 					case 9:
-						
+						mostrarInfoBiblio();
 						break;
 					case 10:
-						
+						borrarLibro();
 						break;
 					case 11:
-						
+						borrarSocio();
 						break;
 
 					
@@ -81,6 +81,45 @@ public class Principal {
 		}
 	}
 
+	private static void borrarSocio() {
+		// TODO Auto-generated method stub
+		mostrarSocios();
+		System.out.println("Introduce DNI");
+		Socio s = bd.obtenerSocio(t.nextLine());
+		if(s != null) {
+			//Borrado SIN cascada configurado para el borrado
+			if(!bd.borrarSocio(s)) {
+				System.out.println("Error al borrar el socio");
+			}
+		}
+		System.out.println("No existe el socio");
+	}
+
+	private static void borrarLibro() {
+		// TODO Auto-generated method stub
+		mostrarLibros();
+		System.out.println("Introduce Isbn");
+		Libro l = bd.obtenerLibro(t.nextLine());
+		if(l != null) {
+			//Borrado con cascada configurado para el borrado
+			if(!bd.borrarLibro(l)) {
+				System.out.println("Error al borrar el libro");
+			}
+		}
+		else {
+			System.out.println("No existe el libro");
+		}
+	}
+
+	private static void mostrarInfoBiblio() {
+		// TODO Auto-generated method stub
+		List<Object[]> info = bd.obtenerInfoBiblio();
+		for(Object[] o : info) {
+			System.out.println("Número Libros:" +  o[0] + 
+					"\tNúmero de Ejemplares:" + o[1]);
+		}
+	}
+
 	private static void mostrarPendientesSocios() {
 		// TODO Auto-generated method stub
 		List<Object[]> info = bd.obtenerPendienteSocios();
@@ -89,6 +128,13 @@ public class Principal {
 			System.out.println("Nif:" + s.getNif() + 
 					"\tNombre:" + s.getNombre()+
 					"\tPendientes:" + o[1]);
+		}
+	}
+	private static void mostrarTodosPendientes() {
+		// TODO Auto-generated method stub
+		List<Long> info = bd.obtenerPendientes();
+		for(Long o : info) {
+			System.out.println("Nº de préstamos Pendientes:" + o);
 		}
 	}
 
