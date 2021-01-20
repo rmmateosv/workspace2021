@@ -30,4 +30,55 @@ public class Accion implements Serializable{
 	@Column(nullable = false)
 	private boolean anulada;
 	
+	public void mostrar() {
+		System.out.println("Codigo:" + codigo + 
+				"\tPartido:"+partido.getCodigo() + 
+				"\tJugador:"+jugador.getNombre() + 
+				"\ttipoAcccion:"+tipo.getDescrip()+
+				"\tAnulada:"+anulada);
+	}
+	public Accion(int codigo, Partido partido, TipoAccion tipo, Jugador jugador, boolean anulada) {
+		super();
+		this.codigo = codigo;
+		this.partido = partido;
+		this.tipo = tipo;
+		this.jugador = jugador;
+		this.anulada = anulada;
+	}
+	public Accion() {
+		super();
+	}
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+	public Partido getPartido() {
+		return partido;
+	}
+	public void setPartido(Partido partido) {
+		this.partido = partido;
+	}
+	public TipoAccion getTipo() {
+		return tipo;
+	}
+	public void setTipo(TipoAccion tipo) {
+		this.tipo = tipo;
+	}
+	public Jugador getJugador() {
+		return jugador;
+	}
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
+	}
+	public boolean isAnulada() {
+		return anulada;
+	}
+	public void setAnulada(boolean anulada) {
+		this.anulada = anulada;
+	}
+	
+	
+	
 }

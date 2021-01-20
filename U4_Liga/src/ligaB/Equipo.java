@@ -22,6 +22,9 @@ public class Equipo implements Serializable{
 	private List<Partido> partidosLocal = new ArrayList();
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "visitante")
 	private List<Partido> partidosVisitante = new ArrayList();
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "equipo")
+	private List<Jugador> jugadores = new ArrayList();
+	
 	
 	public void mostrar() {
 		System.out.println("Nombre:" + nombre + "\tLocalidad:" + localidad);
@@ -59,6 +62,12 @@ public class Equipo implements Serializable{
 	}
 	public void setPartidosVisitante(List<Partido> partidosVisitante) {
 		this.partidosVisitante = partidosVisitante;
+	}
+	public List<Jugador> getJugadores() {
+		return jugadores;
+	}
+	public void setJugadores(List<Jugador> jugadores) {
+		this.jugadores = jugadores;
 	}
 	
 	
