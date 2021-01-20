@@ -31,7 +31,7 @@ public class Partido implements Serializable{
 	private List<Accion> acciones = new  ArrayList();
 	
 	
-	private void mostrar() {
+	public void mostrar() {
 		System.out.println("Código:" + codigo +
 				"\tEquipo Local:" + local.getNombre() + 
 				"\tEquipo Visitante:" + visitante.getNombre());
