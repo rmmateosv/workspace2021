@@ -10,8 +10,7 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 		<!-- Persistence provider -->
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!-- Representamos las clases -->
-		<class>
-		
+		<class>ligaB.Accion
 		
 		</class>
 		

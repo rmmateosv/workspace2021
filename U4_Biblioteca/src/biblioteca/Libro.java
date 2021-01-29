@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class Libro implements Serializable{
 	
 	@Id
-	@Column(nullable = false)
+	@Column( nullable = false)
 	private String isbn;
 	@Column(nullable = false)
 	private int numEjemplares;

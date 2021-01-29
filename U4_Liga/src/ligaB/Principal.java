@@ -110,7 +110,7 @@ public class Principal {
 		}
 		else {
 			List<Accion> acciones = bd.obtenerAcciones(partidoSel);
-			for(Accion a: acciones){
+			for(Accion a: partidoSel.getAcciones()){
 				a.mostrar();
 			}
 			System.out.println("Introduce acción");

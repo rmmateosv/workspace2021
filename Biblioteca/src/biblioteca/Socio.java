@@ -37,7 +37,7 @@ public class Socio  implements Serializable{
 	public Socio() {
 		super();
 	}
-	public Socio(int id, String nif, String nombre, boolean sancionado, List<Prestamo> prestamos) {
+	public Socio(int id, String nif, String nombre, List<Prestamo> prestamos) {
 		super();
 		this.id = id;
 		this.nif = nif;

@@ -24,6 +24,7 @@ public class Modelo {
 		try {
 			
 			em = Persistence.createEntityManagerFactory("BIBLIOTECA").createEntityManager();
+			
 
 		} catch (Exception e) {
 			// TODO: handle exception
