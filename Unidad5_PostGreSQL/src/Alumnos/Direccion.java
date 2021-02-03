@@ -33,6 +33,13 @@ public class Direccion {
 	public void setCp(int cp) {
 		this.cp = cp;
 	}
+	public Direccion(String tipoV, String nombreV, int numero, int cp) {
+		super();
+		this.tipoV = tipoV;
+		this.nombreV = nombreV;
+		this.numero = numero;
+		this.cp = cp;
+	}
 	
 	
 }
