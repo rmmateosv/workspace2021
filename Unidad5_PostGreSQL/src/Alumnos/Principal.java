@@ -56,6 +56,9 @@ public class Principal {
 					case 8:
 						mostrarNotasAsig();
 						break;
+					case 9:
+						ponerNota();
+						break;
 					
 				}
 			}while(opcion!=0);
@@ -67,6 +70,50 @@ public class Principal {
 
 
 }
+
+	private static void ponerNota() {
+		// TODO Auto-generated method stub
+		mostrarAlumnos();
+		System.out.println("Introduce alumno");
+		int codigo = t.nextInt(); t.nextLine();
+		Alumno al = bd.obtenerAlumno(codigo);
+		if(al!=null) {
+			ArrayList<Asig> asigs = bd.obtenerAsigs();
+			for(Asig as:asigs) {
+				as.mostrar();
+			}
+			System.out.println("Introduce código");
+			String codigoAsig = t.nextLine();
+			//Devuelve de asigs, la asignatura cuyo código coincide con códio. Si no hay ninguno, devuelve null
+			Asig asig = asigs.stream().filter(as->as.getCodigo().equalsIgnoreCase(codigoAsig)).findAny().orElse(null);
+			if(asig!=null) {
+				Nota n = new Nota();
+				n.setAlumno(al);
+				n.setAsig(asig);
+				TipoNota tn = new TipoNota();
+				System.out.println("Introduce fecha (ddMMyyyy)");
+				try {
+					tn.setFecha(df.parse(t.nextLine()));
+					System.out.println("Introduce nota");
+					tn.setNota(t.nextInt());t.nextLine();
+					n.getNotas().add(tn);
+					if(!bd.crearNota(n)) {
+						System.out.println("Error al crear la nota");
+					}
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			else {
+				System.out.println("Error, no existe asignatura");
+			}
+		}
+		else {
+			System.out.println("Error, alumno no existe");
+		}
+	}
 
 	private static void mostrarNotasAsig() {
 		// TODO Auto-generated method stub

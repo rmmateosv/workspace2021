@@ -17,6 +17,7 @@ public class Modelo {
 	String url = "jdbc:postgresql://localhost:5432/Alumnos",
 			usuario="postgres",
 			clave="admin";
+	SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 	public Modelo() {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -255,7 +256,7 @@ public class Modelo {
 	}
 	public ArrayList<Nota> obtenerNotasAsig(Asig a) {
 		// TODO Auto-generated method stub
-		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		
 		// TODO Auto-generated method stub
 		ArrayList<Nota> resultado = new ArrayList<>();
 		PreparedStatement consulta;
@@ -263,7 +264,7 @@ public class Modelo {
 			consulta = conexion.prepareStatement("select * from notas n inner join alumnos a "
 					+ "on n.alumno = a.codigo "
 					+ "inner join asig on n.asig = asig.codigo "
-					+ "where asig = ?");
+					+ "where n.asig = ?");
 			consulta.setString(1, a.getCodigo());
 			ResultSet rs = consulta.executeQuery();
 			while(rs.next()){
@@ -283,16 +284,45 @@ public class Modelo {
 					tn.setFecha(df.parse(notas[i][0]));
 					tn.setNota(Integer.parseInt(notas[i][1]));
 					n.getNotas().add(tn);
-				}
-				
-				resultado.add(n);
-				
+				}				
+				resultado.add(n);				
 			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	public boolean crearNota(Nota n) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		PreparedStatement consulta;
+		try {
+			consulta = conexion.prepareStatement("select * from notas "
+					+ "where alumno = ? and asig= ?");
+			consulta.setInt(1, n.getAlumno().getCodigo());
+			consulta.setString(2, n.getAsig().getCodigo());
+			ResultSet rs = consulta.executeQuery();
+			if(rs.next()) {
+				//Update
+			}
+			else {
+				//Insert
+				consulta = conexion.prepareStatement("insert into notas "
+						+ "values (?,?,array[array[?,?]])");
+				consulta.setInt(1, n.getAlumno().getCodigo());
+				consulta.setString(2, n.getAsig().getCodigo());
+				consulta.setString(3, df.format(n.getNotas().get(0).getFecha()));
+				consulta.setString(4, String.valueOf(n.getNotas().get(0).getNota()));
+			}
+			
+			
+			
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

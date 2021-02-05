@@ -9,6 +9,7 @@ public class Nota {
 	ArrayList<TipoNota> notas = new ArrayList<>();
 	
 	public void mostrar() {
+		System.out.println("________________________________________________________________");
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		System.out.println("Alumno:" + alumno.getCodigo() + " "+ alumno.getNombre() + 
 				"\tAsig:"+asig.getCodigo());
@@ -17,6 +18,7 @@ public class Nota {
 			System.out.println("Fecha Examen:"+df.format(n.getFecha()) 
 			+ "\tNota:"+n.getNota());
 		}
+		System.out.println("________________________________________________________________");
 	}
 	public Nota() {
 		super();
