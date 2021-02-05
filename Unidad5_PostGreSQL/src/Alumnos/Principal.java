@@ -24,6 +24,9 @@ public class Principal {
 				System.out.println("4-Mostrar personas");
 				System.out.println("5-Modificar la dirección de un alumno");
 				System.out.println("6-Borrar alumno");
+				System.out.println("7-Mostrar las notas de todos los alumnos");
+				System.out.println("8-Mostrar las notas de una asignatura");
+				System.out.println("9-Poner nota");
 				
 				opcion = t.nextInt();t.nextLine();
 				int codigo;
@@ -47,6 +50,12 @@ public class Principal {
 					case 6:
 						borrarAlumno();
 						break;
+					case 7:
+						mostrarNotas();
+						break;
+					case 8:
+						mostrarNotasAsig();
+						break;
 					
 				}
 			}while(opcion!=0);
@@ -58,6 +67,36 @@ public class Principal {
 
 
 }
+
+	private static void mostrarNotasAsig() {
+		// TODO Auto-generated method stub
+		ArrayList<Asig> asigs = bd.obtenerAsigs();
+		for(Asig a:asigs) {
+			a.mostrar();
+		}
+		System.out.println("Introduce código");
+		String codigo = t.nextLine();
+		//Devuelve de asigs, la asignatura cuyo código coincide con códio. Si no hay ninguno, devuelve null
+		Asig a = asigs.stream().filter(as->as.getCodigo().equalsIgnoreCase(codigo)).findAny().orElse(null);
+		if(a!=null) {
+			ArrayList<Nota> notas = bd.obtenerNotasAsig(a);
+			for(Nota n: notas) {
+				n.mostrar();
+			}
+		}
+		else {
+			System.out.println("Error, no existe asignatura");
+		}
+		
+	}
+
+	private static void mostrarNotas() {
+		// TODO Auto-generated method stub
+		ArrayList<Nota> notas = bd.obtenerNotas();
+		for(Nota n: notas) {
+			n.mostrar();
+		}
+	}
 
 	private static void mostrarAlumnos() {
 		// TODO Auto-generated method stub

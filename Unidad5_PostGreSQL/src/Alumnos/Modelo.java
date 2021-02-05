@@ -1,11 +1,14 @@
 package Alumnos;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -180,6 +183,116 @@ public class Modelo {
 			}
 			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	public ArrayList<Nota> obtenerNotas() {
+		
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		// TODO Auto-generated method stub
+		ArrayList<Nota> resultado = new ArrayList<>();
+		Statement consulta;
+		try {
+			consulta = conexion.createStatement();
+			ResultSet rs = consulta.executeQuery("select * from notas n inner join alumnos a "
+					+ "on n.alumno = a.codigo "
+					+ "inner join asig on n.asig = asig.codigo");
+			while(rs.next()){
+				Nota n = new Nota();
+				n.setAlumno(new Alumno());
+				n.getAlumno().setCodigo(rs.getInt(1));
+				n.getAlumno().setNombre(rs.getString(5));
+				n.setAsig(new Asig());
+				n.getAsig().setCodigo(rs.getString(2));
+				n.getAsig().setDescrip(rs.getString(9));
+				
+				Array datos = rs.getArray(3);
+				String[][] notas = (String[][]) datos.getArray();
+				
+				for(int i=0;i<notas.length;i++) {
+					TipoNota tn = new TipoNota();
+					tn.setFecha(df.parse(notas[i][0]));
+					tn.setNota(Integer.parseInt(notas[i][1]));
+					n.getNotas().add(tn);
+				}
+				
+				resultado.add(n);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	public ArrayList<Asig> obtenerAsigs() {
+		ArrayList<Asig> resultado = new ArrayList<>();
+		
+		// TODO Auto-generated method stub
+		Statement consulta;
+		try {
+			consulta = conexion.createStatement();
+			ResultSet rs = consulta.executeQuery("select * from asig");
+			while(rs.next()) {
+				Asig a = new Asig();
+				a.setCodigo(rs.getString(1));
+				a.setDescrip(rs.getString(2));
+				resultado.add(a);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+	public ArrayList<Nota> obtenerNotasAsig(Asig a) {
+		// TODO Auto-generated method stub
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		// TODO Auto-generated method stub
+		ArrayList<Nota> resultado = new ArrayList<>();
+		PreparedStatement consulta;
+		try {
+			consulta = conexion.prepareStatement("select * from notas n inner join alumnos a "
+					+ "on n.alumno = a.codigo "
+					+ "inner join asig on n.asig = asig.codigo "
+					+ "where asig = ?");
+			consulta.setString(1, a.getCodigo());
+			ResultSet rs = consulta.executeQuery();
+			while(rs.next()){
+				Nota n = new Nota();
+				n.setAlumno(new Alumno());
+				n.getAlumno().setCodigo(rs.getInt(1));
+				n.getAlumno().setNombre(rs.getString(5));
+				n.setAsig(new Asig());
+				n.getAsig().setCodigo(rs.getString(2));
+				n.getAsig().setDescrip(rs.getString(9));
+				
+				Array datos = rs.getArray(3);
+				String[][] notas = (String[][]) datos.getArray();
+				
+				for(int i=0;i<notas.length;i++) {
+					TipoNota tn = new TipoNota();
+					tn.setFecha(df.parse(notas[i][0]));
+					tn.setNota(Integer.parseInt(notas[i][1]));
+					n.getNotas().add(tn);
+				}
+				
+				resultado.add(n);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
