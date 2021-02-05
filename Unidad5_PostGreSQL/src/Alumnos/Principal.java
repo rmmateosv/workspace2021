@@ -1,5 +1,7 @@
 package Alumnos;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,6 +9,7 @@ public class Principal {
 	
 	private static Scanner t = new java.util.Scanner(System.in); 
 	private static Modelo bd = new Modelo();
+	private static SimpleDateFormat df = new SimpleDateFormat("ddMMyyyy");
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -66,11 +69,40 @@ public class Principal {
 
 	private static void mostrarProfesor() {
 		// TODO Auto-generated method stub
-		
+		ArrayList<Profesor> profesores = bd.obtenerProfes();
+		for(Profesor p:profesores) {
+			p.mostrar();
+		}
 	}
 
 	private static void insertarAlumno() {
+		
 		// TODO Auto-generated method stub
+		Alumno a = new Alumno();
+		System.out.println("Nombre:");
+		a.setNombre(t.nextLine());
+		System.out.println("Tipo Via:");
+		a.setDireccion(new Direccion());
+		a.getDireccion().setTipoV(t.nextLine());
+		System.out.println("Nombre Via:");
+		a.getDireccion().setNombreV(t.nextLine());
+		System.out.println("Número:");
+		a.getDireccion().setNumero(t.nextInt());t.nextLine();
+		System.out.println("CP:");
+		a.getDireccion().setCp(t.nextInt());t.nextLine();
+		System.out.println("Fecha de matrícula (ddMMyyyy):");		
+		try {
+			a.setFechaM(df.parse(t.nextLine()));
+			if(!bd.insertarAlumno(a)) {
+				System.out.println("Error al crear el alumno");
+			}
+			else {
+				mostrarAlumnos();
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -81,11 +113,41 @@ public class Principal {
 
 	private static void modificarDirAlumno() {
 		// TODO Auto-generated method stub
-		
+		mostrarAlumnos();
+		System.out.println("Introduce código");
+		int codigo = t.nextInt(); t.nextLine();
+		Alumno a  = bd.obtenerAlumno(codigo);
+		if(a!=null) {
+			System.out.println("Nuevo tipo de calle");
+			a.getDireccion().setTipoV(t.nextLine());
+			System.out.println("Nuevo nombre de calle");
+			a.getDireccion().setNombreV(t.nextLine());
+			System.out.println("Nuevo número");
+			a.getDireccion().setNumero(t.nextInt());t.nextLine();
+			System.out.println("Nuevo cp");
+			a.getDireccion().setCp(t.nextInt());t.nextLine();
+			if(!bd.modficarDireccion(a)) {
+				System.out.println("Error al modificar la dirección");
+			}
+		}
+		else {
+			System.out.println("Error, alumno no existe");
+		}
 	}
 
 	private static void borrarAlumno() {
 		// TODO Auto-generated method stub
-		
+		mostrarAlumnos();
+		System.out.println("Introduce código");
+		int codigo = t.nextInt(); t.nextLine();
+		Alumno a  = bd.obtenerAlumno(codigo);
+		if(a!=null) {
+			if(!bd.borrarAlumno(a)) {
+				System.out.println("Error al borrar el alumnos");
+			}
+		}
+		else {
+			System.out.println("Error, alumno no existe");
+		}
 	}
 }
