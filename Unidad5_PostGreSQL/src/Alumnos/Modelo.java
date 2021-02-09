@@ -309,6 +309,13 @@ public class Modelo {
 			ResultSet rs = consulta.executeQuery();
 			if(rs.next()) {
 				//Update
+				consulta = conexion.prepareStatement("update notas "
+						+ "set notas = array_cat(notas,array[?,?]::text[][]) "
+						+ "where alumno = ? and asig = ?");
+				consulta.setString(1, df.format(n.getNotas().get(0).getFecha()));
+				consulta.setString(2, String.valueOf(n.getNotas().get(0).getNota()));
+				consulta.setInt(3, n.getAlumno().getCodigo());
+				consulta.setString(4, n.getAsig().getCodigo());				
 			}
 			else {
 				//Insert
@@ -318,6 +325,10 @@ public class Modelo {
 				consulta.setString(2, n.getAsig().getCodigo());
 				consulta.setString(3, df.format(n.getNotas().get(0).getFecha()));
 				consulta.setString(4, String.valueOf(n.getNotas().get(0).getNota()));
+			}
+			int r = consulta.executeUpdate();
+			if(r==1) {
+				resultado = true;
 			}
 			
 			
