@@ -19,6 +19,10 @@ public class Principal {
 				System.out.println("1-Crear Producto");
 				System.out.println("2-Mostrar productos");			
 				System.out.println("3-Mostrar productos por tipo");		
+				System.out.println("4-Modificar stock");		
+				System.out.println("5-Borrar producto");
+				System.out.println("6-Mostrar productos por nombre");
+				System.out.println("7-Mostrar productos por rango de stock");		
 				
 				opcion = t.nextInt();t.nextLine();
 				int codigo;
@@ -33,6 +37,15 @@ public class Principal {
 					case 3:
 						buscarProductoPorTipo();
 						break;
+					case 4:
+						modificarStock();
+						break;
+					case 5:
+						borrarProducto();
+						break;
+					case 6:
+						mostrarProductosPorNombre();
+						break;
 					
 				}
 			}while(opcion!=0);
@@ -44,6 +57,50 @@ public class Principal {
 
 
 }
+
+	private static void mostrarProductosPorNombre() {
+		// TODO Auto-generated method stub
+		System.out.println("Introduce parte del nombre");
+		String texto = t.nextLine();
+		ArrayList<Producto> productos = bd.obtenerProductosNombre(texto);
+		for(Producto p: productos) {
+			p.mostrar();
+		}
+	}
+
+	private static void borrarProducto() {
+		// TODO Auto-generated method stub
+		mostrarProductos();
+		System.out.println("Código de producto a modificar");
+		String codigo = t.nextLine();
+		Producto p = bd.obtenerProducto(codigo);
+		if(p!=null) {			
+			if(!bd.borrarProducto(p)) {
+				System.out.println("Error al borrar el producto");
+			}
+		}
+		else {
+			System.out.println("Error, el producto no existe");
+		}
+	}
+
+	private static void modificarStock() {
+		// TODO Auto-generated method stub
+		mostrarProductos();
+		System.out.println("Código de producto a modificar");
+		String codigo = t.nextLine();
+		Producto p = bd.obtenerProducto(codigo);
+		if(p!=null) {
+			System.out.println("Número de unidades a variar stock");
+			p.setStock(p.getStock() + t.nextInt()); t.nextLine();
+			if(!bd.actualizarProducto(p)) {
+				System.out.println("Error al modificar el producto");
+			}
+		}
+		else {
+			System.out.println("Error, el producto no existe");
+		}
+	}
 
 	private static void buscarProductoPorTipo() {
 		// TODO Auto-generated method stub
@@ -80,7 +137,7 @@ public class Principal {
 			p.setPrecio(t.nextFloat());t.nextLine();
 			System.out.println("Stock:");
 			p.setStock(t.nextInt());t.nextLine();
-			if(!bd.crearProducto(p)) {
+			if(!bd.actualizarProducto(p)) {
 				System.out.println("Error al crear el producto");
 			}
 		}

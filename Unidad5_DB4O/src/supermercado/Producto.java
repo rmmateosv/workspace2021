@@ -11,8 +11,8 @@ public class Producto {
 		System.out.println("Codigo:" + codigo +
 				"\tNombre:" + nombre +
 				"\tTipo:" + tipo +
-				"\tPrecio" + precio +
-				"tstock:" + stock);
+				"\tPrecio:" + precio +
+				"\tstock:" + stock);
 	}
 	public Producto() {
 		super();
