@@ -1,6 +1,7 @@
 package supermercado;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Principal {
@@ -16,7 +17,8 @@ public class Principal {
 				System.out.println("Introduce una opción");
 				System.out.println("0-Salir");
 				System.out.println("1-Crear Producto");
-				System.out.println("2-Mostrar productos");				
+				System.out.println("2-Mostrar productos");			
+				System.out.println("3-Mostrar productos por tipo");		
 				
 				opcion = t.nextInt();t.nextLine();
 				int codigo;
@@ -25,7 +27,12 @@ public class Principal {
 					case 1:
 						crearProducto();
 						break;
-					
+					case 2:
+						mostrarProductos();
+						break;
+					case 3:
+						buscarProductoPorTipo();
+						break;
 					
 				}
 			}while(opcion!=0);
@@ -37,6 +44,25 @@ public class Principal {
 
 
 }
+
+	private static void buscarProductoPorTipo() {
+		// TODO Auto-generated method stub
+		System.out.println("Introduce el tipo (* para todos los tipos)");
+		String tipo = t.nextLine();
+		ArrayList<Producto> productos = bd.obtenerProductos(tipo);
+		for(Producto p: productos) {
+			p.mostrar();
+		}
+		
+	}
+
+	private static void mostrarProductos() {
+		// TODO Auto-generated method stub
+		ArrayList<Producto> productos = bd.obtenerProductos();
+		for(Producto p: productos) {
+			p.mostrar();
+		}
+	}
 
 	private static void crearProducto() {
 		// TODO Auto-generated method stub
@@ -50,7 +76,7 @@ public class Principal {
 			p.setNombre(t.nextLine());
 			System.out.println("Tipo:");
 			p.setTipo(t.nextLine());
-			System.out.println("PRecio:");
+			System.out.println("Precio:");
 			p.setPrecio(t.nextFloat());t.nextLine();
 			System.out.println("Stock:");
 			p.setStock(t.nextInt());t.nextLine();

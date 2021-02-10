@@ -7,7 +7,7 @@ public class Producto {
 	private float precio;
 	private int stock;
 	
-	private void mostrar() {
+	public void mostrar() {
 		System.out.println("Codigo:" + codigo +
 				"\tNombre:" + nombre +
 				"\tTipo:" + tipo +
