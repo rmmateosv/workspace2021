@@ -46,6 +46,9 @@ public class Principal {
 					case 6:
 						mostrarProductosPorNombre();
 						break;
+					case 7:
+						mostrarProductosPorStock();
+						break;
 					
 				}
 			}while(opcion!=0);
@@ -57,6 +60,18 @@ public class Principal {
 
 
 }
+
+	private static void mostrarProductosPorStock() {
+		// TODO Auto-generated method stub
+		System.out.println("Introduce stock mínimo");
+		int min = t.nextInt(); t.nextLine();
+		System.out.println("Introduce stock máximo");
+		int max = t.nextInt(); t.nextLine();
+		ArrayList<Producto> productos = bd.obtenerProductosStock(min, max);
+		for(Producto p: productos) {
+			p.mostrar();
+		}
+	}
 
 	private static void mostrarProductosPorNombre() {
 		// TODO Auto-generated method stub

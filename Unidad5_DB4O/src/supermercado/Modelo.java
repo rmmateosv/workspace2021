@@ -143,4 +143,27 @@ public class Modelo {
 		}
 		return resultado;
 	}
+
+	public ArrayList<Producto> obtenerProductosStock(int min, int max) {
+		// TODO Auto-generated method stub
+		ArrayList<Producto> resultado = new ArrayList<>();
+		try {
+			
+			ObjectSet<Producto> r = conexion.query(new Predicate<Producto>() {
+
+				@Override
+				public boolean match(Producto arg0) {
+					// TODO Auto-generated method stub
+					return arg0.getStock()>=min && arg0.getStock()<=max;
+				}});
+			while(r.hasNext()) {
+				resultado.add(r.next());
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 }
