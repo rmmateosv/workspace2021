@@ -16,8 +16,8 @@ public class Modelo {
 		try {
 			EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
 			config.common().objectClass(Compra.class).cascadeOnUpdate(true);
-			config.common().objectClass(Compra.class).cascadeOnDelete(true);
-			conexion=Db4oEmbedded.openFile("supermercado.4o");
+			config.common().objectClass(Compra.class).cascadeOnDelete(false);
+			conexion=Db4oEmbedded.openFile(config,"supermercado.4o");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -271,6 +271,21 @@ public class Modelo {
 				resultado.add(rs.next());
 			}
 		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public boolean borrarCompra(Compra compra) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			conexion.delete(compra);
+			conexion.commit();
+			resultado = true;
+		}
+		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}

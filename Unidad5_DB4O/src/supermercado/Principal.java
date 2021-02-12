@@ -58,6 +58,10 @@ public class Principal {
 					case 9:
 						mostrarCompra();
 						break;
+					case 10:
+						borrarCompra();
+						break;
+						
 					
 				}
 			}while(opcion!=0);
@@ -70,6 +74,26 @@ public class Principal {
 
 }
 
+	private static void borrarCompra() {
+		// TODO Auto-generated method stub
+		ArrayList<Compra> compras = bd.obtenerCompras();
+		for(Compra c:compras) {
+			c.mostrar(false);
+		}
+		System.out.println("Introduce código de compra");
+		int codigo = t.nextInt(); t.nextLine();
+		//REcuperamos la compra del arrrayList
+		Compra compra = compras.stream().filter(c->c.getCodigo()==codigo).findAny().orElse(null);
+		if(compra!=null) {
+			if(!bd.borrarCompra(compra)) {
+				System.out.println("Error al borrar la compra");
+			}
+		}
+		else {
+			System.out.println("Error, compra no existe");
+		}
+	}
+
 	private static void mostrarCompra() {
 		// TODO Auto-generated method stub
 		ArrayList<Compra> compras = bd.obtenerCompras();
@@ -78,7 +102,14 @@ public class Principal {
 		}
 		System.out.println("Introduce código de compra");
 		int codigo = t.nextInt(); t.nextLine();
-		
+		//REcuperamos la compra del arrrayList
+		Compra compra = compras.stream().filter(c->c.getCodigo()==codigo).findAny().orElse(null);
+		if(compra!=null) {
+			compra.mostrar(true);
+		}
+		else {
+			System.out.println("Error, compra no existe");
+		}
 		
 	}
 
