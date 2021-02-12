@@ -240,4 +240,40 @@ public class Modelo {
 		}
 		return resultado;
 	}
+
+	public boolean crearCompra(Compra compra) {
+		// TODO Auto-generated method stub
+		boolean resultado = false;
+		try {
+			//Guardamos la compra
+			conexion.store(compra);
+			for(DetalleCompra linea:compra.getDetalle()) {
+				conexion.store(linea);
+				conexion.store(linea.getProducto());
+			}
+			conexion.commit();
+			resultado = true;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			conexion.rollback();
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public ArrayList<Compra> obtenerCompras() {
+		// TODO Auto-generated method stub
+		ArrayList<Compra> resultado = new ArrayList<>();
+		try {
+			ObjectSet<Compra> rs = conexion.queryByExample(new Compra());
+			while(rs.hasNext()) {
+				resultado.add(rs.next());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 }

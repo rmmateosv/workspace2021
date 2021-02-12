@@ -15,14 +15,19 @@ public class Compra {
 		super();
 	}
 	
-	public void mostrar() {
+	public void mostrar(boolean VerDetalle) {
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		System.out.println("Código:" + codigo + 
 				"\tFecha:"+df.format(fecha)+ 
 				"\tCliente:" + cliente.getNif() + " " +cliente.getNombre());
-		System.out.println("Detalle Compra:");
-		for(DetalleCompra d:detalle) {
-			d.mostrar();
+		if(VerDetalle) {
+			System.out.println("Detalle Compra:");
+			float total = 0;
+			for(DetalleCompra d:detalle) {
+				d.mostrar();
+				total+=d.getPrecioUdad()*d.getCantidad();
+			}
+			System.out.println("Total Compra:" + total);
 		}
 	}
 	

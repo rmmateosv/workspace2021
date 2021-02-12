@@ -2,6 +2,7 @@ package supermercado;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Principal {
@@ -24,6 +25,7 @@ public class Principal {
 				System.out.println("6-Mostrar productos por nombre");
 				System.out.println("7-Mostrar productos por rango de stock");	
 				System.out.println("8-Crear Compra");
+				System.out.println("9-Mostrar Compra");
 				
 				opcion = t.nextInt();t.nextLine();
 				int codigo;
@@ -53,6 +55,9 @@ public class Principal {
 					case 8:
 						crearCompra();
 						break;
+					case 9:
+						mostrarCompra();
+						break;
 					
 				}
 			}while(opcion!=0);
@@ -64,6 +69,18 @@ public class Principal {
 
 
 }
+
+	private static void mostrarCompra() {
+		// TODO Auto-generated method stub
+		ArrayList<Compra> compras = bd.obtenerCompras();
+		for(Compra c:compras) {
+			c.mostrar(false);
+		}
+		System.out.println("Introduce código de compra");
+		int codigo = t.nextInt(); t.nextLine();
+		
+		
+	}
 
 	private static void crearCompra() {
 		// TODO Auto-genera
@@ -102,6 +119,40 @@ public class Principal {
 		Compra compra = new Compra();
 		compra.setCliente(c);
 		compra.setCodigo(bd.obtenerNuevoCodigoCompra());
+		compra.setFecha(new Date());
+		int maslineas = 0;
+		do {
+			mostrarProductos();
+			String codigo = t.nextLine();
+			Producto p = bd.obtenerProducto(codigo);
+			if(p!=null) {
+				System.out.println("Introduce cantidad");
+				int cantidad = t.nextInt();t.nextLine();
+				if(p.getStock()>= cantidad) {
+					DetalleCompra linea = new DetalleCompra();
+					linea.setCompra(compra);
+					linea.setProducto(p);
+					linea.setCantidad(cantidad);
+					linea.setPrecioUdad(p.getPrecio());
+					p.setStock(p.getStock()-cantidad);
+					compra.getDetalle().add(linea);
+				}
+				else {
+					System.out.println("Error, no hay stock suficiente");
+				}
+			}
+			else
+			{
+				System.out.println("Error, producto no existe");
+			}
+			System.out.println("¿Desea añadir otra línea a la compra? (0:No/1:Sí)");			
+			maslineas= t.nextInt();t.nextLine();
+		}while(maslineas!=0);
+		if(!compra.getDetalle().isEmpty()) {
+			if(!bd.crearCompra(compra)) {
+				System.out.println("Error al crear la compra");
+			}
+		}
 	}
 
 	private static void mostrarClientes() {

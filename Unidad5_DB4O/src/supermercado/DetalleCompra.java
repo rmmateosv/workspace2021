@@ -9,7 +9,8 @@ public class DetalleCompra {
 	public void mostrar() {
 		System.out.println("Producto:" + producto.getNombre() + 
 				"\tCantidad:" + cantidad + 
-				"\tPrecioUdad:" + precioUdad);
+				"\tPrecioUdad:" + precioUdad + 
+				"\tTotal:" + cantidad * precioUdad);
 	}
 	public DetalleCompra() {
 		super();
