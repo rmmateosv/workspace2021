@@ -6,6 +6,7 @@ import com.db4o.Db4o;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
+import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.query.Predicate;
 
 public class Modelo {
@@ -13,6 +14,9 @@ public class Modelo {
 
 	public Modelo() {
 		try {
+			EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+			config.common().objectClass(Compra.class).cascadeOnUpdate(true);
+			config.common().objectClass(Compra.class).cascadeOnDelete(true);
 			conexion=Db4oEmbedded.openFile("supermercado.4o");
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -161,6 +165,76 @@ public class Modelo {
 			}
 			
 		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public ArrayList<Cliente> obtenerClientes() {
+		// TODO Auto-generated method stub
+		ArrayList<Cliente> resultado = new ArrayList<>();
+		try {
+			ObjectSet<Cliente> r = conexion.queryByExample(new Cliente());
+			while(r.hasNext()) {
+				resultado.add(r.next());
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public Cliente obtenerCliente(String nif) {
+		// TODO Auto-generated method stub
+		Cliente resultado = null;
+		try {
+			ObjectSet<Cliente> r = conexion.queryByExample(new Cliente(nif));
+			if(r.hasNext()) {
+				resultado=r.next();
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public boolean crearCliente(Cliente c) {
+		// TODO Auto-generated method stub
+		boolean resultado=false;
+		try {
+			conexion.store(c);
+			conexion.commit();
+			resultado = true;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public int obtenerNuevoCodigoCompra() {
+		// TODO Auto-generated method stub
+		int resultado = 1;
+		try {
+			ObjectSet<AutoNumericoCompra> rs = conexion.queryByExample(new AutoNumericoCompra());
+			if(rs.hasNext()) {
+				AutoNumericoCompra auto = rs.next();
+				auto.setCodigo(auto.getCodigo()+1);
+				resultado = auto.getCodigo();
+				conexion.store(auto);
+			}
+			else {
+				conexion.store(new AutoNumericoCompra(1));
+			}
+			conexion.commit();
+		}
+		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}

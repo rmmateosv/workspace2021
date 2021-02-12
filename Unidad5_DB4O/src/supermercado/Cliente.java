@@ -10,6 +10,11 @@ public class Cliente {
 	public Cliente() {
 		super();
 	}
+	
+	public Cliente(String nif) {
+		super();
+		this.nif = nif;
+	}
 	public String getNif() {
 		return nif;
 	}

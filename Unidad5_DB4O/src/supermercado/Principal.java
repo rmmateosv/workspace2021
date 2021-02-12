@@ -22,7 +22,8 @@ public class Principal {
 				System.out.println("4-Modificar stock");		
 				System.out.println("5-Borrar producto");
 				System.out.println("6-Mostrar productos por nombre");
-				System.out.println("7-Mostrar productos por rango de stock");		
+				System.out.println("7-Mostrar productos por rango de stock");	
+				System.out.println("8-Crear Compra");
 				
 				opcion = t.nextInt();t.nextLine();
 				int codigo;
@@ -49,6 +50,9 @@ public class Principal {
 					case 7:
 						mostrarProductosPorStock();
 						break;
+					case 8:
+						crearCompra();
+						break;
 					
 				}
 			}while(opcion!=0);
@@ -60,6 +64,53 @@ public class Principal {
 
 
 }
+
+	private static void crearCompra() {
+		// TODO Auto-genera
+		mostrarClientes();
+		System.out.println("Introduce Nif");
+		String nif = t.nextLine();
+		Cliente c=null;
+		c=bd.obtenerCliente(nif);
+		if(c==null) {
+			System.out.println("El cliente no existe. ¿Desea Crearlo (S/N)?");
+			String confirma = t.nextLine();
+			if(confirma.equalsIgnoreCase("S")) {
+				c=new Cliente();
+				c.setNif(nif);
+				System.out.println("Nombre Cliente");
+				c.setNombre(t.nextLine());
+				if(!bd.crearCliente(c)) {
+					System.out.println("Error al crear el cliente");
+				}
+				else {
+					c = bd.obtenerCliente(nif);
+				}
+			}
+		}
+		if(c!=null) {
+			crearCompra(c);
+		}
+		else {
+			System.out.println("Error, no se puede crear la compra si no hay cliente");
+		}
+		
+	}
+
+	private static void crearCompra(Cliente c) {
+		// TODO Auto-generated method stub
+		Compra compra = new Compra();
+		compra.setCliente(c);
+		compra.setCodigo(bd.obtenerNuevoCodigoCompra());
+	}
+
+	private static void mostrarClientes() {
+		// TODO Auto-generated method stub
+		ArrayList<Cliente> clientes = bd.obtenerClientes();
+		for(Cliente c:clientes) {
+			c.mostrar();
+		}
+	}
 
 	private static void mostrarProductosPorStock() {
 		// TODO Auto-generated method stub
