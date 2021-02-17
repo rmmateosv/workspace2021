@@ -3,6 +3,13 @@ package herbolario;
 public class DatosNutricion {
 	private int kcal, grasas, hidratos;
 
+	public DatosNutricion(int kcal, int grasas, int hidratos) {
+		super();
+		this.kcal = kcal;
+		this.grasas = grasas;
+		this.hidratos = hidratos;
+	}
+
 	public DatosNutricion() {
 		super();
 	}

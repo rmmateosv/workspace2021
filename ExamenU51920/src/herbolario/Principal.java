@@ -9,7 +9,7 @@ public class Principal {
 	
 	private static Scanner t = new java.util.Scanner(System.in); 
 	private static Modelo bd = new Modelo();
-	private static SimpleDateFormat df = new SimpleDateFormat("ddMMyyyy");
+	;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -18,47 +18,41 @@ public class Principal {
 			do {
 				System.out.println("Introduce una opción");
 				System.out.println("0-Salir");
-				System.out.println("1-Mostrar alumnos");
-				System.out.println("2-Mostrar profesores");
-				System.out.println("3-Insertar alumno");
-				System.out.println("4-Mostrar personas");
-				System.out.println("5-Modificar la dirección de un alumno");
-				System.out.println("6-Borrar alumno");
-				System.out.println("7-Mostrar las notas de todos los alumnos");
-				System.out.println("8-Mostrar las notas de una asignatura");
-				System.out.println("9-Poner nota");
+				System.out.println("1-Alta producto");
+				System.out.println("2-Crear precio");
+				System.out.println("3-Crear venta");
+				System.out.println("4-EStadística venta");
+				System.out.println("5-Importar producto");
+				System.out.println("6-Crear venta OO");
+				System.out.println("7-Mostrar Ventas Producto");
+				
 				
 				opcion = t.nextInt();t.nextLine();
 				int codigo;
 				
 				switch(opcion){
 					case 1:
-						mostrarAlumnos();
+						altaProducto();
 						break;
 					case 2:
-						mostrarProfesor();
+						crearPrecio();
 						break;
 					case 3:
-						insertarAlumno();
+						
 						break;
 					case 4:
-						mostrarPersonas();
+						
 						break;
 					case 5:
-						modificarDirAlumno();
+						
 						break;
 					case 6:
-						borrarAlumno();
+						
 						break;
 					case 7:
-						mostrarNotas();
+						
 						break;
-					case 8:
-						mostrarNotasAsig();
-						break;
-					case 9:
-						ponerNota();
-						break;
+					
 					
 				}
 			}while(opcion!=0);
@@ -70,170 +64,49 @@ public class Principal {
 
 
 }
-
-	private static void ponerNota() {
+	private static void crearPrecio() {
 		// TODO Auto-generated method stub
-		mostrarAlumnos();
-		System.out.println("Introduce alumno");
+		mostrarProductos();
+		System.out.println("Introduce código");
 		int codigo = t.nextInt(); t.nextLine();
-		Alumno al = bd.obtenerAlumno(codigo);
-		if(al!=null) {
-			ArrayList<Asig> asigs = bd.obtenerAsigs();
-			for(Asig as:asigs) {
-				as.mostrar();
+		Producto p = bd.obtenerProducto(codigo);
+		if(p!=null) {
+			System.out.println("Introduce precio");
+			int precio = t.nextInt(); t.nextLine();
+			if(!bd.addPrecio(p,precio)) {
+				System.out.println("Error al añadir el precio");
 			}
-			System.out.println("Introduce código");
-			String codigoAsig = t.nextLine();
-			//Devuelve de asigs, la asignatura cuyo código coincide con códio. Si no hay ninguno, devuelve null
-			Asig asig = asigs.stream().filter(as->as.getCodigo().equalsIgnoreCase(codigoAsig)).findAny().orElse(null);
-			if(asig!=null) {
-				Nota n = new Nota();
-				n.setAlumno(al);
-				n.setAsig(asig);
-				TipoNota tn = new TipoNota();
-				System.out.println("Introduce fecha (ddMMyyyy)");
-				try {
-					tn.setFecha(df.parse(t.nextLine()));
-					System.out.println("Introduce nota");
-					tn.setNota(t.nextInt());t.nextLine();
-					n.getNotas().add(tn);
-					if(!bd.crearNota(n)) {
-						System.out.println("Error al crear la nota");
-					}
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}
-			else {
-				System.out.println("Error, no existe asignatura");
-			}
+			mostrarProductos();
 		}
 		else {
-			System.out.println("Error, alumno no existe");
+		System.out.println("Error, producto no existe");
 		}
 	}
-
-	private static void mostrarNotasAsig() {
+	private static void altaProducto() {
 		// TODO Auto-generated method stub
-		ArrayList<Asig> asigs = bd.obtenerAsigs();
-		for(Asig a:asigs) {
-			a.mostrar();
+		Producto p = new Producto();
+		System.out.println("Nombre:");
+		p.setNombre(t.nextLine());
+		p.setInfo(new DatosNutricion());
+		System.out.println("Kcal:");
+		p.getInfo().setKcal(t.nextInt()); t.nextLine();
+		System.out.println("Grasas:");
+		p.getInfo().setGrasas(t.nextInt()); t.nextLine();
+		System.out.println("Hidratos:");
+		p.getInfo().setHidratos(t.nextInt()); t.nextLine();
+		if(!bd.altaProducto(p)) {
+			System.out.println("Error al crear el producto");
 		}
-		System.out.println("Introduce código");
-		String codigo = t.nextLine();
-		//Devuelve de asigs, la asignatura cuyo código coincide con códio. Si no hay ninguno, devuelve null
-		Asig a = asigs.stream().filter(as->as.getCodigo().equalsIgnoreCase(codigo)).findAny().orElse(null);
-		if(a!=null) {
-			ArrayList<Nota> notas = bd.obtenerNotasAsig(a);
-			for(Nota n: notas) {
-				n.mostrar();
-			}
-		}
-		else {
-			System.out.println("Error, no existe asignatura");
-		}
+		mostrarProductos();
 		
 	}
-
-	private static void mostrarNotas() {
+	private static void mostrarProductos() {
 		// TODO Auto-generated method stub
-		ArrayList<Nota> notas = bd.obtenerNotas();
-		for(Nota n: notas) {
-			n.mostrar();
-		}
-	}
-
-	private static void mostrarAlumnos() {
-		// TODO Auto-generated method stub
-		ArrayList<Alumno> alumnos = bd.obtenerAlumnos();
-		for(Alumno a:alumnos) {
-			a.mostrar();
-		}
-	}
-
-	private static void mostrarProfesor() {
-		// TODO Auto-generated method stub
-		ArrayList<Profesor> profesores = bd.obtenerProfes();
-		for(Profesor p:profesores) {
+		ArrayList<Producto> productos = bd.obtenerProductos();
+		for(Producto p:productos) {
 			p.mostrar();
 		}
 	}
 
-	private static void insertarAlumno() {
-		
-		// TODO Auto-generated method stub
-		Alumno a = new Alumno();
-		System.out.println("Nombre:");
-		a.setNombre(t.nextLine());
-		System.out.println("Tipo Via:");
-		a.setDireccion(new Direccion());
-		a.getDireccion().setTipoV(t.nextLine());
-		System.out.println("Nombre Via:");
-		a.getDireccion().setNombreV(t.nextLine());
-		System.out.println("Número:");
-		a.getDireccion().setNumero(t.nextInt());t.nextLine();
-		System.out.println("CP:");
-		a.getDireccion().setCp(t.nextInt());t.nextLine();
-		System.out.println("Fecha de matrícula (ddMMyyyy):");		
-		try {
-			a.setFechaM(df.parse(t.nextLine()));
-			if(!bd.insertarAlumno(a)) {
-				System.out.println("Error al crear el alumno");
-			}
-			else {
-				mostrarAlumnos();
-			}
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-
-	private static void mostrarPersonas() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private static void modificarDirAlumno() {
-		// TODO Auto-generated method stub
-		mostrarAlumnos();
-		System.out.println("Introduce código");
-		int codigo = t.nextInt(); t.nextLine();
-		Alumno a  = bd.obtenerAlumno(codigo);
-		if(a!=null) {
-			System.out.println("Nuevo tipo de calle");
-			a.getDireccion().setTipoV(t.nextLine());
-			System.out.println("Nuevo nombre de calle");
-			a.getDireccion().setNombreV(t.nextLine());
-			System.out.println("Nuevo número");
-			a.getDireccion().setNumero(t.nextInt());t.nextLine();
-			System.out.println("Nuevo cp");
-			a.getDireccion().setCp(t.nextInt());t.nextLine();
-			if(!bd.modficarDireccion(a)) {
-				System.out.println("Error al modificar la dirección");
-			}
-		}
-		else {
-			System.out.println("Error, alumno no existe");
-		}
-	}
-
-	private static void borrarAlumno() {
-		// TODO Auto-generated method stub
-		mostrarAlumnos();
-		System.out.println("Introduce código");
-		int codigo = t.nextInt(); t.nextLine();
-		Alumno a  = bd.obtenerAlumno(codigo);
-		if(a!=null) {
-			if(!bd.borrarAlumno(a)) {
-				System.out.println("Error al borrar el alumnos");
-			}
-		}
-		else {
-			System.out.println("Error, alumno no existe");
-		}
-	}
+	
 }
