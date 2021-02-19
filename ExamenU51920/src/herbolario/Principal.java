@@ -4,17 +4,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
 	
 	private static Scanner t = new java.util.Scanner(System.in); 
 	private static Modelo bd = new Modelo();
-	;
+	private static ModeloOO bdOO = new ModeloOO();;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		if(bd.getConexion()!=null) {
+		if(bd.getConexion()!=null && bdOO.getConexion()!=null) {
 			int opcion = 0;						
 			do {
 				System.out.println("Introduce una opción");
@@ -45,19 +46,20 @@ public class Principal {
 						estadistica();
 						break;
 					case 5:
-						
+						importar();
 						break;
 					case 6:
-						
+						altaVenta();
 						break;
 					case 7:
-						
+						mostrarVentasPro();
 						break;
 					
 					
 				}
 			}while(opcion!=0);
 			bd.cerrar();
+			bdOO.cerrar();
 		}
 		else {
 			System.out.println("No hay conexión con la BD");
@@ -65,6 +67,77 @@ public class Principal {
 
 
 }
+	private static void mostrarVentasPro() {
+		// TODO Auto-generated method stub
+		mostrarProductosOO();
+		System.out.println("Codigo Producto:");
+		String codigo = t.nextLine();
+		ProductoOO p = bdOO.obtenerProducto(codigo);
+		if(p!=null) {
+			List<VentaOO> ventas = bdOO.obtenerVentasProducto(p);
+			for(VentaOO v: ventas) {
+				v.mostrar();
+			}
+			
+		}
+		else {
+			System.out.println("Error, producto no existe");
+		}
+	}
+	private static void altaVenta() {
+		// TODO Auto-generated method stub
+		mostrarProductosOO();
+		System.out.println("Codigo Producto:");
+		String codigo = t.nextLine();
+		ProductoOO p = bdOO.obtenerProducto(codigo);
+		if(p!=null && !p.getPrecios().isEmpty()) {
+			VentaOO v = new VentaOO();
+			v.setFecha(new Date());
+			v.setProducto(p);
+			System.out.println("Código Venta:");
+			v.setCodigo(t.nextLine());
+			if(!bdOO.existeVenta(v.getCodigo())) {
+				System.out.println("Cantidad:");
+				v.setCantidad(t.nextInt()); t.nextLine();
+				v.setPrecio(v.getCantidad() *  p.getPrecios().get(p.getPrecios().size()-1));
+				if(!bdOO.crearVenta(v)) {
+					System.out.println("Error al crear la venta");
+				}
+				else
+					mostrarVentasOO();	
+			}
+			else {
+				System.out.println("Error, ya hay una venta con ese código");
+			}
+			
+		}
+		else {
+			System.out.println("Error, producto no existe o no hay precios");
+		}
+	}
+	private static void mostrarVentasOO() {
+		// TODO Auto-generated method stub
+		List<VentaOO> ventas = bdOO.obtenerVentas();
+		for(VentaOO v: ventas) {
+			v.mostrar();
+		}
+	}
+	private static void mostrarProductosOO() {
+		// TODO Auto-generated method stub
+		List<ProductoOO> pro = bdOO.obtenerProductos();
+		for(ProductoOO p: pro) {
+			p.mostrar();
+		}
+	}
+	private static void importar() {
+		// TODO Auto-generated method stub
+		ArrayList<Producto> productos = bd.obtenerProductos();
+		for(Producto p:productos) {
+			if(!bdOO.crearProductos(p)) {
+				System.out.println("Error al importar el producto nº" + p.getCodigo());
+			}
+		}
+	}
 	private static void estadistica() {
 		// TODO Auto-generated method stub
 		ArrayList<Object[]> datos = bd.obtenerEstadistica();
